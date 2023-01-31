@@ -7,7 +7,7 @@ import { Wall } from "../../Engine/src/components/Physical-Body/Wall";
 import { Box } from "../../Engine/src/components/Physical-Body/Box";
 import { userInput } from "../../Demo/src/UserInput";
 import { Viewport } from "pixi-viewport"
-
+import { Player } from "./Game-Objects/Player";
 
 const app = new PIXI.Application({ resizeTo: window });
 document.body.appendChild(app.view);
@@ -34,12 +34,12 @@ const ball2 = new Ball(100, 100, 30, 5)
 const wall = new Wall(50, 50, 1000, 50)
 const box = new Box(100, 100, 200, 200, 100, 20)
 
+const player = new Player(ball)
 
 // const container = new PIXI.Container()
 // app.stage.addChild(container)
 
 //loop
-userInput(ball)
 
 MainLoop(viewport, 10)
 
