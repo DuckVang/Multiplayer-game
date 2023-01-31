@@ -33,6 +33,7 @@ const ball2 = new Ball(100, 100, 30, 5)
 
 const wall = new Wall(50, 50, 1000, 50)
 const box = new Box(100, 100, 200, 200, 100, 20)
+box.angKeyForce = 0.005
 
 const player = new Player(ball)
 
