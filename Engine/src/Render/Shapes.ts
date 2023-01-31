@@ -1,7 +1,3 @@
-import Circle from "../components/Shapes/Circle";
-import Rectangle from "../components/Shapes/Rectangle";
-import Triangle from "../components/Shapes/Triangle";
-import Line from "../components/Shapes/Line";
 import { Graphics } from "pixi.js"
 import * as Color from "color"
 import Vector from "../Math/Vector";

@@ -4,7 +4,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   mode: "development",
-  entry: './src/index.ts',
+  entry: {
+    demo: "./Demo/src/index.ts",
+    game: "./Game/src/index.ts"
+
+  },
   module: {
     rules: [
       {
@@ -18,26 +22,38 @@ module.exports = {
   },
 
   plugins: [
+    // new HtmlWebpackPlugin({
+    //   title: 'Custom template',
+    //   template: "./Demo/public/index.html"
+    // }),
     new HtmlWebpackPlugin({
-      title: 'Custom template',
-      template: "./public/index.html"
+      filename: 'demo.index.html',
+      template: "./Demo/public/index.html",
+      chunks: ['demo']
     }),
+    new HtmlWebpackPlugin({
+      filename: 'game.index.html',
+      template: "./Game/public/index.html",
+      chunks: ['game']
+    })
 
   ],
 
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, './Game/public'),
     },
-    compress: true,
     port: 8080,
+    compress: true,
+    open: ["/game.index.html"], // Here
+    
   },
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', ".css"],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, './Dist'),
   },
 };

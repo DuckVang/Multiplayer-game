@@ -2,11 +2,11 @@ import * as PIXI from "pixi.js"
 import "../../Demo/public/style.module.css";
 
 
-import { Ball } from "../../src/components/Physical-Body/Ball";
+import { Ball } from "../../Engine/src/components/Physical-Body/Ball";
 import { userInput } from "./UserInput";
-import { Wall } from "../../src/components/Physical-Body/Wall";
-import MainLoop  from "../../src/Loops/MainLoop";
-import { Box } from "../../src/components/Physical-Body/Box";
+import { Wall } from "../../Engine/src/components/Physical-Body/Wall";
+import MainLoop  from "../../Engine/src/Loops/MainLoop";
+import { Box } from "../../Engine/src/components/Physical-Body/Box";
 const app = new PIXI.Application({ resizeTo: window });
 
 
