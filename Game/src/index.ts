@@ -20,6 +20,6 @@ const player = new Player()
 // app.stage.addChild(container)
 
 //loop
-
+WORLD.SetViewTo(player)
 WORLD.Loop()
 

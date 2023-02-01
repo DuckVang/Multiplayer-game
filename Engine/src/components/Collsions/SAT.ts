@@ -25,9 +25,8 @@ export function sat(o1: Shape, o2: Shape) {
         if (overlap < 0){
             return false;
         }
-        console.table(o1.pos)
-        console.table(o2.pos)
-
+        
+      
         if((proj1.max > proj2.max && proj1.min < proj2.min) ||
         (proj1.max < proj2.max && proj1.min > proj2.min)){
             let mins = Math.abs(proj1.min - proj2.min);
