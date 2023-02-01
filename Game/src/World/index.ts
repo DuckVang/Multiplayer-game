@@ -14,7 +14,11 @@ export class World {
 
     constructor() {
 
-        this.app = new PIXI.Application({ resizeTo: window });
+        this.app = new PIXI.Application({
+            resizeTo: window,
+            backgroundColor: 0x2980b9
+        });
+        
         document.body.appendChild(this.app.view);
 
         this.VIEWPORT = new Viewport({
@@ -41,8 +45,8 @@ export class World {
         // this.VIEWPORT.follow(this.follow.graphics, {speed:10, })
 
 
-       this.Follow()
-        
+        this.Follow()
+
         UserInputs()
         PhysicsLoop(10)
         RenderLoop(this.VIEWPORT)
@@ -54,7 +58,7 @@ export class World {
     SetViewTo(body: Body) {
         this.follow = body
     }
-    Follow(){
+    Follow() {
         this.VIEWPORT.moveCenter(this.follow.pos.x, this.follow.pos.y)
     }
 

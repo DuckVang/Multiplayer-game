@@ -3,7 +3,7 @@ import "../../Demo/public/style.module.css";
 import { Player } from "./Game-Objects/Player";
 import { TestBox } from "./Game-Objects/Test-Objects/Test-Box";
 import { World } from "./World";
-
+import { MapWall, PutWallAround } from "./Game-Objects/Map-Objects/MapWall";
 const WORLD = new World()
 
 // const ball = new Ball(100, 100, 30, 5)
@@ -15,7 +15,7 @@ const WORLD = new World()
 // box.angKeyForce = 0.005
 const testBox = new TestBox()
 const player = new Player()
-
+PutWallAround(-5000,-5000,5000,5000)
 // const container = new PIXI.Container()
 // app.stage.addChild(container)
 

@@ -66,10 +66,9 @@ export function DrawVelAcc(body: Body) {
     return lines
 
 }
-export function DrawLine(p1: Vector, p2: Vector) {
-    const line = new Graphics()
-
-    line.lineStyle(2, 0xffd900, 1);
+export function DrawLine(GraphObj:Graphics,p1: Vector, p2: Vector) {
+    const line = GraphObj
+    line.lineStyle(20, 0xffd900, 1);
     line.moveTo(p1.x, p1.y)
     line.lineTo(p2.x, p2.y)
     return line
