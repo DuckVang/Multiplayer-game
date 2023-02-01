@@ -12,8 +12,8 @@ export class Player extends Ball {
         super(200, 200, 30, 2)
         userMove(this)
         this.graphics = new Graphics()
-        this.graphics.position.x = this.pos.x
-        this.graphics.position.y = this.pos.y
+        // this.graphics.position.x = this.pos.x
+        // this.graphics.position.y = this.pos.y
 
 
     }

@@ -4,6 +4,7 @@ import Body from "../../../Engine/src/components/Physical-Body/Body";
 import { Ball } from "../../../Engine/src/components/Physical-Body/Ball";
 import { Box } from "../../../Engine/src/components/Physical-Body/Box";
 import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
+import Vector from "../../../Engine/src/Math/Vector";
 
 
 export function DrawBall(GraphObj:Graphics, ball: Ball) {
@@ -44,9 +45,9 @@ export function DrawBox(GraphObj:Graphics,box: Box) {
 
 
 }
-export function DrawVelAcc(GraphObj:Graphics,body: Body) {
+export function DrawVelAcc(body: Body) {
 
-    const lines =  GraphObj
+    const lines =  new Graphics()
     const vel = new Graphics()
     const acc = new Graphics()
 
@@ -65,22 +66,22 @@ export function DrawVelAcc(GraphObj:Graphics,body: Body) {
     return lines
 
 }
-// export function DrawLine(p1: Vector, p2: Vector) {
-//     const line = new Graphics()
+export function DrawLine(p1: Vector, p2: Vector) {
+    const line = new Graphics()
 
-//     line.lineStyle(2, 0xffd900, 1);
-//     line.moveTo(p1.x, p1.y)
-//     line.lineTo(p2.x, p2.y)
-//     return line
-// }
+    line.lineStyle(2, 0xffd900, 1);
+    line.moveTo(p1.x, p1.y)
+    line.lineTo(p2.x, p2.y)
+    return line
+}
 
-// export function DrawPoint(p: Vector) {
+export function DrawPoint(p: Vector) {
 
-//     let color = new Color('#3F9FEA')
+    let color = new Color('#3F9FEA')
 
-//     let point = new Graphics()
-//     point.beginFill(color.rgbNumber());
-//     point.drawCircle(p.x, p.y, 10)
-//     point.endFill()
-//     return point
-// }
+    let point = new Graphics()
+    point.beginFill(color.rgbNumber());
+    point.drawCircle(p.x, p.y, 10)
+    point.endFill()
+    return point
+}
