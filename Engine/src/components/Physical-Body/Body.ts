@@ -1,4 +1,5 @@
 
+import { Graphics } from "pixi.js"
 import Vector from "../../Math/Vector"
 import BODIES from "../Models/Bodies"
 import { Shape } from "../Shapes/Shape"
@@ -38,6 +39,8 @@ class Body {
 
     vertex: Vector[]
 
+    graphics: Graphics
+
 
     constructor() {
         this.comp = null;
@@ -50,7 +53,7 @@ class Body {
 
         this.friction = 0;
         this.angFriction = 0;
-        this.maxSpeed = 1;
+        this.maxSpeed = 10;
         this.layer = 0;
 
         this.up = false;
@@ -61,7 +64,7 @@ class Body {
 
         this.vel = new Vector(0, 0);
         this.acc = new Vector(0, 0);
-        this.keyForce = 0.01;
+        this.keyForce = 0.1;
         this.angKeyForce = 0.1;
         this.angle = 0;
         this.angVel = 0;
@@ -82,6 +85,7 @@ class Body {
 
     }
     keyControl() { }
+    render(){}
     remove() {
         if (BODIES.indexOf(this) !== -1) {
             BODIES.splice(BODIES.indexOf(this), 1);
