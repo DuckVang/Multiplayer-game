@@ -1,6 +1,6 @@
-import { Graphics } from "pixi.js"
+import { Container, Graphics } from "pixi.js"
 
-class UI extends Graphics{
+export class UI extends Container{
 
     constructor(){
         super()

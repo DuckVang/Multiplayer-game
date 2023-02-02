@@ -2,9 +2,12 @@
 import "../../Demo/public/style.module.css";
 import { Player } from "./Game-Objects/Player";
 import { TestBox } from "./Game-Objects/Test-Objects/Test-Box";
-import { World } from "./World";
 import { MapWall, PutWallAround } from "./Game-Objects/Map-Objects/MapWall";
-const WORLD = new World()
+import WORLD from "./World/Index";
+import { Minimap } from "./Game-UI/Minimap";
+
+
+const minimap = new Minimap()
 
 // const ball = new Ball(100, 100, 30, 5)
 // const ball1 = new Ball(300, 100, 30, 5)
@@ -23,3 +26,4 @@ PutWallAround(-5000,-5000,5000,5000)
 WORLD.SetViewPointTo(player)
 WORLD.Loop()
 
+// export default WORLD
