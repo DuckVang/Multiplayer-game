@@ -1,11 +1,12 @@
 import { Viewport } from "pixi-viewport";
 import { Container } from "pixi.js"
+import { container } from "webpack";
 import BODIES from "../../../Engine/src/components/Models/Bodies"
 import COLLISIONS from "../../../Engine/src/components/Models/Collisions";
 import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import { DrawPoint, DrawVelAcc } from "../Render /Shapes";
 
-export function RenderLoop(container: Viewport) {
+export function RenderLoop(container: Container) {
 
     container.removeChildren()
     BODIES.forEach((body) => {
@@ -13,7 +14,9 @@ export function RenderLoop(container: Viewport) {
 
         body.render()
         container.addChild(body.graphics)
-        if (body! instanceof Wall) container.addChild(DrawVelAcc(body))
+
+        container.addChild(DrawVelAcc(body))
+
 
     })
 

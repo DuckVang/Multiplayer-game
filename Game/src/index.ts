@@ -20,6 +20,6 @@ PutWallAround(-5000,-5000,5000,5000)
 // app.stage.addChild(container)
 
 //loop
-WORLD.SetViewTo(player)
+WORLD.SetViewPointTo(player)
 WORLD.Loop()
 

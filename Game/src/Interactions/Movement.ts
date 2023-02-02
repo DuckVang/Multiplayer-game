@@ -42,7 +42,7 @@ export function userMove(body: Body) {
             if (e.keyCode == 32) {
                 body.action = false;
             }
-            throw new Error();
+            
 
 
         });
