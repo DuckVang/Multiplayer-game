@@ -6,13 +6,13 @@ import WORLD from "../World";
 
 export function UILoop() {
 
-    
+    WORLD.GUICONT.removeChildren()
     WORLD.UIOBJECTS.forEach((object) => {
 
 
         object.update()
+        WORLD.GUICONT.addChild(object)
 
-        
 
 
     })
