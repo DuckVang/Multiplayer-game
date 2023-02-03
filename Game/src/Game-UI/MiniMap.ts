@@ -1,6 +1,6 @@
 import { Application, Container, Graphics } from "pixi.js";
 import BODIES from "../../../Engine/src/components/Models/Bodies";
-import WORLD from "../World/Index";
+import WORLD from "../World/World";
 import { UI } from "./UIClass";
 export class Minimap extends UI {
 

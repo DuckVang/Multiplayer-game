@@ -3,7 +3,7 @@ import "../../Demo/public/style.module.css";
 import { Player } from "./Game-Objects/Player";
 import { TestBox } from "./Game-Objects/Test-Objects/Test-Box";
 import { MapWall, PutWallAround } from "./Game-Objects/Map-Objects/MapWall";
-import WORLD from "./World/Index";
+import WORLD from "./World/World";
 import { Minimap } from "./Game-UI/Minimap";
 import World from "./World/WorldClass";
 
@@ -32,7 +32,7 @@ PutWallAround(-5000,-5000,5000,5000)
 // app.stage.addChild(container)
 
 //loop
-WORLD.SetViewPointTo(player)
+WORLD.SetPlayer(player)
 WORLD.Loop()
 
 // export default WORLD
