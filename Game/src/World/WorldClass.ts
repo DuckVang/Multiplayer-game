@@ -12,10 +12,13 @@ import { CollisionData } from "../../../Engine/src/components/Collsions/Collisio
 import { UserMove } from "../Interactions/Movement";
 import { UILoop } from "./Loops/UpdateUI";
 import { Minimap } from "../Game-UI/Minimap";
+import { FollowPlayer, SetCameraTo } from "./Components/Camera";
 export default class World {
 
     app: PIXI.Application
+
     VIEWPORT: Viewport
+
     GAMECONT: Container
     GUICONT: Container
 
@@ -24,7 +27,7 @@ export default class World {
     COLLISIONS: CollisionData[]
 
 
-    follow: Body
+    toFollow: Body
     mousePos: any
     mouserDir: Vector
 
@@ -81,10 +84,9 @@ export default class World {
 
         console.time()
         console.timeLog()
-        this.mouserDir = GetMouseDirection(this.follow, this.mousePos.x, this.mousePos.y).add(this.follow.pos)
+        // this.mouserDir = GetMouseDirection(this.follow, this.mousePos.x, this.mousePos.y).add(this.follow.pos)
 
-        this.Follow()
-
+        FollowPlayer()
         UILoop()
 
         UserInputs()
@@ -92,11 +94,12 @@ export default class World {
         RenderBodiesLoop()
 
         console.timeEnd()
+
         requestAnimationFrame(() => this.Loop())
 
     }
 
-    AddUIobj(obj: UI){
+    AddUIobj(obj: UI) {
         this.UIOBJECTS.push(obj)
         this.GUICONT.addChild(obj)
 
@@ -105,16 +108,11 @@ export default class World {
     SetPlayer(body: Body) {
 
         UserMove(body)
-        this.SetViewPointTo(body)
+        SetCameraTo(body)
     }
 
-    SetViewPointTo(body: Body) {
-        this.follow = body
-    }
 
-    private Follow() {
-        this.VIEWPORT.moveCenter(this.follow.pos.x, this.follow.pos.y)
-    }
-  
+   
+
 
 }
