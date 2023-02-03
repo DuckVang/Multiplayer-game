@@ -1,4 +1,4 @@
-import { Container, Graphics } from "pixi.js"
+import { Container} from "pixi.js"
 
 export class UI extends Container{
 
