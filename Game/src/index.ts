@@ -6,6 +6,7 @@ import { MapWall, PutWallAround } from "./Game-Objects/Map-Objects/MapWall";
 import WORLD from "./World/World";
 import { Minimap } from "./Game-UI/Minimap";
 import World from "./World/WorldClass";
+import { HealthBar } from "./Game-UI/HealthBar";
 
 
 
@@ -24,6 +25,7 @@ const player = new Player()
 
 
 WORLD.AddUIobj(new Minimap())
+WORLD.AddUIobj(new HealthBar())
 
 WORLD.SetPlayer(player)
 
