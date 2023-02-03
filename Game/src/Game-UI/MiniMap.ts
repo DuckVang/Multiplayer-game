@@ -19,8 +19,8 @@ export class Minimap extends UI {
 
         this.x = WORLD.app.renderer.width ;
         this.y = 0;
-        this.pivot.x = this.width ;
-        this.pivot.y = 0;
+        this.pivot.x = this.width + 50 ;
+        this.pivot.y = 0 - 50  ;
 
         WORLD.UIOBJECTS.push(this)
     
@@ -29,6 +29,8 @@ export class Minimap extends UI {
     }
 
     update() {
+       
+        this.removeChildren()
         this.background.lineStyle(2, 0x000, 1);
         this.background.beginFill(0x650a5a, 0.25);
         this.background.drawRect(0, 0, 200, 200);
