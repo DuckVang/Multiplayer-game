@@ -6,20 +6,20 @@ import WORLD from "../World";
 
 export function RenderBodiesLoop() {
 
-    WORLD.GAMECONT.removeChildren()
+    WORLD.GAME_CONT.removeChildren()
     BODIES.forEach((body) => {
 
 
         body.render()
-        WORLD.GAMECONT.addChild(body.graphics)
+        WORLD.GAME_CONT.addChild(body.graphics)
 
-        WORLD.GAMECONT.addChild(DrawVelAcc(body))
+        WORLD.GAME_CONT.addChild(DrawVelAcc(body))
 
 
     })
 
     COLLISIONS.forEach(element => {
-        WORLD.GAMECONT.addChild(DrawPoint(element.cp))
+        WORLD.GAME_CONT.addChild(DrawPoint(element.cp))
     });
 
   
