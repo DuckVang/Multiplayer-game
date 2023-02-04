@@ -9,6 +9,7 @@ import World from "./World/WorldClass";
 import { HealthBar } from "./Game-UI/HealthBar";
 import { EnergyBar } from "./Game-UI/EnergyBar";
 import { Timer } from "./Game-UI/Timer";
+import { Zone } from "./Game-UI/Zone";
 
 
 
@@ -26,10 +27,11 @@ const testBox = new TestBox()
 const player = new Player()
 
 
-WORLD.AddUIobj(new Minimap())
-WORLD.AddUIobj(new HealthBar())
-WORLD.AddUIobj(new EnergyBar())
-WORLD.AddUIobj(new Timer())
+WORLD.AddUIObj(new Minimap())
+WORLD.AddUIObj(new HealthBar())
+WORLD.AddUIObj(new EnergyBar())
+WORLD.AddUIObj(new Timer())
+WORLD.AddUIObj(new Zone())
 
 WORLD.SetPlayer(player)
 

@@ -117,11 +117,12 @@ export default class World {
 
     // }
 
-    AddUIobj(obj: UI) {
+    AddUIObj(obj: UI) {
         this.UIOBJECTS.push(obj)
         this.GUICONT.addChild(obj)
 
     }
+    AddMapObj(obj:)
 
     SetPlayer(player: Player) {
 
