@@ -7,6 +7,8 @@ import WORLD from "./World/World";
 import { Minimap } from "./Game-UI/Minimap";
 import World from "./World/WorldClass";
 import { HealthBar } from "./Game-UI/HealthBar";
+import { EnergyBar } from "./Game-UI/EnergyBar";
+import { Timer } from "./Game-UI/Timer";
 
 
 
@@ -26,6 +28,8 @@ const player = new Player()
 
 WORLD.AddUIobj(new Minimap())
 WORLD.AddUIobj(new HealthBar())
+WORLD.AddUIobj(new EnergyBar())
+WORLD.AddUIobj(new Timer())
 
 WORLD.SetPlayer(player)
 
@@ -35,6 +39,6 @@ PutWallAround(-5000,-5000,5000,5000)
 
 //loop
 WORLD.SetPlayer(player)
-WORLD.Loop()
+WORLD.Start()
 
 // export default WORLD
