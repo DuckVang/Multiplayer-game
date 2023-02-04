@@ -1,6 +1,7 @@
 import { PhysicsLoop } from "../../../../Engine/src/Loops/PhysicalLoop"
 import { FollowPlayer } from "../Components/Camera"
 import { RenderBodiesLoop } from "./RenderLoop"
+import { MapLoop } from "./UpdateMap"
 import { UILoop } from "./UpdateUI"
 import { UserInputs } from "./UserInputs"
 
@@ -13,6 +14,7 @@ export function MainLoop() {
 
     FollowPlayer()
     UILoop()
+    MapLoop()
 
     UserInputs()
     PhysicsLoop(10)

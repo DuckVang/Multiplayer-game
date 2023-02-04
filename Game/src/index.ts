@@ -31,7 +31,9 @@ WORLD.AddUIObj(new Minimap())
 WORLD.AddUIObj(new HealthBar())
 WORLD.AddUIObj(new EnergyBar())
 WORLD.AddUIObj(new Timer())
-WORLD.AddUIObj(new Zone())
+
+
+WORLD.AddMapObj(new Zone())
 
 WORLD.SetPlayer(player)
 
