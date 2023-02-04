@@ -1,32 +1,43 @@
-import { Application, Container, Graphics } from "pixi.js";
+import { Application, Container, DisplayObject, Graphics } from "pixi.js";
 import BODIES from "../../../Engine/src/components/Models/Bodies";
 import WORLD from "../World/World";
 import { UI } from "./UIClass";
 export class HealthBar extends UI {
 
 
-    background: Graphics
+    current: number
+    barWidth: number
+    bar: Graphics
+
     constructor() {
         super()
+        this.x = 10
+        this.y = 10
 
-        this.background = new Graphics();
-        this.background.lineStyle(2, 0x000, 1);
-        this.background.beginFill(0x650a5a, 0.55);
-        this.background.drawRect(0, 0, 150, 40);
-        this.background.endFill();
-        this.addChild(this.background);
+        this.barWidth = 120
+        //Create the black background rectangle
+        const innerBar = new Graphics();
+        innerBar.beginFill(0xFF3300, 0.25);
+        innerBar.drawRect(0, 0, this.barWidth, 8);
+        innerBar.endFill();
+        this.addChild(innerBar);
 
-        this.x = 0;
-        this.y = 0;
-        this.pivot.x = 0  ;
-        this.pivot.y = 0  ;    
-     
+        //Create the front red rectangle
+        const outerBar = new Graphics();
+        outerBar.beginFill(0xFF3300);
+        outerBar.drawRect(0, 0, this.barWidth, 8);
+        outerBar.endFill();
+        this.addChild(outerBar);
+
+        this.bar = outerBar
+
     }
-
     update() {
-       
-        this.background.removeChildren()
-     
-        
+
+        const player = WORLD.player
+        this.bar.width = player.health / player.maxHealth * this.barWidth
+
+
+
     }
 }

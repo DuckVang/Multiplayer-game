@@ -13,6 +13,9 @@ import { UserMove } from "../Interactions/Movement";
 import { UILoop } from "./Loops/UpdateUI";
 import { Minimap } from "../Game-UI/Minimap";
 import { FollowPlayer, SetCameraTo } from "./Components/Camera";
+import { Player } from "../Game-Objects/Player";
+import { StartGame } from "../Game-Logic/StartGame";
+import { MainLoop } from "./Loops/MainLoop";
 export default class World {
 
     app: PIXI.Application
@@ -27,9 +30,15 @@ export default class World {
     COLLISIONS: CollisionData[]
 
 
+    player: Player
+
     toFollow: Body
     mousePos: any
     mouserDir: Vector
+
+    zoneRadius: number
+    interval: number
+    timeLeft: number
 
 
 
@@ -75,29 +84,38 @@ export default class World {
             .decelerate()
 
 
-
+        this.zoneRadius = 5000
+        this.interval = 10
+        this.timeLeft = this.interval
 
 
     }
-    Loop() {
-        // this.VIEWPORT.follow(this.follow.graphics, {speed:10, })
+    Start() {
+        StartGame()
+        console.log("pog")
+        MainLoop()
 
-        console.time()
-        console.timeLog()
-        // this.mouserDir = GetMouseDirection(this.follow, this.mousePos.x, this.mousePos.y).add(this.follow.pos)
-
-        FollowPlayer()
-        UILoop()
-
-        UserInputs()
-        PhysicsLoop(10)
-        RenderBodiesLoop()
-
-        console.timeEnd()
-
-        requestAnimationFrame(() => this.Loop())
 
     }
+    // Loop() {
+    //     // this.VIEWPORT.follow(this.follow.graphics, {speed:10, })
+
+    //     console.time()
+    //     console.timeLog()
+    //     // this.mouserDir = GetMouseDirection(this.follow, this.mousePos.x, this.mousePos.y).add(this.follow.pos)
+
+    //     FollowPlayer()
+    //     UILoop()
+
+    //     UserInputs()
+    //     PhysicsLoop(10)
+    //     RenderBodiesLoop()
+
+    //     console.timeEnd()
+
+    //     requestAnimationFrame(() => this.Loop())
+
+    // }
 
     AddUIobj(obj: UI) {
         this.UIOBJECTS.push(obj)
@@ -105,14 +123,15 @@ export default class World {
 
     }
 
-    SetPlayer(body: Body) {
+    SetPlayer(player: Player) {
 
-        UserMove(body)
-        SetCameraTo(body)
+        this.player = player
+        UserMove(player)
+        SetCameraTo(player)
     }
 
 
-   
+
 
 
 }
