@@ -21,4 +21,6 @@ export function RenderBodiesLoop() {
     COLLISIONS.forEach(element => {
         WORLD.GAMECONT.addChild(DrawPoint(element.cp))
     });
+
+  
 }

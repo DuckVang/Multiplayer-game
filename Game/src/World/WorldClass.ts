@@ -16,6 +16,7 @@ import { FollowPlayer, SetCameraTo } from "./Components/Camera";
 import { Player } from "../Game-Objects/Player";
 import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
+import { MapObject } from "../Map-Object/MapObjClass";
 export default class World {
 
     app: PIXI.Application
@@ -24,8 +25,10 @@ export default class World {
 
     GAMECONT: Container
     GUICONT: Container
+    MAPCONT: Container
 
     UIOBJECTS: UI[]
+    MAPOBJECTS: MapObject[]
     BODIES: Body[]
     COLLISIONS: CollisionData[]
 
@@ -46,6 +49,7 @@ export default class World {
     constructor() {
 
         this.UIOBJECTS = []
+        this.MAPOBJECTS = []
 
         this.app = new PIXI.Application({
             resizeTo: window,
@@ -74,6 +78,9 @@ export default class World {
         this.GAMECONT = new Container()
         this.VIEWPORT.addChild(this.GAMECONT)
 
+        this.MAPCONT = new Container()
+        this.VIEWPORT.addChild(this.MAPCONT)
+
 
         this.mousePos = this.app.renderer.plugins.interaction.mouse.global;
 
@@ -92,7 +99,6 @@ export default class World {
     }
     Start() {
         StartGame()
-        console.log("pog")
         MainLoop()
 
 
@@ -122,7 +128,11 @@ export default class World {
         this.GUICONT.addChild(obj)
 
     }
-    AddMapObj(obj:)
+    AddMapObj(obj: MapObject) {
+        this.MAPOBJECTS.push(obj)
+        this.VIEWPORT.addChild(obj)
+
+    }
 
     SetPlayer(player: Player) {
 
