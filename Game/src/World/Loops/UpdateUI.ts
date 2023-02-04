@@ -6,12 +6,12 @@ import WORLD from "../World";
 
 export function UILoop() {
 
-    WORLD.GUICONT.removeChildren()
+    WORLD.GUI_CONT.removeChildren()
     WORLD.UIOBJECTS.forEach((object) => {
 
 
         object.update()
-        WORLD.GUICONT.addChild(object)
+        WORLD.GUI_CONT.addChild(object)
 
 
 

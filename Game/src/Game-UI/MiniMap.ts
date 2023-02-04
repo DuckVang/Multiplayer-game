@@ -28,8 +28,8 @@ export class Minimap extends UI {
         this.background.removeChildren()
      
         for (let i = 0; i < BODIES.length; i += 1) {
-            const px = BODIES[i].pos.x / WORLD.GAMECONT.width * 200 + this.width/2 
-            const py = BODIES[i].pos.y / WORLD.GAMECONT.height * 200 + this.height/2;
+            const px = BODIES[i].pos.x / WORLD.GAME_CONT.width * 200 + this.width/2 
+            const py = BODIES[i].pos.y / WORLD.GAME_CONT.height * 200 + this.height/2;
             const entity = new Graphics();
             entity.lineStyle(2, 0x000, 1);
             entity.beginFill(0xffff00, 0.25);

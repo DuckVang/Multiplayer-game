@@ -9,7 +9,7 @@ import World from "./World/WorldClass";
 import { HealthBar } from "./Game-UI/HealthBar";
 import { EnergyBar } from "./Game-UI/EnergyBar";
 import { Timer } from "./Game-UI/Timer";
-import { Zone } from "./Game-UI/Zone";
+import { Zone } from "./Map-Object/Zone";
 
 
 
