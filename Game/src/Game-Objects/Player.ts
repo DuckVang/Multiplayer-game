@@ -2,6 +2,8 @@ import * as Color from "color"
 import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../Engine/src/components/Physical-Body/Body"
+import Vector from "../../../Engine/src/Math/Vector"
+import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddMovement } from "../Interactions/Movement"
 import { DrawBall } from "../Render /Shapes"
@@ -31,8 +33,9 @@ export class Player extends Ball {
 
 
     }
-    CastSpell() {
-        console.log("pog")
+    CastSpell(dir:Vector) {
+        let manaBullet = new ManaBullet()
+        manaBullet.cast(dir)
 
     }
 

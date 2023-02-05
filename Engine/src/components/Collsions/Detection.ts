@@ -23,13 +23,13 @@ export function closestPointOnLS(p: Vector, w1: Wall) {
 
 export function checkCol(o1: Body, o2: Body) {
 
-    type BestSAT = {
+    type SAT_Data = {
         pen: any
         axis: any
         vertex: any
     }
 
-    let bestSAT: BestSAT = {
+    let bestSAT: SAT_Data = {
         pen: null,
         axis: null,
         vertex: null
