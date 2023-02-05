@@ -15,7 +15,7 @@ export class Ball extends Body {
 
     }
 
-    setPosition(x: number, y: number, a = this.angle) {
+    setPosition(x: number, y: number) {
         this.pos.set(x, y);
         this.comp.pos.set(x, y)
     }
@@ -28,6 +28,7 @@ export class Ball extends Body {
     keyControl() {
         this.acc.x = 0
         this.acc.y = 0
+        
         if (this.left) {
             this.acc.x -= this.keyForce;
         }

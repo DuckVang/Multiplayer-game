@@ -15,13 +15,13 @@ export class ManaBullet extends Spell {
     cast(dir: Vector) {
         let playrPos = WORLD.player.pos
         let projectile = new Projectile(dir, playrPos)
+        
         projectile.friction = 0
         let speed = dir.mult(1000)
         projectile.vel = projectile.vel.add(speed)
 
         setTimeout(() => {
-            let i = BODIES.indexOf(projectile)
-            BODIES.splice(i, 1)
+            projectile.remove()
         }, this.duration);
     }
 }

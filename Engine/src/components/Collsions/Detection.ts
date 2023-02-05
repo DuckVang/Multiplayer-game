@@ -20,8 +20,15 @@ export function closestPointOnLS(p: Vector, w1: Wall) {
     return w1.start.subtr(closestVect);
 }
 
+export function collisionHandlingCondition(body1: Body, body2: Body) {
+    return (
+        (body1.layer === body2.layer && !(body1.layer === -1 || body1.layer === -2)) ||
+        (body1.layer === 0 && body2.layer !== -2) ||
+        (body2.layer === 0 && body1.layer !== -2)
+    )
+}
 
-export function checkCol(o1: Body, o2: Body) {
+export function checkColl(o1: Body, o2: Body) {
 
     type SAT_Data = {
         pen: any
@@ -38,7 +45,7 @@ export function checkCol(o1: Body, o2: Body) {
     let SAT = sat(o1.comp, o2.comp)
 
     if (!SAT) return false
-    
+
     if (SAT.pen > bestSAT.pen) {
         bestSAT = SAT;
 
