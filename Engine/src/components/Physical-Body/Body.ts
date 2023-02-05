@@ -69,6 +69,7 @@ class Body {
         this.angle = 0;
         this.angVel = 0;
         this.player = false;
+
         BODIES.push(this);
     }
 

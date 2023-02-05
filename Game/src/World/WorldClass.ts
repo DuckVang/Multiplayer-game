@@ -127,7 +127,6 @@ export default class World {
         this.player =player
         AddMovement(player)
         SetCameraTo(player)
-        WatchMouse()
     }
 
 
