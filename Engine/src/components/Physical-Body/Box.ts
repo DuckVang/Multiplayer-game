@@ -25,6 +25,19 @@ export class Box extends Body {
 
     }
 
+    
+    setPosition(x: number, y: number, a = this.angle) {
+        this.pos.set(x, y);
+        this.angle = a;
+        this.comp.pos = this.pos;
+        this.comp.getVertices(this.angle + this.angVel);
+        this.angle += this.angVel;
+    }
+    
+    reposition() {
+        super.reposition();
+        this.setPosition(this.pos.add(this.vel).x, this.pos.add(this.vel).y);
+    }
     keyControl() {
         if (this.up) {
             this.acc = this.comp.dir.mult(-this.keyForce);;
@@ -41,19 +54,6 @@ export class Box extends Body {
         if (!this.up && !this.down) {
             this.acc.set(0, 0);
         }
-    }
-
-    setPosition(x: number, y: number, a = this.angle) {
-        this.pos.set(x, y);
-        this.angle = a;
-        this.comp.pos = this.pos;
-        this.comp.getVertices(this.angle + this.angVel);
-        this.angle += this.angVel;
-    }
-
-    reposition() {
-        super.reposition();
-        this.setPosition(this.pos.add(this.vel).x, this.pos.add(this.vel).y);
     }
 }
 

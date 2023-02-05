@@ -24,7 +24,7 @@ export class Player extends Ball {
         super(200, 200, 30, 2)
 
         this.maxHealth = 100
-        this.health = 50
+        this.health = this.maxHealth
 
         this.graphics = new Graphics()
 
@@ -33,9 +33,18 @@ export class Player extends Ball {
 
 
     }
-    CastSpell(dir:Vector) {
+    CastSpell(dir: Vector) {
         let manaBullet = new ManaBullet()
         manaBullet.cast(dir)
+
+    }
+    Damaged(amount: number) {
+        if (amount < this.health)
+            this.health -= amount
+
+    }
+    Dead() {
+        if ()
 
     }
 

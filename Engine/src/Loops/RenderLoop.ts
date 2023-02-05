@@ -5,8 +5,6 @@ import { Wall } from "../components/Physical-Body/Wall";
 import { Ball } from "../components/Physical-Body/Ball";
 import { Box } from "../components/Physical-Body/Box";
 import COLLISIONS from "../components/Models/Collisions";
-import { Shape } from "../components/Shapes/Shape";
-import Rectangle from "../components/Shapes/Rectangle";
 export function RenderLoop(container: Container) {
 
     container.removeChildren()

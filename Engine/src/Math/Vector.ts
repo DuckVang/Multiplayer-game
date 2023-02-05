@@ -29,12 +29,10 @@ class Vector {
         return new Vector(this.x * n, this.y * n);
     }
 
-    //returns a perpendicular normal vector
     normal() {
         return new Vector(-this.y, this.x).unit();
     }
 
-    //returns a vector with same direction and 1 length
     unit() {
         if (this.mag() === 0) {
             return new Vector(0, 0);
@@ -43,7 +41,6 @@ class Vector {
         }
     }
 
-    //returns the length of a vectors projection onto the other one
     static dot(v1:Vector, v2:Vector) {
         return v1.x * v2.x + v1.y * v2.y;
     }
