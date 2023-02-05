@@ -8,6 +8,7 @@ import { RenderBodiesLoop } from "./RenderLoop"
 import { MapLoop } from "./UpdateMap"
 import { UILoop } from "./UpdateUI"
 import { UserInputs } from "./UserInputs"
+import { GameLoop } from "./GameLoop"
 
 let i = 0
 export function MainLoop() {
@@ -23,6 +24,7 @@ export function MainLoop() {
     WatchMouse()
     UserInputs()
     PhysicsLoop(10)
+    GameLoop()
     RenderBodiesLoop()
     
     

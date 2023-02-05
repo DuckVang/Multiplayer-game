@@ -39,14 +39,15 @@ export class Player extends Ball {
 
     }
     Damaged(amount: number) {
-        if (amount < this.health)
+      
             this.health -= amount
+            if (this.health <= 0) this.remove()
 
     }
-    Dead() {
-        if ()
+    // Dead() {
+    //     if (this.health <= 0) this.remove()
 
-    }
+    // }
 
 
     render() {
