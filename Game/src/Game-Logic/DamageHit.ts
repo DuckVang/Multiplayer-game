@@ -9,7 +9,7 @@ export function CheckHit(){
 
         if(coll.body1 instanceof Player || coll.body2 instanceof Player){
 
-            WORLD.player
+            WORLD.player.Damaged(10)
         }
     })
 }
