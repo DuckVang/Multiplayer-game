@@ -24,7 +24,8 @@ import { Zone } from "./Map-Object/Zone";
 // box.angKeyForce = 0.005
 
 const testBox = new TestBox()
-const player = new Player()
+const player = new Player(0,0)
+const player2 = new Player(0,100)
 
 
 WORLD.AddUIObj(new Minimap())

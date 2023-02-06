@@ -1,6 +1,6 @@
 import { Graphics } from "pixi.js";
 import { Wall } from "../../../../Engine/src/components/Physical-Body/Wall";
-import { DrawLine } from "../../Render /Shapes";
+import { DrawLine } from "../../Render/Shapes";
 
 export class MapWall extends Wall {
 

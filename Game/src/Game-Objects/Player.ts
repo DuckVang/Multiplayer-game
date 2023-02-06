@@ -6,7 +6,7 @@ import Vector from "../../../Engine/src/Math/Vector"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddMovement } from "../Interactions/Movement"
-import { DrawBall } from "../Render /Shapes"
+import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/World"
 
 export class Player extends Ball {
@@ -20,8 +20,8 @@ export class Player extends Ball {
     maxEnergy: number
     energy: number
 
-    constructor() {
-        super(200, 200, 30, 2)
+    constructor(x:number,y:number) {
+        super(x, y, 30, 2)
 
         this.maxHealth = 100
         this.health = this.maxHealth

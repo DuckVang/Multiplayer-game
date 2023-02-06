@@ -6,43 +6,52 @@ export function AddMovement(body: Body) {
     {
 
         document.addEventListener('keydown', function (e: any) {
-            
-            if (e.keyCode == 65) {
-                body.left = true;
-            }
-            if (e.keyCode == 87) {
-                body.up = true;
-            }
-            if (e.keyCode == 68) {
-                body.right = true;
-            }
-            if (e.keyCode == 83) {
-                body.down = true;
-            }
-            if (e.keyCode == 32) {
-                body.action = true;
-            }
 
+
+            switch (e.keyCode) {
+                case 65:
+                    body.left = true
+                    break;
+
+                case 87:
+                    body.up = true
+                    break;
+
+                case 68:
+                    body.right = true
+                    break;
+
+                case 83:
+                    body.down = true
+                    break;
+
+                default:
+                    break;
+            }
 
         });
 
         document.addEventListener('keyup', function (e: any) {
-            if (e.keyCode == 65) {
-                body.left = false;
+            switch (e.keyCode) {
+                case 65:
+                    body.left = false
+                    break;
+
+                case 87:
+                    body.up = false
+                    break;
+
+                case 68:
+                    body.right = false
+                    break;
+
+                case 83:
+                    body.down = false
+                    break;
+
+                default:
+                    break;
             }
-            if (e.keyCode == 87) {
-                body.up = false;
-            }
-            if (e.keyCode == 68) {
-                body.right = false;
-            }
-            if (e.keyCode == 83) {
-                body.down = false;
-            }
-            if (e.keyCode == 32) {
-                body.action = false;
-            }
-            
 
 
         });
