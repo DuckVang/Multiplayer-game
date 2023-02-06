@@ -1,7 +1,7 @@
 import * as Color from "color"
 import { DisplayObject, Graphics } from "pixi.js"
 import { Box } from "../../../../Engine/src/components/Physical-Body/Box"
-import { DrawBox } from "../../Render /Shapes"
+import { DrawBox } from "../../Render/Shapes"
 
 
 export class TestBox extends Box {
