@@ -32,7 +32,7 @@ export default class World {
     BODIES: Body[]
     COLLISIONS: CollisionData[]
 
-    INTERACTION_BG: Sprite
+
 
     player: Player
 
