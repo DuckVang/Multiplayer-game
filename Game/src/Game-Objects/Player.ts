@@ -3,6 +3,7 @@ import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../Engine/src/Math/Vector"
+import { ShakeScreen } from "../Effects/ScreenShake"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddControl } from "../Interactions/Movement"
@@ -41,6 +42,7 @@ export class Player extends Ball {
     Damaged(amount: number) {
 
         this.health -= amount
+        ShakeScreen()
         if (this.health <= 0) this.Dead()
 
     }

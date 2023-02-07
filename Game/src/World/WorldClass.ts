@@ -6,19 +6,21 @@ import { Container, Graphics, Sprite } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 import { CollisionData } from "../../../Engine/src/components/Collsions/CollisionData";
 import { AddControl } from "../Interactions/Movement";
-import {  SetCameraTo } from "./Components/Camera";
+import { SetCameraTo } from "./Components/Camera";
 import { Player } from "../Game-Objects/Player";
 import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
 import { HandleClick, WatchMouse } from "../Interactions/Mouse";
 import { extensions, Application, InteractionManager } from 'pixi.js';
-
+import { parseArgs } from "util";
+import { Camera } from "pixi-game-camera"
 
 export default class World {
 
     app: PIXI.Application
 
+    CAMERA: Camera
     VIEWPORT: Viewport
 
     GAME_CONT: Container
@@ -71,9 +73,13 @@ export default class World {
 
             interaction: this.app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
         })
-    
+
+
+
+
 
         this.app.stage.addChild(this.VIEWPORT)
+        this.CAMERA = new Camera(this.VIEWPORT)
 
         this.GUI_CONT = new Container()
         this.app.stage.addChild(this.GUI_CONT)
@@ -84,9 +90,7 @@ export default class World {
         this.MAP_CONT = new Container()
         this.VIEWPORT.addChild(this.MAP_CONT)
 
-        this.INTERACTION_BG = new Sprite()
-     
-        this.VIEWPORT.addChild(this.INTERACTION_BG)
+
 
         // this.mousePos = this.app.renderer.plugins.interaction.mouse.global;
 
@@ -124,7 +128,7 @@ export default class World {
 
     SetPlayer(player: Player) {
 
-        this.player =player
+        this.player = player
         AddControl(player)
         SetCameraTo(player)
     }
