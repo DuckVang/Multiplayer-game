@@ -1,4 +1,5 @@
 import { clear } from "console"
+import { Player } from "../Game-Objects/Player"
 import WORLD from "../World/World"
 
 
@@ -38,4 +39,10 @@ function timer() {
 
     }, 1000)
 
+}
+
+
+export function CheckInZone(){
+
+    if(WORLD.player.pos.mag() > WORLD.zoneRadius) WORLD.player.Damaged(0.1)
 }
