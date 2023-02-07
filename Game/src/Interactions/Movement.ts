@@ -1,7 +1,7 @@
 import Body from "../../../Engine/src/components/Physical-Body/Body";
 
 
-export function AddMovement(body: Body) {
+export function AddControl(body: Body) {
 
     {
 
