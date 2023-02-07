@@ -10,6 +10,7 @@
     "lodash": "^4.17.21",
     "node": "^19.1.0",
     "node.js": "^0.0.1-security",
+    "pixi-game-camera": "^1.0.2",
     "pixi-viewport": "^4.38.0",
     "pixi.js": "^6.5.9",
     "random-helpers": "^1.1.0",
