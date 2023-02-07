@@ -2,12 +2,11 @@ import { clear } from "console"
 import WORLD from "../World/World"
 
 
-let percent = 0.01
+let percent = 0.001
 let zoneRadius = 0
 export function ShrinkZone() {
 
     zoneRadius = WORLD.zoneRadius
-
 
     const zone = setInterval(() => {
 

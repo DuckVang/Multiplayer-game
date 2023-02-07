@@ -26,6 +26,8 @@ export function MainLoop() {
     PhysicsLoop(10)
     GameLoop()
     RenderBodiesLoop()
+
+    console.log(__filename)
     
     
    

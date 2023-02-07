@@ -5,22 +5,22 @@ import Body from "../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../Engine/src/Math/Vector"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
-import { AddMovement } from "../Interactions/Movement"
+import { AddControl } from "../Interactions/Movement"
 import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/World"
 
 export class Player extends Ball {
 
+    private spells: Spell[]
 
-    Spells: Spell[]
+    alive: boolean
 
     maxHealth: number
     health: number
-
     maxEnergy: number
     energy: number
 
-    constructor(x:number,y:number) {
+    constructor(x: number, y: number) {
         super(x, y, 30, 2)
 
         this.maxHealth = 100
@@ -39,15 +39,16 @@ export class Player extends Ball {
 
     }
     Damaged(amount: number) {
-      
-            this.health -= amount
-            if (this.health <= 0) this.remove()
+
+        this.health -= amount
+        if (this.health <= 0) this.Dead()
 
     }
-    // Dead() {
-    //     if (this.health <= 0) this.remove()
+    Dead() {
+        this.alive = false
+        this.remove()
 
-    // }
+    }
 
 
     render() {

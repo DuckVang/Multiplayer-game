@@ -5,7 +5,7 @@ import Vector from "../../../Engine/src/Math/Vector";
 import { Container, Graphics, Sprite } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 import { CollisionData } from "../../../Engine/src/components/Collsions/CollisionData";
-import { AddMovement } from "../Interactions/Movement";
+import { AddControl } from "../Interactions/Movement";
 import {  SetCameraTo } from "./Components/Camera";
 import { Player } from "../Game-Objects/Player";
 import { StartGame } from "../Game-Logic/StartGame";
@@ -125,7 +125,7 @@ export default class World {
     SetPlayer(player: Player) {
 
         this.player =player
-        AddMovement(player)
+        AddControl(player)
         SetCameraTo(player)
     }
 
