@@ -4,7 +4,7 @@ import Vector from "../../Math/Vector"
 import BODIES from "../Models/Bodies"
 import { Shape } from "../Shapes/Shape"
 
-class Body {
+export default abstract class Body {
     //composition
     comp: Shape
     pos: Vector
@@ -85,13 +85,14 @@ class Body {
 
 
     }
-    keyControl() { }
-    render(){}
     remove() {
         if (BODIES.indexOf(this) !== -1) {
             BODIES.splice(BODIES.indexOf(this), 1);
         }
     }
+    keyControl() { }
+
+    render(){}
+
 }
 
-export default Body

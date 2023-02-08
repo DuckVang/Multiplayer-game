@@ -11,9 +11,6 @@ import { Player } from "../Game-Objects/Player";
 import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
-import { HandleClick, WatchMouse } from "../Interactions/Mouse";
-import { extensions, Application, InteractionManager } from 'pixi.js';
-import { parseArgs } from "util";
 import { Camera } from "pixi-game-camera"
 
 export default class World {
@@ -27,7 +24,7 @@ export default class World {
     GUI_CONT: Container
     MAP_CONT: Container
 
-    UIOBJECTS: UI[]
+    UI_OBJECTS: UI[]
     MAP_OBJECTS: MapObject[]
     BODIES: Body[]
     COLLISIONS: CollisionData[]
@@ -36,7 +33,7 @@ export default class World {
 
     player: Player
 
-    toFollow: Body
+    spectate: Body
     mousePos: any
     mouserDir: Vector
 
@@ -49,7 +46,7 @@ export default class World {
 
     constructor() {
 
-        this.UIOBJECTS = []
+        this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
 
         this.app = new PIXI.Application({
@@ -71,9 +68,14 @@ export default class World {
             worldHeight: 50000,
             ticker: this.app.ticker,
 
-            interaction: this.app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+            interaction: this.app.renderer.plugins.interaction 
         })
 
+        this.VIEWPORT
+            .drag()
+            .pinch()
+            .wheel()
+            .decelerate()
 
 
 
@@ -91,17 +93,6 @@ export default class World {
         this.VIEWPORT.addChild(this.MAP_CONT)
 
 
-
-        // this.mousePos = this.app.renderer.plugins.interaction.mouse.global;
-
-
-        this.VIEWPORT
-            .drag()
-            .pinch()
-            .wheel()
-            .decelerate()
-
-
         this.zoneRadius = 5000
         this.interval = 10
         this.timeLeft = this.interval
@@ -111,12 +102,10 @@ export default class World {
     Start() {
         StartGame()
         MainLoop()
-
-
     }
 
     AddUIObj(obj: UI) {
-        this.UIOBJECTS.push(obj)
+        this.UI_OBJECTS.push(obj)
         this.GUI_CONT.addChild(obj)
 
     }
