@@ -3,10 +3,10 @@ import WORLD from "../World";
 import World from "../WorldClass";
 export function SetCameraTo(player: Body) {
 
-    WORLD.toFollow = player
+    WORLD.spectate = player
 
 }
 export function FollowPlayer() {
 
-    WORLD.VIEWPORT.moveCenter(WORLD.toFollow.pos.x, WORLD.toFollow.pos.y)
+    WORLD.VIEWPORT.moveCenter(WORLD.spectate.pos.x, WORLD.spectate.pos.y)
 }

@@ -7,7 +7,7 @@ import WORLD from "../World";
 export function UILoop() {
 
     
-    WORLD.UIOBJECTS.forEach((object) => {
+    WORLD.UI_OBJECTS.forEach((object) => {
         
         object.update()
 

@@ -1,4 +1,4 @@
-import WORLD from "../World/World";
+import WORLD from "../World";
 import { Shake } from "pixi-game-camera";
 
 export function ShakeScreen(){
