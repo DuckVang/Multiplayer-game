@@ -3,7 +3,7 @@ import { Player } from "../Game-Objects/Player"
 import WORLD from "../World/World"
 
 
-let percent = 0.001
+let percent = 0.1
 let zoneRadius = 0
 export function ShrinkZone() {
 
