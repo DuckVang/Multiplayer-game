@@ -1,7 +1,7 @@
 import BODIES from "../../../../Engine/src/components/Models/Bodies";
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../Engine/src/Math/Vector";
-import { Projectile } from "../../Game-Objects/BallProjectile";
+import { Projectile } from "../../Game-Objects/Projectiles/BallProjectile";
 import WORLD from "../../World/World";
 import { Spell } from "./SpellClass";
 
