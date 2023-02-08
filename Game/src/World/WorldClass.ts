@@ -37,7 +37,9 @@ export default class World {
     mousePos: any
     mouserDir: Vector
 
+    orgZoneRadius: number
     zoneRadius: number
+
     interval: number
     timeLeft: number
 
@@ -68,7 +70,7 @@ export default class World {
             worldHeight: 50000,
             ticker: this.app.ticker,
 
-            interaction: this.app.renderer.plugins.interaction 
+            interaction: this.app.renderer.plugins.interaction
         })
 
         this.VIEWPORT
@@ -94,6 +96,7 @@ export default class World {
 
 
         this.zoneRadius = 5000
+        this.orgZoneRadius =this.zoneRadius
         this.interval = 10
         this.timeLeft = this.interval
 
