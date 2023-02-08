@@ -6,6 +6,9 @@ export class Minimap extends UI {
 
 
     background: Graphics
+
+    
+
     constructor() {
         super()
 
@@ -27,6 +30,9 @@ export class Minimap extends UI {
        
         this.background.removeChildren()
      
+        this.updateBodies()
+    }
+    private updateBodies(){
         for (let i = 0; i < BODIES.length; i += 1) {
             const px = BODIES[i].pos.x / WORLD.GAME_CONT.width * 200 + this.width/2 
             const py = BODIES[i].pos.y / WORLD.GAME_CONT.height * 200 + this.height/2;
@@ -39,5 +45,7 @@ export class Minimap extends UI {
             entity.y = py;
             this.background.addChild(entity);
         }
+
     }
+    
 }

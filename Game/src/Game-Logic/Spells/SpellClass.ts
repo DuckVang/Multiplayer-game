@@ -2,10 +2,10 @@ import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { Projectile } from "../../Game-Objects/Projectiles/BallProjectile"
 
-export class Spell{
+export class Spell {
 
 
-    
+
     projectiles: Projectile[]
 
     energyCost: number
@@ -13,19 +13,28 @@ export class Spell{
 
     dir: Vector
 
-    duration:number
-    gap:number
+    duration: number
+    gap: number
 
 
-    constructor(){
-   
-        this.energyCost =0
-        this.speed =0
-        this.dir = new Vector(0,0)
+    constructor() {
+
+        this.energyCost = 0
+        this.speed = 0
+        this.dir = new Vector(0, 0)
         this.duration = 0
         this.gap = 0
     }
-    cast(dir:Vector){
+    cast(dir: Vector) {
+
+    }
+    protected setRemove() {
+
+        setTimeout(() => {
+            this.projectiles.forEach(p => {
+                p.remove()
+            });
+        }, this.duration);
 
     }
 }

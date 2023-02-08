@@ -12,26 +12,16 @@ export class ManaBullet extends Spell {
         super()
         this.duration = 10000
     }
-    cast(dir: Vector) {
+     cast(dir: Vector) {
         let playrPos = WORLD.player.pos
         let projectile = new Projectile(dir, playrPos)
-        this.projectiles.push(projectile)
-
+        
+        projectile.friction = 0
         let speed = dir.mult(1000)
         projectile.vel = projectile.vel.add(speed)
-        projectile.friction = 0
-
-        setTimeout(() => {
-            projectile.remove()
-        }, this.duration);
+        
+        this.projectiles.push(projectile)
+        this.setRemove()
     }
-    private setRemove(){
-      
-        setTimeout(() => {
-            projectile.remove()
-        }, this.duration);
-
-
-
-    }
+    
 }
