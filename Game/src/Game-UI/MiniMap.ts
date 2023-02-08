@@ -30,9 +30,9 @@ export class Minimap extends UI {
        
         this.background.removeChildren()
      
-        this.updateBodies()
+        this.UpdateEntities()
     }
-    private updateBodies(){
+    private UpdateEntities(){
         for (let i = 0; i < BODIES.length; i += 1) {
             const px = BODIES[i].pos.x / WORLD.GAME_CONT.width * 200 + this.width/2 
             const py = BODIES[i].pos.y / WORLD.GAME_CONT.height * 200 + this.height/2;
