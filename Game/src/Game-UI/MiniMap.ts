@@ -1,6 +1,7 @@
 import { Application, Container, Graphics } from "pixi.js";
 import BODIES from "../../../Engine/src/components/Models/Bodies";
 import WORLD from "../World/World";
+import World from "../World/WorldClass";
 import { UI } from "./UIClass";
 export class Minimap extends UI {
 
@@ -23,6 +24,8 @@ export class Minimap extends UI {
         this.y = 0;
         this.pivot.x = this.width  ;
         this.pivot.y = 0  ;
+
+        
     
     }
 
@@ -31,6 +34,7 @@ export class Minimap extends UI {
         this.background.removeChildren()
      
         this.UpdateEntities()
+        this.UpdateZone()
     }
     private UpdateEntities(){
         for (let i = 0; i < BODIES.length; i += 1) {
@@ -45,6 +49,17 @@ export class Minimap extends UI {
             entity.y = py;
             this.background.addChild(entity);
         }
+
+    }
+    private UpdateZone(){
+
+        const zone = new Graphics()
+        zone.beginFill(0xffff00, 0.25);
+        zone.drawCircle(0,0,WORLD.zoneRadius/WORLD.orgZoneRadius * this.width/2)
+        zone.x = this.width/2
+        zone.y = this.height/2
+        zone.endFill
+        this.background.addChild(zone)
 
     }
     
