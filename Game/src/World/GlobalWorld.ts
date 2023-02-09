@@ -12,7 +12,11 @@ import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
 import { Camera } from "pixi-game-camera"
- class World {
+
+
+let instance: World
+
+class World {
 
     app: PIXI.Application
 
@@ -32,7 +36,7 @@ import { Camera } from "pixi-game-camera"
 
     player: Player
 
-    spectate: Body
+    spectate?: Player
     mousePos: any
     mouserDir: Vector
 
@@ -46,6 +50,12 @@ import { Camera } from "pixi-game-camera"
 
 
     constructor() {
+
+        if (instance)
+            throw new Error("New instance cannot be created!!");
+
+        instance = this;
+
 
         this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
@@ -95,9 +105,10 @@ import { Camera } from "pixi-game-camera"
 
 
         this.zoneRadius = 5000
-        this.orgZoneRadius =this.zoneRadius
+        this.orgZoneRadius = this.zoneRadius
         this.interval = 10
         this.timeLeft = this.interval
+        this.spectate = null
 
 
     }
@@ -122,10 +133,6 @@ import { Camera } from "pixi-game-camera"
         AddControl(player)
         SetCameraTo(player)
     }
-
-
-
-
 
 }
 

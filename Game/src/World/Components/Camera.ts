@@ -1,8 +1,11 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
+import { Player } from "../../Game-Objects/Player";
 import WORLD from "../GlobalWorld";
-import World from "../GlobalWorld";
-export function SetCameraTo(player: Body) {
 
+
+export function SetCameraTo(player: Player) {
+
+    
     WORLD.spectate = player
 
 }
