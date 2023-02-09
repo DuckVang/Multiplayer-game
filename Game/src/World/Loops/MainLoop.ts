@@ -1,7 +1,6 @@
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import { PhysicsLoop } from "../../../../Engine/src/Loops/PhysicalLoop"
 import { Player } from "../../Game-Objects/Player"
-import { Projectile } from "../../Game-Objects/BallProjectile"
 import { HandleClick, WatchMouse } from "../../Interactions/Mouse"
 import { FollowPlayer } from "../Components/Camera"
 import { RenderBodiesLoop } from "./RenderLoop"

@@ -1,6 +1,5 @@
 import { Graphics, Sprite } from "pixi.js";
 import Vector from "../../../Engine/src/Math/Vector";
-import { Projectile } from "../Game-Objects/BallProjectile";
 import WORLD from "../World/GlobalWorld"
 
 export function WatchMouse() {

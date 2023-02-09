@@ -5,7 +5,6 @@ import { TestBox } from "./Game-Objects/Test-Objects/Test-Box";
 import { MapWall, PutWallAround } from "./Game-Objects/Map-Objects/MapWall";
 import WORLD from "./World/GlobalWorld";
 import { Minimap } from "./Game-UI/Minimap";
-import World from "./World/GlobalWorld";
 import { HealthBar } from "./Game-UI/HealthBar";
 import { EnergyBar } from "./Game-UI/EnergyBar";
 import { Timer } from "./Game-UI/Timer";
