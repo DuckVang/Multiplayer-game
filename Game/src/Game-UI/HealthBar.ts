@@ -1,6 +1,6 @@
 import { Application, Container, DisplayObject, Graphics } from "pixi.js";
 import BODIES from "../../../Engine/src/components/Models/Bodies";
-import WORLD from "../World/World";
+import WORLD from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 export class HealthBar extends UI {
 

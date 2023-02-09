@@ -1,4 +1,4 @@
-import WORLD from "../World/World";
+import WORLD from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 import { Text } from "pixi.js";
 export class Timer extends UI {

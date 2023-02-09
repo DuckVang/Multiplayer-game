@@ -8,7 +8,7 @@ import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddControl } from "../Interactions/Movement"
 import { DrawBall } from "../Render/Shapes"
-import WORLD from "../World/World"
+import WORLD from "../World/GlobalWorld"
 
 export class Player extends Ball {
 

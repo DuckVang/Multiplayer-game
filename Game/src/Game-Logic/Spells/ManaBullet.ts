@@ -2,7 +2,7 @@ import BODIES from "../../../../Engine/src/components/Models/Bodies";
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../Engine/src/Math/Vector";
 import { Projectile } from "../../Game-Objects/Projectiles/BallProjectile";
-import WORLD from "../../World/World";
+import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 
 export class ManaBullet extends Spell {
