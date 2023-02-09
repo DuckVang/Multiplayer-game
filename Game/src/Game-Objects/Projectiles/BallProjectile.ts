@@ -2,23 +2,28 @@ import { Graphics } from "pixi.js"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { DrawBall } from "../../Render/Shapes"
+import { Projectile } from "./ProjectileInterface"
 
 
-export class Projectile extends Ball implements Projectile{
+export class BallProjectile extends Ball implements Projectile {
 
 
 
     graphics: Graphics
 
+    projSpeed: number
+    gap: number
 
     constructor(dir: Vector, pos: Vector) {
-        dir = dir.mult(100).add(pos)
-        super(dir.x, dir.y, 10, 2)
+        super(0, 0, 10, 2)
 
         this.graphics = new Graphics()
+        this.projSpeed = 1000
+        this.gap = 50
 
-        // this.graphics.position.x = this.pos.x
-        // this.graphics.position.y = this.pos.y
+        let p = dir.mult(this.gap).add(pos)
+        this.setPosition(p.x, p.y)
+
 
     }
     render() {

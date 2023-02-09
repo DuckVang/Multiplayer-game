@@ -36,7 +36,7 @@ class World {
 
     player: Player
 
-    spectate?: Player
+    spectate: Player
     mousePos: any
     mouserDir: Vector
 

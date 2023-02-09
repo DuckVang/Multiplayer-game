@@ -1,12 +1,12 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
-import { Projectile } from "../../Game-Objects/Projectiles/BallProjectile"
+import { BallProjectile } from "../../Game-Objects/Projectiles/BallProjectile"
 
-export class Spell {
+export abstract class Spell {
 
 
 
-    projectiles: Projectile[]
+    projectiles: BallProjectile[]
 
     energyCost: number
     speed: number
@@ -19,6 +19,8 @@ export class Spell {
 
     constructor() {
 
+
+        this.projectiles = []
         this.energyCost = 0
         this.speed = 0
         this.dir = new Vector(0, 0)
