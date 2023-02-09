@@ -3,17 +3,20 @@ import { Player } from "../Game-Objects/Player"
 import WORLD from "../World/World"
 
 
-let percent = 0.1
+let percent = 0.001
+let minShrink = 0.9
 let zoneRadius = 0
+let minZoneRadius = 0.1
 export function ShrinkZone() {
 
     zoneRadius = WORLD.zoneRadius
+    minZoneRadius *= WORLD.orgZoneRadius
 
     const zone = setInterval(() => {
 
         WORLD.zoneRadius -= zoneRadius * percent
 
-        if (WORLD.zoneRadius == zoneRadius * 0.9) {
+        if (WORLD.zoneRadius <= zoneRadius * minShrink) {
 
             clearInterval(zone)
             timer()
@@ -30,10 +33,11 @@ function timer() {
 
 
         WORLD.timeLeft--
+        
         if (WORLD.timeLeft <= 0) {
             WORLD.timeLeft = WORLD.interval
             clearInterval(timer)
-            if (WORLD.zoneRadius > 0) ShrinkZone()
+            if (WORLD.zoneRadius >= minZoneRadius) ShrinkZone()
         }
 
 
@@ -42,7 +46,7 @@ function timer() {
 }
 
 
-export function CheckInZone(){
+export function CheckInZone() {
 
-    if(WORLD.player.pos.mag() > WORLD.zoneRadius) WORLD.player.Damaged(0.1)
+    if (WORLD.player.pos.mag() > WORLD.zoneRadius) WORLD.player.Damaged(0.1)
 }
