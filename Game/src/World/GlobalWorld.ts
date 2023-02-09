@@ -24,7 +24,7 @@ class World {
     VIEWPORT: Viewport
 
     GAME_CONT: Container
-    GUI_CONT: Container
+    UI_CONT: Container
     MAP_CONT: Container
 
     UI_OBJECTS: UI[]
@@ -94,8 +94,8 @@ class World {
         this.app.stage.addChild(this.VIEWPORT)
         this.CAMERA = new Camera(this.VIEWPORT)
 
-        this.GUI_CONT = new Container()
-        this.app.stage.addChild(this.GUI_CONT)
+        this.UI_CONT = new Container()
+        this.app.stage.addChild(this.UI_CONT)
 
         this.GAME_CONT = new Container()
         this.VIEWPORT.addChild(this.GAME_CONT)
@@ -119,7 +119,7 @@ class World {
 
     AddUIObj(obj: UI) {
         this.UI_OBJECTS.push(obj)
-        this.GUI_CONT.addChild(obj)
+        this.UI_CONT.addChild(obj)
 
     }
     AddMapObj(obj: MapObject) {
