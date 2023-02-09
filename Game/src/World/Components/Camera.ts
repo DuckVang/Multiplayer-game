@@ -1,6 +1,6 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
-import WORLD from "../World";
-import World from "../WorldClass";
+import WORLD from "../GlobalWorld";
+import World from "../GlobalWorld";
 export function SetCameraTo(player: Body) {
 
     WORLD.spectate = player

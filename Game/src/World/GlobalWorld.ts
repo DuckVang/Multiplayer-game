@@ -12,8 +12,7 @@ import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
 import { Camera } from "pixi-game-camera"
-
-export default class World {
+ class World {
 
     app: PIXI.Application
 
@@ -115,7 +114,6 @@ export default class World {
     AddMapObj(obj: MapObject) {
         this.MAP_OBJECTS.push(obj)
         this.VIEWPORT.addChild(obj)
-
     }
 
     SetPlayer(player: Player) {
@@ -130,3 +128,7 @@ export default class World {
 
 
 }
+
+const WORLD = new World()
+
+export default WORLD

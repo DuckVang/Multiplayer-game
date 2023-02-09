@@ -1,6 +1,6 @@
 import { clear } from "console"
 import { Player } from "../Game-Objects/Player"
-import WORLD from "../World/World"
+import WORLD from "../World/GlobalWorld"
 
 
 let percent = 0.001
@@ -33,7 +33,7 @@ function timer() {
 
 
         WORLD.timeLeft--
-        
+
         if (WORLD.timeLeft <= 0) {
             WORLD.timeLeft = WORLD.interval
             clearInterval(timer)

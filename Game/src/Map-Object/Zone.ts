@@ -1,5 +1,5 @@
 import { Graphics } from "pixi.js";
-import WORLD from "../World/World";
+import WORLD from "../World/GlobalWorld";
 import { MapObject } from "./MapObjClass";
 
 export class Zone extends MapObject{
