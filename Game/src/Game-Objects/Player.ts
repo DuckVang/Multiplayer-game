@@ -9,6 +9,7 @@ import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddControl } from "../Interactions/Movement"
 import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/GlobalWorld"
+import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
 
 export class Player extends Ball {
 
@@ -35,7 +36,8 @@ export class Player extends Ball {
 
     }
     CastSpell(dir: Vector) {
-        let manaBullet = new ManaBullet()
+        // let manaBullet = new ManaBullet()
+        let manaBullet = new ManaExplosion()
         manaBullet.cast(dir)
 
     }

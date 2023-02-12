@@ -13,6 +13,7 @@
     "pixi-game-camera": "^1.0.2",
     "pixi-viewport": "^4.38.0",
     "pixi.js": "^6.5.9",
+    "pm2": "^5.2.2",
     "random-helpers": "^1.1.0",
     "stopwatch": "^0.2.0"
   },

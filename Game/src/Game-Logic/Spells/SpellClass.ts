@@ -27,8 +27,8 @@ export abstract class Spell {
         this.duration = 0
         this.gap = 0
     }
-    cast(dir: Vector) {
 
+    cast(dir: Vector) {
     }
     protected setRemove() {
 
