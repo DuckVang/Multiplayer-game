@@ -12,6 +12,7 @@ import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
 import { Camera } from "pixi-game-camera"
+import { AddSelection } from "../Interactions/Selection";
 
 
 let instance: World
@@ -131,6 +132,7 @@ class World {
 
         this.player = player
         AddControl(player)
+        AddSelection(player)
         SetCameraTo(player)
     }
 

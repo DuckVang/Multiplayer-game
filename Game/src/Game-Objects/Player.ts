@@ -22,9 +22,13 @@ export class Player extends Ball {
     maxEnergy: number
     energy: number
 
+
+    selected: number
+
     constructor(x: number, y: number) {
         super(x, y, 30, 2)
 
+        this.spells = []
         this.maxHealth = 100
         this.health = this.maxHealth
 
@@ -33,12 +37,11 @@ export class Player extends Ball {
         // this.graphics.position.x = this.pos.x
         // this.graphics.position.y = this.pos.y
 
-
+        this.spells.push(new ManaBullet(), new ManaExplosion())
     }
     CastSpell(dir: Vector) {
-        // let manaBullet = new ManaBullet()
-        let manaBullet = new ManaExplosion()
-        manaBullet.cast(dir)
+
+        this.spells[this.selected - 1].cast(dir)
 
     }
     Damaged(amount: number) {
