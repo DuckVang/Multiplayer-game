@@ -8,6 +8,7 @@ import { Spell } from "./SpellClass";
 export class Dash extends Spell {
 
     distance: number
+    motionTrailLength: number
 
     constructor() {
         super()
@@ -16,6 +17,8 @@ export class Dash extends Spell {
     }
     cast(dir: Vector) {
         dir = dir.mult(this.distance)
+        
+        
         WORLD.player.pos = WORLD.player.pos.add(dir)
 
     }

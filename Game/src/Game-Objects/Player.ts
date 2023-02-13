@@ -11,8 +11,9 @@ import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/GlobalWorld"
 import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
 import { Dash } from "../Game-Logic/Spells/Dash"
+import { IGameObject } from "./IGameObject"
 
-export class Player extends Ball {
+export class Player extends Ball implements IGameObject {
 
     private spells: Spell[]
 
@@ -23,8 +24,9 @@ export class Player extends Ball {
     maxEnergy: number
     energy: number
 
-
     selected: number
+
+    motionTrail: boolean
 
     constructor(x: number, y: number) {
         super(x, y, 30, 2)
@@ -34,6 +36,8 @@ export class Player extends Ball {
         this.health = this.maxHealth
 
         this.graphics = new Graphics()
+
+        this.motionTrail = false
 
         // this.graphics.position.x = this.pos.x
         // this.graphics.position.y = this.pos.y
