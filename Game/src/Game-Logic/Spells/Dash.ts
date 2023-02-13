@@ -5,18 +5,18 @@ import { BallProjectile } from "../../Game-Objects/Projectiles/BallProjectile";
 import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 
-export class ManaBullet extends Spell {
+export class Dash extends Spell {
 
     distance: number
 
     constructor() {
         super()
         this.duration = 1000
-        this.distance = 10
+        this.distance = 500
     }
     cast(dir: Vector) {
         dir = dir.mult(this.distance)
-        WORLD.player.pos.add(dir)
+        WORLD.player.pos = WORLD.player.pos.add(dir)
 
     }
 

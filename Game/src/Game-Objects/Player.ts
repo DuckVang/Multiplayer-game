@@ -10,6 +10,7 @@ import { AddControl } from "../Interactions/Movement"
 import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/GlobalWorld"
 import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
+import { Dash } from "../Game-Logic/Spells/Dash"
 
 export class Player extends Ball {
 
@@ -37,7 +38,7 @@ export class Player extends Ball {
         // this.graphics.position.x = this.pos.x
         // this.graphics.position.y = this.pos.y
 
-        this.spells.push(new ManaBullet(), new ManaExplosion())
+        this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
     }
     CastSpell(dir: Vector) {
 
