@@ -13,12 +13,14 @@ import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
 import { Camera } from "pixi-game-camera"
 import { AddSelection } from "../Interactions/Selection";
+import Engine from "../../../Engine/src/Main";
 
 
 let instance: World
 
 class World {
 
+    engine: Engine
     app: PIXI.Application
 
     CAMERA: Camera
@@ -30,10 +32,6 @@ class World {
 
     UI_OBJECTS: UI[]
     MAP_OBJECTS: MapObject[]
-    BODIES: Body[]
-    COLLISIONS: CollisionData[]
-
-
 
     player: Player
 
@@ -61,11 +59,13 @@ class World {
         this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
 
+        this.engine = new Engine()
         this.app = new PIXI.Application({
             resizeTo: window,
             // backgroundColor: 0x2980b9,
 
         });
+
 
 
 
