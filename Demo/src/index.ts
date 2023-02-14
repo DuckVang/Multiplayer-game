@@ -5,7 +5,7 @@ import "../../Demo/public/style.module.css";
 import { Ball } from "../../Engine/src/components/Physical-Body/Ball";
 import { userInput } from "./UserInput";
 import { Wall } from "../../Engine/src/components/Physical-Body/Wall";
-import MainLoop  from "../../Engine/src/Loops/MainLoop";
+import Loop  from "../../Engine/src/Loops/MainLoop";
 import { Box } from "../../Engine/src/components/Physical-Body/Box";
 const app = new PIXI.Application({ resizeTo: window });
 
@@ -24,7 +24,7 @@ app.stage.addChild(container)
 //loop
 userInput(ball)
 
-MainLoop(container, 10)
+Loop(container, 10)
 
 
 
