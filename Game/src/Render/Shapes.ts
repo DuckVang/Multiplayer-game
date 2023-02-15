@@ -7,7 +7,7 @@ import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import Vector from "../../../Engine/src/Math/Vector";
 
 
-export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number) {
+export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number = 1) {
 
     let color = new Color('#FAD02C')
     const body = GraphObj
@@ -16,11 +16,11 @@ export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number) {
     body.endFill();
     return body
 }
-export function DrawWall(GraphObj: Graphics, wall: Wall) {
+export function DrawWall(GraphObj: Graphics, wall: Wall,alpha: number = 1) {
 
     const line = GraphObj
 
-    line.lineStyle(2, 0xffd900, 1);
+    line.lineStyle(2, 0xffd900, alpha);
     line.moveTo(wall.start.x, wall.start.y)
 
 
@@ -28,12 +28,12 @@ export function DrawWall(GraphObj: Graphics, wall: Wall) {
     return line
 
 }
-export function DrawBox(GraphObj: Graphics, box: Box) {
+export function DrawBox(GraphObj: Graphics, box: Box,alpha: number = 1) {
     const body = GraphObj
 
     let color = new Color('#3F6D2A')
 
-    body.beginFill(color.rgbNumber());
+    body.beginFill(color.rgbNumber(),alpha);
 
     body.moveTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
     body.lineTo(box.comp.vertex[1].x, box.comp.vertex[1].y)
