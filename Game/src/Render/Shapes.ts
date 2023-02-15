@@ -7,16 +7,16 @@ import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import Vector from "../../../Engine/src/Math/Vector";
 
 
-export function DrawBall(GraphObj:Graphics, ball: Ball) {
+export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number) {
 
-    let color = new Color('#3F6D2A')
+    let color = new Color('#FAD02C')
     const body = GraphObj
-    body.beginFill(color.rgbNumber());
+    body.beginFill(color.rgbNumber(), alpha);
     body.drawCircle(ball.pos.x, ball.pos.y, ball.comp.r)
     body.endFill();
     return body
 }
-export function DrawWall(GraphObj:Graphics,wall: Wall) {
+export function DrawWall(GraphObj: Graphics, wall: Wall) {
 
     const line = GraphObj
 
@@ -28,18 +28,18 @@ export function DrawWall(GraphObj:Graphics,wall: Wall) {
     return line
 
 }
-export function DrawBox(GraphObj:Graphics,box: Box) {
+export function DrawBox(GraphObj: Graphics, box: Box) {
     const body = GraphObj
 
     let color = new Color('#3F6D2A')
-    
+
     body.beginFill(color.rgbNumber());
-    
-    body.moveTo(box.comp.vertex[0].x,box.comp.vertex[0].y)
-    body.lineTo(box.comp.vertex[1].x,box.comp.vertex[1].y)
-    body.lineTo(box.comp.vertex[2].x,box.comp.vertex[2].y)
-    body.lineTo(box.comp.vertex[3].x,box.comp.vertex[3].y)
-    body.lineTo(box.comp.vertex[0].x,box.comp.vertex[0].y)
+
+    body.moveTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
+    body.lineTo(box.comp.vertex[1].x, box.comp.vertex[1].y)
+    body.lineTo(box.comp.vertex[2].x, box.comp.vertex[2].y)
+    body.lineTo(box.comp.vertex[3].x, box.comp.vertex[3].y)
+    body.lineTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
     body.endFill();
     return body
 
@@ -47,7 +47,7 @@ export function DrawBox(GraphObj:Graphics,box: Box) {
 }
 export function DrawVelAcc(body: Body) {
 
-    const lines =  new Graphics()
+    const lines = new Graphics()
     const vel = new Graphics()
     const acc = new Graphics()
 
@@ -66,7 +66,7 @@ export function DrawVelAcc(body: Body) {
     return lines
 
 }
-export function DrawLine(GraphObj:Graphics,p1: Vector, p2: Vector) {
+export function DrawLine(GraphObj: Graphics, p1: Vector, p2: Vector) {
     const line = GraphObj
     line.lineStyle(20, 0xffd900, 1);
     line.moveTo(p1.x, p1.y)

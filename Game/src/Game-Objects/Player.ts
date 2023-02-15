@@ -26,7 +26,9 @@ export class Player extends Ball implements IGameObject {
 
     selected: number
 
+    motionPos: Vector[]
     motionTrail: boolean
+    motionTrailLength: number
 
     constructor(x: number, y: number) {
         super(x, y, 30, 2)
@@ -35,14 +37,23 @@ export class Player extends Ball implements IGameObject {
         this.maxHealth = 100
         this.health = this.maxHealth
 
+
         this.graphics = new Graphics()
 
-        this.motionTrail = false
-
-        // this.graphics.position.x = this.pos.x
-        // this.graphics.position.y = this.pos.y
+        this.motionPos = []
+        this.motionTrail = true
+        this.motionTrailLength = 5
 
         this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
+
+
+        setInterval(() => {
+
+            this.motionPos.push(new Vector(this.pos.x, this.pos.y))
+            //how fuck with refernce 
+            if (this.motionPos.length > this.motionTrailLength) this.motionPos.shift()
+
+        }, 100)
     }
     CastSpell(dir: Vector) {
 
@@ -66,7 +77,19 @@ export class Player extends Ball implements IGameObject {
     render() {
 
         this.graphics.clear()
-        this.graphics = DrawBall(this.graphics, this)
+        this.graphics = DrawBall(this.graphics, this, 1)
+      
+        if (this.motionTrail) {
+            this.motionPos.forEach((pos, i) => {
+                var ratio = (i + 1) / this.motionPos.length;
+                console.log(ratio)
+                let tempBall = this
+                tempBall.pos = pos
+                this.graphics = DrawBall(this.graphics, tempBall, ratio)
+
+            });
+        }
+
 
     }
 }
