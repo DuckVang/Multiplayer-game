@@ -7,10 +7,11 @@ import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import Vector from "../../../Engine/src/Math/Vector";
 import { Shape } from "../../../Engine/src/components/Shapes/Shape";
 import { Cipher } from "crypto";
+import { IGameBody } from "../Game-Objects/IGameBody";
 
 
 
-export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number = 1) {
+export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1) {
 
     let color = new Color('#FAD02C')
     const body = GraphObj
@@ -19,19 +20,19 @@ export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number = 1) {
     body.endFill();
     return body
 }
-export function DrawWall(GraphObj: Graphics, wall: Wall,alpha: number = 1) {
+export function DrawWall(GraphObj: Graphics, wall: IGameBody,alpha: number = 1) {
 
     const line = GraphObj
 
     line.lineStyle(2, 0xffd900, alpha);
-    line.moveTo(wall.start.x, wall.start.y)
+    line.moveTo(wall.comp.start.x, wall.comp.start.y)
 
 
-    line.lineTo(wall.end.x, wall.end.y)
+    line.lineTo(wall.comp.end.x, wall.comp.end.y)
     return line
 
 }
-export function DrawBox(GraphObj: Graphics, box: Box,alpha: number = 1) {
+export function DrawBox(GraphObj: Graphics, box: IGameBody,alpha: number = 1) {
     const body = GraphObj
 
     let color = new Color('#3F6D2A')

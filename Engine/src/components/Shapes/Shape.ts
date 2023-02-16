@@ -14,13 +14,12 @@ export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<I
     color: string
 
 }
-export class Shape implements IShape {
-
+export class Shape implements IShape{
     pos: Vector
     vertex: Vector[]
     color: string
 
-    constructor() {
+    constructor(){
         this.pos = new Vector(0, 0)
         this.vertex = []
         this.color = ""

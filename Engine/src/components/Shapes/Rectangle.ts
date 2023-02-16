@@ -1,6 +1,7 @@
 import Vector from "../../Math/Vector"
 import Matrix from "../../Math/Matrix"
-import { Shape } from "./Shape"
+
+import { IShape, Shape } from "./Shape"
 
 export interface IRectangle {
     dir: Vector
@@ -11,7 +12,11 @@ export interface IRectangle {
     rotMat: Matrix
 }
 
-export class Rectangle extends Shape implements IRectangle {
+export class Rectangle extends Shape{
+
+    pos: Vector
+    vertex: Vector[]
+    color: string
 
     dir: Vector
     refDir: Vector
@@ -22,6 +27,10 @@ export class Rectangle extends Shape implements IRectangle {
 
     constructor(x1: number, y1: number, x2: number, y2: number, w: number) {
         super()
+        this.pos = new Vector(0, 0)
+        this.vertex = []
+        this.color = ""
+
         this.vertex[0] = new Vector(x1, y1);
         this.vertex[1] = new Vector(x2, y2);
         this.dir = this.vertex[1].subtr(this.vertex[0]).unit();

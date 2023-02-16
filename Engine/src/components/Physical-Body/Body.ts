@@ -1,12 +1,13 @@
 
-import { Graphics, IShape } from "pixi.js"
+import { Graphics } from "pixi.js"
 import Vector from "../../Math/Vector"
 import BODIES from "../Models/Bodies"
 import { Shape } from "../Shapes/Shape"
+import { IShape } from "../Shapes/Shape"
 
 export default abstract class Body {
     //composition
-    comp: Shape
+    comp: IShape
     pos: Vector
     m: number
     //inverse mass

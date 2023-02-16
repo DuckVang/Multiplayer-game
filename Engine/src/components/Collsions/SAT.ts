@@ -1,7 +1,7 @@
-import Circle from "../Shapes/Circle";
+import {Circle} from "../Shapes/Circle";
 import Triangle from "../Shapes/Triangle";
-import Rectangle from "../Shapes/Rectangle";
-import Line from "../Shapes/Line";
+import {Rectangle} from "../Shapes/Rectangle";
+import {Line} from "../Shapes/Line";
 import Vector from "../../Math/Vector";
 import { Wall } from "../Physical-Body/Wall";
 import { Shape } from "../Shapes/Shape";
@@ -114,19 +114,19 @@ function findAxes(shape1: Shape, shape2: Shape) {
 }
 
 function closestPointOnLS(p: Vector, w1: Wall) {
-    let ballToWallStart = w1.start.subtr(p);
-    if (Vector.dot(w1.dir, ballToWallStart) > 0) {
-        return w1.start;
+    let ballToWallStart = w1.comp.start.subtr(p);
+    if (Vector.dot(w1.comp.dir, ballToWallStart) > 0) {
+        return w1.comp.start;
     }
 
-    let wallEndToBall = p.subtr(w1.end);
-    if (Vector.dot(w1.dir, wallEndToBall) > 0) {
-        return w1.end;
+    let wallEndToBall = p.subtr(w1.comp.end);
+    if (Vector.dot(w1.comp.dir, wallEndToBall) > 0) {
+        return w1.comp.end;
     }
 
-    let closestDist = Vector.dot(w1.dir, ballToWallStart);
-    let closestVect = w1.dir.mult(closestDist);
-    return w1.start.subtr(closestVect);
+    let closestDist = Vector.dot(w1.comp.dir, ballToWallStart);
+    let closestVect = w1.comp.dir.mult(closestDist);
+    return w1.comp.start.subtr(closestVect);
 }
 
 function closestVertexToPoint(obj: Shape, p: Vector) {
