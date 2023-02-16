@@ -1,19 +1,14 @@
-import { Circle, Graphics } from "pixi.js"
+import { Graphics } from "pixi.js"
 import * as Color from "color"
 import Body from "../../../Engine/src/components/Physical-Body/Body";
-import { Ball } from "../../../Engine/src/components/Physical-Body/Ball";
-import { Box } from "../../../Engine/src/components/Physical-Body/Box";
-import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import Vector from "../../../Engine/src/Math/Vector";
-import { Shape } from "../../../Engine/src/components/Shapes/Shape";
-import { Cipher } from "crypto";
 import { IGameBody } from "../Game-Objects/IGameBody";
 
 
 
 export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1) {
 
-    let color = new Color('#FAD02C')
+    const color = new Color('#FAD02C')
     const body = GraphObj
     body.beginFill(color.rgbNumber(), alpha);
     body.drawCircle(ball.pos.x, ball.pos.y, ball.comp.r)
@@ -35,7 +30,7 @@ export function DrawWall(GraphObj: Graphics, wall: IGameBody,alpha: number = 1) 
 export function DrawBox(GraphObj: Graphics, box: IGameBody,alpha: number = 1) {
     const body = GraphObj
 
-    let color = new Color('#3F6D2A')
+    const color = new Color('#3F6D2A')
 
     body.beginFill(color.rgbNumber(),alpha);
 
@@ -60,8 +55,8 @@ export function DrawVelAcc(body: Body) {
     vel.moveTo(body.pos.x, body.pos.y)
     acc.moveTo(body.pos.x, body.pos.y)
 
-    let unitVel = body.vel.unit().mult(100)
-    let unitAcc = body.acc.unit().mult(100)
+    const unitVel = body.vel.unit().mult(100)
+    const unitAcc = body.acc.unit().mult(100)
 
     vel.lineTo(unitVel.x + body.pos.x, unitVel.y + body.pos.y)
     acc.lineTo(unitAcc.x + body.pos.x, unitAcc.y + body.pos.y)
@@ -80,9 +75,9 @@ export function DrawLine(GraphObj: Graphics, p1: Vector, p2: Vector) {
 
 export function DrawPoint(p: Vector) {
 
-    let color = new Color('#3F9FEA')
+    const color = new Color('#3F9FEA')
 
-    let point = new Graphics()
+    const point = new Graphics()
     point.beginFill(color.rgbNumber());
     point.drawCircle(p.x, p.y, 10)
     point.endFill()
