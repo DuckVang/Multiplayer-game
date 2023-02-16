@@ -5,7 +5,6 @@ import WORLD from "../GlobalWorld";
 
 export function SetCameraTo(player: Player) {
 
-    
     WORLD.spectate = player
 
 }

@@ -1,8 +1,7 @@
-import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
+
 import { PhysicsLoop } from "../../../../Engine/src/Loops/PhysicalLoop"
-import { Player } from "../../Game-Objects/Player"
-import { HandleClick, WatchMouse } from "../../Interactions/Mouse"
-import { FollowPlayer } from "../Components/Camera"
+import { WatchMouse } from "../../Interactions/Mouse"
+import { FollowPlayer } from "../Camera/Camera"
 import { RenderBodiesLoop } from "./RenderLoop"
 import { MapLoop } from "./UpdateMap"
 import { UILoop } from "./UpdateUI"
@@ -26,7 +25,9 @@ export function MainLoop() {
     GameLoop()
     RenderBodiesLoop()
 
-    console.log(__filename)
+  
+   
+
     
     
    

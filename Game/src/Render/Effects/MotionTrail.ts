@@ -1,10 +1,10 @@
 import { interactiveTarget } from "pixi.js"
-import { Ball } from "../../../Engine/src/components/Physical-Body/Ball"
-import Vector from "../../../Engine/src/Math/Vector"
-import { IGameBody } from "../Game-Objects/IGameBody"
-import { IGameObject } from "../Game-Objects/IGameObject"
-import { Timer } from "../Game-UI/Timer"
-import { DrawBall } from "./Shapes"
+import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
+import Vector from "../../../../Engine/src/Math/Vector"
+import { IGameBody } from "../../Game-Objects/IGameBody"
+import { IGameObject } from "../../Game-Objects/IGameObject"
+import { Timer } from "../../Game-UI/Timer"
+import { DrawBall } from "../Shapes"
 
 
 

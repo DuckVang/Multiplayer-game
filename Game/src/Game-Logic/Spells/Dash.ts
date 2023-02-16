@@ -17,9 +17,12 @@ export class Dash extends Spell {
     }
     cast(dir: Vector) {
         dir = dir.mult(this.distance)
-        
-        
-        WORLD.player.pos = WORLD.player.pos.add(dir)
+        let dashInterval = setInterval(() => {
+
+            WORLD.player.pos = WORLD.player.pos.add(dir)
+
+        }, 100)
+        setTimeout(()=>{clearInterval(dashInterval)}, this.duration)
 
     }
 

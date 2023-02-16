@@ -6,7 +6,7 @@ import { Container, Graphics, Sprite } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 import { CollisionData } from "../../../Engine/src/components/Collsions/CollisionData";
 import { AddControl } from "../Interactions/Movement";
-import { SetCameraTo } from "./Components/Camera";
+import { SetCameraTo } from "./Camera/Camera";
 import { Player } from "../Game-Objects/Player";
 import { StartGame } from "../Game-Logic/StartGame";
 import { MainLoop } from "./Loops/MainLoop";

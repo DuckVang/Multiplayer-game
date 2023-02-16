@@ -24,27 +24,27 @@ export class ManaExplosion extends Spell {
         mainProjectile.vel = mainProjectile.vel.add(speed)
         this.projectiles.push(mainProjectile)
         setTimeout(() => {
-            
+
             for (let radius = 0; radius < 360; radius += 30) {
                 let matrix = new Matrix(2, 2)
                 matrix.rotMx22(radius)
                 let newDir = matrix.multiplyVec(dir)
                 let miniProjectile = new BallProjectile(newDir, mainProjectile.pos)
-                
-                miniProjectile.friction =0
-                
+
+                miniProjectile.friction = 0
+
                 let speed = newDir.mult(500)
                 miniProjectile.vel = mainProjectile.vel.add(speed)
-                
+
                 this.projectiles.push(miniProjectile)
-                
+
             }
-            mainProjectile.remove()
+            this.setRemove(0, mainProjectile)
+            this.setRemove(this.duration, ...this.projectiles)
 
         }, this.detonationTime)
 
 
-        this.setRemove()
     }
 
 }

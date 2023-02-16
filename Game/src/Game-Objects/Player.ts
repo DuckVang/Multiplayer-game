@@ -3,7 +3,7 @@ import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../Engine/src/Math/Vector"
-import { ShakeScreen } from "../World/Components/CameraEffects"
+import { ShakeScreen } from "../World/Camera/ShakeScreen"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
 import { AddControl } from "../Interactions/Movement"
@@ -14,7 +14,7 @@ import { Dash } from "../Game-Logic/Spells/Dash"
 import { IGameObject } from "./IGameObject"
 import { Timer } from "../Game-UI/Timer"
 import { IGameBody } from "./IGameBody"
-import { MotionTrail } from "../Render/MotionTrail"
+import { MotionTrail } from "../Render/Effects/MotionTrail"
 
 export class Player extends Ball implements IGameBody {
 
@@ -40,7 +40,7 @@ export class Player extends Ball implements IGameBody {
         this.spells = []
         this.maxHealth = 100
         this.health = this.maxHealth
-
+        this.selected = 1
 
         this.graphics = new Graphics()
 

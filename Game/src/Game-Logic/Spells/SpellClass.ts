@@ -30,13 +30,13 @@ export abstract class Spell {
 
     cast(dir: Vector) {
     }
-    protected setRemove() {
+    protected setRemove(duration: number,...projectiles: BallProjectile[] ) {
 
         setTimeout(() => {
-            this.projectiles.forEach(p => {
+            projectiles.forEach(p => {
                 p.remove()
             });
-        }, this.duration);
+        }, duration);
 
     }
 }
