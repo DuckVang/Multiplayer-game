@@ -1,11 +1,10 @@
 import { Graphics } from "pixi.js"
 import Vector from "../../../Engine/src/Math/Vector"
+import { MotionTrail } from "../Render/MotionTrail"
 
 export interface IGameObject {
 
-    motionPos: Vector[]
-    motionTrail: boolean,
-    motionTrailLength: number
+    motionTrail: MotionTrail
     graphics: Graphics
     render: () => void
 }

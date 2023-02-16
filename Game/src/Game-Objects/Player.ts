@@ -14,6 +14,7 @@ import { Dash } from "../Game-Logic/Spells/Dash"
 import { IGameObject } from "./IGameObject"
 import { Timer } from "../Game-UI/Timer"
 import { IGameBody } from "./IGameBody"
+import { MotionTrail } from "../Render/MotionTrail"
 
 export class Player extends Ball implements IGameBody {
 
@@ -28,9 +29,8 @@ export class Player extends Ball implements IGameBody {
 
     selected: number
 
-    motionPos: Vector[]
-    motionTrail: boolean
-    motionTrailLength: number
+
+    motionTrail: MotionTrail
 
     savePos: any
 
@@ -44,20 +44,13 @@ export class Player extends Ball implements IGameBody {
 
         this.graphics = new Graphics()
 
-        this.motionPos = []
-        this.motionTrail = true
-        this.motionTrailLength = 5
-
         this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
 
 
-        this.savePos = setInterval(() => {
+        this.motionTrail = new MotionTrail(this)
 
-            this.motionPos.push(new Vector(this.pos.x, this.pos.y))
-            //how fuck with refernce 
-            if (this.motionPos.length > this.motionTrailLength) this.motionPos.shift()
+        this.motionTrail.Start()
 
-        }, 100)
     }
     CastSpell(dir: Vector) {
 
@@ -76,30 +69,15 @@ export class Player extends Ball implements IGameBody {
         this.remove()
 
     }
-    startSavingPos(array:Vector[]){
 
-    }
-    stopSavingPos(array:Vector[]){
-        
-    }
 
 
     render() {
 
         this.graphics.clear()
         this.graphics = DrawBall(this.graphics, this, 1)
-      
-        if (this.motionTrail) {
-            this.motionPos.forEach((pos, i) => {
-                var ratio = (i + 1) / this.motionPos.length;
-                console.log(ratio)
-                let tempBall = this
-                tempBall.pos = pos
-                this.graphics = DrawBall(this.graphics, tempBall, ratio)
 
-            });
-        }
-
+        this.motionTrail.Render()
 
     }
 }

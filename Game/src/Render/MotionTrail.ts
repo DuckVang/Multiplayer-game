@@ -8,33 +8,37 @@ import { DrawBall } from "./Shapes"
 
 
 
-class MotionTrail {
+export class MotionTrail {
 
     obj: IGameBody
     intervalId: any
-    SavePos = () => {
 
-        this.obj.motionPos.push(new Vector(this.obj.pos.x, this.obj.pos.y))
-        if (this.obj.motionPos.length > this.obj.motionTrailLength) this.obj.motionPos.shift()
-
-    }
+    motionPos: Vector[]
+    motionTrail: boolean
+    motionTrailLength: number
 
 
 
     constructor(obj: IGameBody) {
         this.obj = obj
+
+        this.motionPos = []
+        this.motionTrail = true
+        this.motionTrailLength = 5
+
     }
-    StartInterval() {
+    Start() {
         this.intervalId = setInterval(this.SavePos, 100)
+        this.motionTrail = true
     }
-    StopInterval() {
+    Stop() {
         clearInterval(this.intervalId)
+        this.motionTrail = false
     }
-    RenderMotion(){
-        if (this.obj.motionTrail) {
-            this.obj.motionPos.forEach((pos, i) => {
-                var ratio = (i + 1) / this.obj.motionPos.length;
-                console.log(ratio)
+    Render() {
+        if (this.motionTrail) {
+            this.motionPos.forEach((pos, i) => {
+                let ratio = (i + 1) / this.motionPos.length;
                 let tempBall = this.obj
                 tempBall.pos = pos
                 this.obj.graphics = DrawBall(this.obj.graphics, tempBall, ratio)
@@ -43,4 +47,10 @@ class MotionTrail {
         }
     }
 
+    private SavePos = () => {
+
+        this.motionPos.push(new Vector(this.obj.pos.x, this.obj.pos.y))
+        if (this.motionPos.length > this.motionTrailLength) this.motionPos.shift()
+
+    }
 }

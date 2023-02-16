@@ -5,5 +5,6 @@ export interface IProjectile extends IGameBody{
 
     projSpeed: number
     gap: number
+    
 
 }

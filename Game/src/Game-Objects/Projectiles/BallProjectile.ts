@@ -1,6 +1,7 @@
 import { Graphics } from "pixi.js"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import Vector from "../../../../Engine/src/Math/Vector"
+import { MotionTrail } from "../../Render/MotionTrail"
 import { DrawBall } from "../../Render/Shapes"
 import { IGameObject } from "../IGameObject"
 import { IProjectile } from "./IProjectile"
@@ -15,9 +16,7 @@ export class BallProjectile extends Ball implements IProjectile {
     projSpeed: number
     gap: number
 
-    motionTrail: boolean
-    motionPos: any
-    motionTrailLength: any
+    motionTrail: MotionTrail
 
     constructor(dir: Vector, pos: Vector) {
         super(0, 0, 10, 2)
@@ -26,30 +25,22 @@ export class BallProjectile extends Ball implements IProjectile {
         this.projSpeed = 1000
         this.gap = 50
 
-        this.motionPos = []
-        this.motionTrail = false
-        this.motionTrailLength = 10
 
         let p = dir.mult(this.gap).add(pos)
         this.setPosition(p.x, p.y)
+        this.motionTrail = new MotionTrail(this)
+        this.motionTrail.Start()
 
 
 
     }
+
     render() {
 
         this.graphics.clear()
-        this.graphics = DrawBall(this.graphics, this,1)
+        this.graphics = DrawBall(this.graphics, this, 1)
 
-        if (this.motionPos.length > this.motionTrailLength) this.motionPos.shift()
-        if (this.motionTrail) {
-            this.motionPos.forEach((pos: Vector) => {
-                let tempBall = this
-                tempBall.pos = pos
-                this.graphics = DrawBall(this.graphics, tempBall,1)
-
-            });
-        }   
+        this.motionTrail.Render()
 
     }
 }

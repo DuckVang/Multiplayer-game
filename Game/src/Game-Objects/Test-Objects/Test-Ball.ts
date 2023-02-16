@@ -3,6 +3,7 @@ import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import { Box } from "../../../../Engine/src/components/Physical-Body/Box"
 import Vector from "../../../../Engine/src/Math/Vector"
+import { MotionTrail } from "../../Render/MotionTrail"
 import { DrawBall, DrawBox } from "../../Render/Shapes"
 import { IGameBody } from "../IGameBody"
 import { IGameObject } from "../IGameObject"
@@ -10,10 +11,7 @@ import { IGameObject } from "../IGameObject"
 
 export class TestBall extends Ball implements IGameBody {
 
-    motionPos: Vector[]
-    motionTrail: boolean
-    motionTrailLength: number
-    
+   motionTrail: MotionTrail
     constructor() {
         super(10, 10, 10, 10)
         this.graphics = new Graphics()
