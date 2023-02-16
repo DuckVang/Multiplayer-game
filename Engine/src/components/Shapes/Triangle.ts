@@ -13,8 +13,9 @@ export interface ITriangle {
     angle: number
     rotMat: Matrix
 }
-export default class Triangle extends Shape implements ITriangle{
+export default class Triangle extends Shape {
 
+ 
 
     dir: Vector
     refDir: Vector

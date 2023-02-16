@@ -1,7 +1,7 @@
-import Circle from "../Shapes/Circle";
+import {Circle} from "../Shapes/Circle";
 import Triangle from "../Shapes/Triangle";
-import Rectangle from "../Shapes/Rectangle";
-import Line from "../Shapes/Line";
+import {Rectangle} from "../Shapes/Rectangle";
+import {Line} from "../Shapes/Line";
 import Vector from "../../Math/Vector";
 import { Wall } from "../Physical-Body/Wall";
 import { Shape } from "../Shapes/Shape";

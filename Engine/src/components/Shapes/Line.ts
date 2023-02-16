@@ -1,5 +1,6 @@
+import Matrix from "../../Math/Matrix"
 import Vector from "../../Math/Vector"
-import { Shape } from "./Shape"
+import { IShape, Shape } from "./Shape"
 
 
 export interface ILine {
@@ -7,7 +8,10 @@ export interface ILine {
     dir: Vector
     mag: number
 }
-export  class Line extends Shape implements ILine{
+export  class Line extends Shape{
+    pos: Vector
+    vertex: Vector[]
+    color: string
 
     dir: Vector
     mag: number
@@ -20,5 +24,6 @@ export  class Line extends Shape implements ILine{
         this.mag = this.vertex[1].subtr(this.vertex[0]).mag();
         this.pos = new Vector((this.vertex[0].x+this.vertex[1].x)/2, (this.vertex[0].y+this.vertex[1].y)/2);
     }
+  
 
 }

@@ -7,10 +7,11 @@ import { Wall } from "../../../Engine/src/components/Physical-Body/Wall";
 import Vector from "../../../Engine/src/Math/Vector";
 import { Shape } from "../../../Engine/src/components/Shapes/Shape";
 import { Cipher } from "crypto";
+import { IGameBody } from "../Game-Objects/IGameBody";
 
 
 
-export function DrawBall(GraphObj: Graphics, ball: Ball, alpha: number = 1) {
+export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1) {
 
     let color = new Color('#FAD02C')
     const body = GraphObj
