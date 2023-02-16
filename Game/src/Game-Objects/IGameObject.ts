@@ -3,8 +3,9 @@ import Vector from "../../../Engine/src/Math/Vector"
 
 export interface IGameObject {
 
-    motionTrail: boolean,
     motionPos: Vector[]
+    motionTrail: boolean,
+    motionTrailLength: number
     graphics: Graphics
     render: () => void
 }

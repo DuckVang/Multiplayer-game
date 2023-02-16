@@ -9,8 +9,9 @@ import { IGameObject } from "../IGameObject"
 
 export class TestBox extends Box  implements IGameBody{
 
-    motionTrail: boolean
     motionPos: Vector[]
+    motionTrail: boolean
+    motionTrailLength: number
 
     constructor() {
         super(200, 200, 300, 300, 30, 2)

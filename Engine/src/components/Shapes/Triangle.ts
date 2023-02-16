@@ -2,7 +2,18 @@
 import Vector from "../../Math/Vector"
 import Matrix from "../../Math/Matrix"
 import { Shape } from "./Shape"
-export default class Triangle extends Shape{
+export interface ITriangle {
+
+
+    dir: Vector
+    refDir: Vector
+    refDiam: Vector[]
+    length: number
+    width: number
+    angle: number
+    rotMat: Matrix
+}
+export default class Triangle extends Shape implements ITriangle{
 
 
     dir: Vector

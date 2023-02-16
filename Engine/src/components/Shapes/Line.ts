@@ -1,7 +1,13 @@
 import Vector from "../../Math/Vector"
 import { Shape } from "./Shape"
 
-export default class Line extends Shape{
+
+export interface ILine {
+
+    dir: Vector
+    mag: number
+}
+export  class Line extends Shape implements ILine{
 
     dir: Vector
     mag: number

@@ -1,7 +1,12 @@
 import Vector from "../../Math/Vector";
 import { Shape } from "./Shape";
 
-export default class Circle extends Shape {
+
+export interface ICircle {
+    r: number
+
+}
+export class Circle extends Shape {
 
     r: number
 

@@ -10,9 +10,10 @@ import { IGameObject } from "../IGameObject"
 
 export class TestBall extends Ball implements IGameBody {
 
-    motionTrail: boolean
     motionPos: Vector[]
-
+    motionTrail: boolean
+    motionTrailLength: number
+    
     constructor() {
         super(10, 10, 10, 10)
         this.graphics = new Graphics()

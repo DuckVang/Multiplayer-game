@@ -1,5 +1,5 @@
 
-import { Graphics } from "pixi.js"
+import { Graphics, IShape } from "pixi.js"
 import Vector from "../../Math/Vector"
 import BODIES from "../Models/Bodies"
 import { Shape } from "../Shapes/Shape"

@@ -1,5 +1,6 @@
 import Body from "./Body";
-import Circle from "../Shapes/Circle";
+import {Circle} from "../Shapes/Circle";
+
 
 export class Ball extends Body {
 

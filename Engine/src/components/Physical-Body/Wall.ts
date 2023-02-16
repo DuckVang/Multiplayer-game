@@ -1,4 +1,4 @@
-import Line from "../Shapes/Line";
+import {Line }from "../Shapes/Line";
 import Vector from "../../Math/Vector";
 import Body from "./Body";
 

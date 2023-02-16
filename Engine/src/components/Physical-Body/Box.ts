@@ -1,6 +1,6 @@
 
 import Body from "./Body";
-import Rectangle from "../Shapes/Rectangle";
+import {Rectangle} from "../Shapes/Rectangle";
 export class Box extends Body {
 
 

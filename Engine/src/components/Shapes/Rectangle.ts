@@ -2,7 +2,16 @@ import Vector from "../../Math/Vector"
 import Matrix from "../../Math/Matrix"
 import { Shape } from "./Shape"
 
-export default class Rectangle extends Shape {
+export interface IRectangle {
+    dir: Vector
+    refDir: Vector
+    length: number
+    width: number
+    angle: number
+    rotMat: Matrix
+}
+
+export class Rectangle extends Shape implements IRectangle {
 
     dir: Vector
     refDir: Vector
@@ -11,7 +20,7 @@ export default class Rectangle extends Shape {
     angle: number
     rotMat: Matrix
 
-    constructor(x1:number, y1:number, x2:number, y2:number, w:number) {
+    constructor(x1: number, y1: number, x2: number, y2: number, w: number) {
         super()
         this.vertex[0] = new Vector(x1, y1);
         this.vertex[1] = new Vector(x2, y2);
@@ -28,7 +37,7 @@ export default class Rectangle extends Shape {
 
 
 
-    getVertices(angle:number) {
+    getVertices(angle: number) {
         this.rotMat.rotMx22(angle);
         this.dir = this.rotMat.multiplyVec(this.refDir);
         this.vertex[0] = this.pos.add(this.dir.mult(-this.length / 2)).add(this.dir.normal().mult(this.width / 2));
