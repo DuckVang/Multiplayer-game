@@ -20,10 +20,10 @@ export function DrawWall(wall: Wall) {
     const line = new Graphics()
 
     line.lineStyle(2, 0xffd900, 1);
-    line.moveTo(wall.start.x, wall.start.y)
+    line.moveTo(wall.comp.start.x, wall.comp.start.y)
 
 
-    line.lineTo(wall.end.x, wall.end.y)
+    line.lineTo(wall.comp.end.x, wall.comp.end.y)
     return line
 
 }

@@ -11,7 +11,7 @@ export class MapWall extends Wall {
     }
 
     render() {
-        DrawLine(this.graphics,this.start, this.end)
+        DrawLine(this.graphics,this.comp.start, this.comp.end)
     }
 }
 export function PutWallAround(x1: number, y1: number, x2: number, y2: number){

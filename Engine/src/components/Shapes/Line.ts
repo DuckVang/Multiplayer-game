@@ -7,6 +7,11 @@ export interface ILine {
 
     dir: Vector
     mag: number
+
+    start: Vector
+    end: Vector
+    
+    
 }
 export  class Line extends Shape{
     pos: Vector
@@ -15,6 +20,9 @@ export  class Line extends Shape{
 
     dir: Vector
     mag: number
+
+    start: Vector
+    end: Vector
 
     constructor(x0:number, y0:number, x1:number, y1:number){
         super()
