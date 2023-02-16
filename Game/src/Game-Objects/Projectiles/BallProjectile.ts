@@ -3,10 +3,10 @@ import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { DrawBall } from "../../Render/Shapes"
 import { IGameObject } from "../IGameObject"
-import { Projectile } from "./IProjectile"
+import { IProjectile } from "./IProjectile"
 
 
-export class BallProjectile extends Ball implements Projectile {
+export class BallProjectile extends Ball implements IProjectile {
 
 
 

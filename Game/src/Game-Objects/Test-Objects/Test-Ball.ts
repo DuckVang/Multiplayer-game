@@ -4,10 +4,11 @@ import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import { Box } from "../../../../Engine/src/components/Physical-Body/Box"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { DrawBall, DrawBox } from "../../Render/Shapes"
+import { IGameBody } from "../IGameBody"
 import { IGameObject } from "../IGameObject"
 
 
-export class TestBall extends Ball implements IGameObject {
+export class TestBall extends Ball implements IGameBody {
 
     motionTrail: boolean
     motionPos: Vector[]

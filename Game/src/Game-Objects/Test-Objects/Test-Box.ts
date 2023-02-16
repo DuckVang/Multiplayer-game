@@ -3,10 +3,11 @@ import { DisplayObject, Graphics } from "pixi.js"
 import { Box } from "../../../../Engine/src/components/Physical-Body/Box"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { DrawBox } from "../../Render/Shapes"
+import { IGameBody } from "../IGameBody"
 import { IGameObject } from "../IGameObject"
 
 
-export class TestBox extends Box  implements IGameObject{
+export class TestBox extends Box  implements IGameBody{
 
     motionTrail: boolean
     motionPos: Vector[]

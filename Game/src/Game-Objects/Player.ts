@@ -12,8 +12,10 @@ import WORLD from "../World/GlobalWorld"
 import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
 import { Dash } from "../Game-Logic/Spells/Dash"
 import { IGameObject } from "./IGameObject"
+import { Timer } from "../Game-UI/Timer"
+import { IGameBody } from "./IGameBody"
 
-export class Player extends Ball implements IGameObject {
+export class Player extends Ball implements IGameBody {
 
     private spells: Spell[]
 
@@ -29,6 +31,8 @@ export class Player extends Ball implements IGameObject {
     motionPos: Vector[]
     motionTrail: boolean
     motionTrailLength: number
+
+    savePos: any
 
     constructor(x: number, y: number) {
         super(x, y, 30, 2)
@@ -47,7 +51,7 @@ export class Player extends Ball implements IGameObject {
         this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
 
 
-        setInterval(() => {
+        this.savePos = setInterval(() => {
 
             this.motionPos.push(new Vector(this.pos.x, this.pos.y))
             //how fuck with refernce 
@@ -71,6 +75,12 @@ export class Player extends Ball implements IGameObject {
         this.alive = false
         this.remove()
 
+    }
+    startSavingPos(array:Vector[]){
+
+    }
+    stopSavingPos(array:Vector[]){
+        
     }
 
 
