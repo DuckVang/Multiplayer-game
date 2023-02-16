@@ -11,10 +11,10 @@ export function sat(shape1: Shape, shape2: Shape) {
     let smallestAxis;
     let vertexObj;
 
-    let axes = findAxes(shape1, shape2);
+    const axes = findAxes(shape1, shape2);
 
     let proj1, proj2 = null;
-    let firstShapeAxes = getShapeAxes(shape1);
+    const firstShapeAxes = getShapeAxes(shape1);
 
     for (let i = 0; i < axes.length; i++) {
         proj1 = projShapeOntoAxis(axes[i], shape1);
@@ -29,8 +29,8 @@ export function sat(shape1: Shape, shape2: Shape) {
 
         if ((proj1.max > proj2.max && proj1.min < proj2.min) ||
             (proj1.max < proj2.max && proj1.min > proj2.min)) {
-            let mins = Math.abs(proj1.min - proj2.min);
-            let maxs = Math.abs(proj1.max - proj2.max);
+            const mins = Math.abs(proj1.min - proj2.min);
+            const maxs = Math.abs(proj1.max - proj2.max);
             if (mins < maxs) {
                 overlap += mins;
             } else {
@@ -54,9 +54,9 @@ export function sat(shape1: Shape, shape2: Shape) {
                 }
             }
         }
-    };
+    }
 
-    let contactVertex = projShapeOntoAxis(smallestAxis, vertexObj).collVertex;
+    const contactVertex = projShapeOntoAxis(smallestAxis, vertexObj).collVertex;
     //smallestAxis.drawVec(contactVertex.x, contactVertex.y, minOverlap, "blue");
 
     if (vertexObj === shape2) {
@@ -71,7 +71,7 @@ export function sat(shape1: Shape, shape2: Shape) {
 }
 
 function findAxes(shape1: Shape, shape2: Shape) {
-    let axes = [];
+    const axes = [];
     if (shape1 instanceof Circle && shape2 instanceof Circle) {
         if (shape2.pos.subtr(shape1.pos).mag() > 0) {
             axes.push(shape2.pos.subtr(shape1.pos).unit());
@@ -114,17 +114,17 @@ function findAxes(shape1: Shape, shape2: Shape) {
 }
 
 function closestPointOnLS(p: Vector, w1: Wall) {
-    let ballToWallStart = w1.comp.start.subtr(p);
+    const ballToWallStart = w1.comp.start.subtr(p);
     if (Vector.dot(w1.comp.dir, ballToWallStart) > 0) {
         return w1.comp.start;
     }
 
-    let wallEndToBall = p.subtr(w1.comp.end);
+    const wallEndToBall = p.subtr(w1.comp.end);
     if (Vector.dot(w1.comp.dir, wallEndToBall) > 0) {
         return w1.comp.end;
     }
 
-    let closestDist = Vector.dot(w1.comp.dir, ballToWallStart);
+    const closestDist = Vector.dot(w1.comp.dir, ballToWallStart);
     let closestVect = w1.comp.dir.mult(closestDist);
     return w1.comp.start.subtr(closestVect);
 }
@@ -158,7 +158,7 @@ function projShapeOntoAxis(axis: Vector, obj: Shape) {
     let max: number = min;
     let collVertex: Vector = obj.vertex[0];
     for (let i = 0; i < obj.vertex.length; i++) {
-        let p = Vector.dot(axis, obj.vertex[i]);
+        const p = Vector.dot(axis, obj.vertex[i]);
         if (p < min) {
             min = p;
             collVertex = obj.vertex[i];
