@@ -19,7 +19,6 @@ export abstract class Spell {
 
     constructor() {
 
-
         this.projectiles = []
         this.energyCost = 0
         this.speed = 0

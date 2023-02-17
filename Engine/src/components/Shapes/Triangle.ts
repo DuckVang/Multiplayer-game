@@ -13,6 +13,7 @@ export interface ITriangle {
     angle: number
     rotMat: Matrix
 }
+
 export default class Triangle extends Shape {
 
  

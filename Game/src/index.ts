@@ -9,6 +9,7 @@ import { HealthBar } from "./Game-UI/HealthBar";
 import { EnergyBar } from "./Game-UI/EnergyBar";
 import { Timer } from "./Game-UI/Timer";
 import { Zone } from "./Map-Object/Zone";
+import { TestPyramid } from "./Game-Objects/Test-Objects/Test-Pyramid";
 
 
 
@@ -23,6 +24,7 @@ import { Zone } from "./Map-Object/Zone";
 // box.angKeyForce = 0.005
 
 const testBox = new TestBox()
+
 const player = new Player(0,0)
 const player2 = new Player(0,100)
 

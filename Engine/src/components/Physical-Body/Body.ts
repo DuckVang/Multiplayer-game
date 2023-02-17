@@ -41,6 +41,7 @@ export default abstract class Body {
     vertex: Vector[]
 
     collided: boolean
+    // collidedObj:Body[]
 
     graphics: Graphics
 

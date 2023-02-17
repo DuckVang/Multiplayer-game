@@ -5,7 +5,7 @@ import { DrawPoint, DrawVelAcc } from "../../Render/Shapes";
 import WORLD from "../GlobalWorld";
 
 export function RenderBodiesLoop() {
-
+    
     WORLD.GAME_CONT.removeChildren()
     BODIES.forEach((body) => {
 

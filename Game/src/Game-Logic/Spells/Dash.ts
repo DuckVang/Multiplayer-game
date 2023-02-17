@@ -8,28 +8,24 @@ import { Spell } from "./SpellClass";
 export class Dash extends Spell {
 
     distance: number
-    motionTrailLength: number
+
 
     constructor() {
         super()
         this.duration = 100
         this.distance = 50
-        
+       
+
     }
     cast(dir: Vector) {
         console.log("dash")
         let newdir = dir.mult(this.distance)
-  
-        let dashInterval = setInterval(() => {
-            
-            WORLD.player.vel = WORLD.player.vel.add(newdir.mult(1000/this.duration))
-            console.log(WORLD.player.vel)
-            
-            
-            
-        }, 10)
-        setTimeout(() => { clearInterval(dashInterval) }, this.duration)
-    
+        WORLD.player.vel = WORLD.player.vel.add(newdir)
+
+
+
+
+
 
     }
 

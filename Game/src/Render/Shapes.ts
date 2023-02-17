@@ -44,6 +44,20 @@ export function DrawBox(GraphObj: Graphics, box: IGameBody,alpha: number = 1) {
 
 
 }
+export function DrawPyramid(GraphObj:Graphics, pyramid: IGameBody, alpha: number = 1){
+    const body = GraphObj
+
+    const color = new Color('#3F6D2A')
+
+    body.beginFill(color.rgbNumber(),alpha);
+
+    body.moveTo(pyramid.comp.vertex[0].x, pyramid.comp.vertex[0].y)
+    body.lineTo(pyramid.comp.vertex[1].x, pyramid.comp.vertex[1].y)
+    body.lineTo(pyramid.comp.vertex[2].x, pyramid.comp.vertex[2].y)
+    body.lineTo(pyramid.comp.vertex[0].x, pyramid.comp.vertex[0].y)
+    body.endFill();
+    return body
+}
 export function DrawVelAcc(body: Body) {
 
     const lines = new Graphics()
