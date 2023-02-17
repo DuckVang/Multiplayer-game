@@ -3,6 +3,7 @@ import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball";
 import Matrix from "../../../../Engine/src/Math/Matrix";
 import Vector from "../../../../Engine/src/Math/Vector";
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile";
+import { Player } from "../../Game-Objects/Player";
 import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 
@@ -14,6 +15,14 @@ export class ManaExplosion extends Spell {
         super()
         this.duration = 3000
         this.detonationTime = 1000
+    }
+    effect(...collidedObj:Body[]): void {
+        collidedObj.forEach((body) => {
+            if (body instanceof Player) {
+                body.Damaged(10)
+            }
+        })
+        
     }
     cast(dir: Vector) {
         let playrPos = WORLD.player.pos

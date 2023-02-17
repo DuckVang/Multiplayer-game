@@ -101,9 +101,7 @@ export default abstract class Body {
             BODIES.splice(BODIES.indexOf(this), 1);
         }
     }
-    collided(...collidedObj: Body[]) {
-        this.collidedObj.push(...collidedObj)
-    }
+    collided(...collidedObj: Body[]) {}
     keyControl() { }
 
     render() { }
