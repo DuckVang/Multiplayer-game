@@ -1,3 +1,4 @@
+import BODIES from "../../../Engine/src/components/Models/Bodies";
 import COLLISIONS from "../../../Engine/src/components/Models/Collisions";
 import Body from "../../../Engine/src/components/Physical-Body/Body";
 import { Player } from "../Game-Objects/Player";
@@ -6,15 +7,11 @@ import WORLD from "../World/GlobalWorld";
 export function CheckHit() {
 
 
-    COLLISIONS.forEach((coll) => {
+    BODIES.forEach((body) => {
 
-        if (coll.body1 instanceof Player) {
+        if (body instanceof Player && body.collided) {
 
-            coll.body1.Damaged(10)
-        }
-        if (coll.body2 instanceof Player) {
-
-            coll.body2.Damaged(10)
+            body.Damaged(10)
         }
         
     })
