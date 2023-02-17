@@ -46,9 +46,10 @@ export class BallProjectile extends Ball implements IProjectile {
 
     }
     collided(...collidedObj: Body[]): void {
-        
+        super.collided(...collidedObj)
+        this.spell.effect()
     }
-    effect: () => void
+
 
     render() {
 
