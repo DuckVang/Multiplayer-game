@@ -1,8 +1,8 @@
 import { Viewport } from "pixi-viewport";
-import * as PIXI from "pixi.js"
+
 import Body from "../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../Engine/src/Math/Vector";
-import { Container, Graphics, Sprite } from "pixi.js";
+import { Application, Container, Graphics, Sprite } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 import { CollisionData } from "../../../Engine/src/components/Collsions/CollisionData";
 import { AddControl } from "../Interactions/Movement";
@@ -21,7 +21,7 @@ let instance: World
 class World {
 
     engine: Engine
-    app: PIXI.Application
+    app: Application
 
     CAMERA: Camera
     VIEWPORT: Viewport
@@ -60,7 +60,7 @@ class World {
         this.MAP_OBJECTS = []
 
         this.engine = new Engine()
-        this.app = new PIXI.Application({
+        this.app = new Application({
             resizeTo: window,
             // backgroundColor: 0x2980b9,
 

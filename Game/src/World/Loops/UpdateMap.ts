@@ -12,9 +12,6 @@ export function MapLoop() {
 
         object.update()
         
-
-
-
     })
 
 }
