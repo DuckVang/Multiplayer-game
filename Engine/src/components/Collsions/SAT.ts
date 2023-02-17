@@ -113,21 +113,6 @@ function findAxes(shape1: Shape, shape2: Shape) {
     return axes;
 }
 
-function closestPointOnLS(p: Vector, w1: Wall) {
-    const ballToWallStart = w1.comp.start.subtr(p);
-    if (Vector.dot(w1.comp.dir, ballToWallStart) > 0) {
-        return w1.comp.start;
-    }
-
-    const wallEndToBall = p.subtr(w1.comp.end);
-    if (Vector.dot(w1.comp.dir, wallEndToBall) > 0) {
-        return w1.comp.end;
-    }
-
-    const closestDist = Vector.dot(w1.comp.dir, ballToWallStart);
-    let closestVect = w1.comp.dir.mult(closestDist);
-    return w1.comp.start.subtr(closestVect);
-}
 
 function closestVertexToPoint(obj: Shape, p: Vector) {
     let closestVertex;

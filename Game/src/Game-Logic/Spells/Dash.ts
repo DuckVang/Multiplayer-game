@@ -12,17 +12,22 @@ export class Dash extends Spell {
 
     constructor() {
         super()
-        this.duration = 1000
-        this.distance = 500
+        this.duration = 100
+        this.distance = 50
     }
     cast(dir: Vector) {
-        dir = dir.mult(this.distance)
+        console.log("dash")
+        let newdir = dir.mult(this.distance)
+  
         let dashInterval = setInterval(() => {
-
-            WORLD.player.pos = WORLD.player.pos.add(dir)
-
-        }, 100)
-        setTimeout(()=>{clearInterval(dashInterval)}, this.duration)
+            WORLD.player.vel = WORLD.player.vel.add(newdir.mult(10/this.duration))
+            console.log(WORLD.player.vel)
+            
+            
+            
+        }, 10)
+        setTimeout(() => { clearInterval(dashInterval) }, this.duration)
+    
 
     }
 

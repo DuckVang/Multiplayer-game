@@ -41,6 +41,7 @@ export class Player extends Ball implements IGameBody {
         this.maxHealth = 100
         this.health = this.maxHealth
         this.selected = 1
+        this.maxSpeed = 10000
 
         this.graphics = new Graphics()
 
