@@ -1,6 +1,6 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
-import { BallProjectile } from "../../Game-Objects/Projectiles/BallProjectile"
+import { BallProjectile } from "../../Game-Objects/Attack-types/Projectile/BallProjectile"
 
 export abstract class Spell {
 

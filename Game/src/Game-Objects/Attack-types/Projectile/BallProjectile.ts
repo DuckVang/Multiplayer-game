@@ -1,10 +1,10 @@
 import { Graphics } from "pixi.js"
-import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
-import Vector from "../../../../Engine/src/Math/Vector"
-import { MotionTrail } from "../../Render/Effects/MotionTrail"
-import { DrawBall } from "../../Render/Shapes"
-import { IGameObject } from "../IGameObject"
-import { IProjectile } from "./IProjectile"
+import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball"
+import Vector from "../../../../../Engine/src/Math/Vector"
+import { MotionTrail } from "../../../Render/Effects/MotionTrail"
+import { DrawBall } from "../../../Render/Shapes"
+import { IGameObject } from "../../IGameObject"
+import { IProjectile } from "../Projectile/IProjectile"
 
 
 export class BallProjectile extends Ball implements IProjectile {

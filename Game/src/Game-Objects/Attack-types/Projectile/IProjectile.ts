@@ -1,5 +1,5 @@
-import { IGameBody } from "../IGameBody"
-import { IGameObject } from "../IGameObject"
+import { IGameBody } from "../../IGameBody"
+import { IGameObject } from "../../IGameObject"
 
 export interface IProjectile extends IGameBody{
 
