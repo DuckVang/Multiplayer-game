@@ -40,6 +40,8 @@ export default abstract class Body {
 
     vertex: Vector[]
 
+    collided: boolean
+
     graphics: Graphics
 
 
@@ -70,6 +72,8 @@ export default abstract class Body {
         this.angle = 0;
         this.angVel = 0;
         this.player = false;
+
+        this.collided = false
 
         BODIES.push(this);
     }

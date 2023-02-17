@@ -4,7 +4,7 @@ import Vector from "../../../../../Engine/src/Math/Vector"
 import { MotionTrail } from "../../../Render/Effects/MotionTrail"
 import { DrawBall } from "../../../Render/Shapes"
 import { IGameObject } from "../../IGameObject"
-import { IProjectile } from "../Projectile/IProjectile"
+import { IProjectile } from "./IProjectile"
 
 
 export class BallProjectile extends Ball implements IProjectile {
@@ -25,7 +25,7 @@ export class BallProjectile extends Ball implements IProjectile {
         this.projSpeed = 1000
         this.gap = 50
 
-
+        this.layer = -3
         let p = dir.mult(this.gap).add(pos)
         this.setPosition(p.x, p.y)
         this.motionTrail = new MotionTrail(this)

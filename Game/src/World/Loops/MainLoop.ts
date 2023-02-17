@@ -7,6 +7,7 @@ import { MapLoop } from "./UpdateMap"
 import { UILoop } from "./UpdateUI"
 import { UserInputs } from "./UserInputs"
 import { GameLoop } from "./GameLoop"
+import BODIES from "../../../../Engine/src/components/Models/Bodies"
 
 let i = 0
 export function MainLoop() {

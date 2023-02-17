@@ -30,27 +30,6 @@ export default class Engine {
     PushCustom(body: Body){
         this.BODIES.push(body)
     }
-    Loop() {
-        this.COLLISIONS.length = 0;
-        this.BODIES.forEach((b) => {
-            b.reposition();
-        })
-
-        this.BODIES.forEach((b, index) => {
-            for (let bodyPair = index + 1; bodyPair < this.BODIES.length; bodyPair++) {
-                if (collisionHandlingCondition(this.BODIES[index], this.BODIES[bodyPair])) {
-                    let bestSat = checkColl(this.BODIES[index], this.BODIES[bodyPair]);
-                    if (bestSat) {
-                        this.COLLISIONS.push(new CollisionData(this.BODIES[index], this.BODIES[bodyPair], bestSat.axis, bestSat.pen, bestSat.vertex));
-                    }
-                }
-            }
-        });
-
-        this.COLLISIONS.forEach((c) => {
-            c.penRes();
-            c.collRes();
-        });
-    }
+    
 
 }

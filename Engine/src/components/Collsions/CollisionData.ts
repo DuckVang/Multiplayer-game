@@ -11,12 +11,19 @@ export class CollisionData {
     //contact point
     cp: Vector
 
-    constructor(body1: Body, body2: Body, normal: Vector, pen: number, cp: Vector) {
+
+    doPen:boolean
+    doColl:boolean
+
+    constructor(body1: Body, body2: Body, normal: Vector, pen: number, cp: Vector, doPen:boolean, doColl:boolean) {
         this.body1 = body1;
         this.body2 = body2;
         this.normal = normal;
         this.pen = pen;
         this.cp = cp;
+
+        this.doPen = doPen
+        this.doColl = doColl
     }
 
     penRes() {
