@@ -7,15 +7,9 @@ import { MapLoop } from "./UpdateMap"
 import { UILoop } from "./UpdateUI"
 import { UserInputs } from "./UserInputs"
 import { GameLoop } from "./GameLoop"
-import BODIES from "../../../../Engine/src/components/Models/Bodies"
 
-let i = 0
+
 export function MainLoop() {
-    // this.VIEWPORT.follow(this.follow.graphics, {speed:10, })
-
-    // console.time()
-    // console.timeLog()
-    // this.mouserDir = GetMouseDirection(this.follow, this.mousePos.x, this.mousePos.y).add(this.follow.pos)
     FollowPlayer()
     UILoop()
     MapLoop()
@@ -29,12 +23,7 @@ export function MainLoop() {
   
    
 
-    
-    
-   
-    
 
-    // console.timeEnd()
 
     requestAnimationFrame(() => MainLoop())
 

@@ -6,12 +6,12 @@ import WORLD from "../GlobalWorld";
 
 export function MapLoop() {
 
-    WORLD.MAP_CONT.removeChildren()
+    
     WORLD.MAP_OBJECTS.forEach((object) => {
 
 
         object.update()
-        WORLD.MAP_CONT.addChild(object)
+        
 
 
 

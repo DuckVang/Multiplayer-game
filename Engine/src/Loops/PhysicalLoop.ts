@@ -28,7 +28,7 @@ export function PhysicsLoop(timestamp: number) {
         c.body1.collided = true
         c.body2.collided = true
         
-        if(c.doPen)c.penRes();
-        if(c.doColl)c.collRes();
+        if(c.testPen)c.penRes();
+        if(c.testColl)c.collRes();
     });
 }

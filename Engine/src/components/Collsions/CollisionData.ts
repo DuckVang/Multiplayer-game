@@ -12,8 +12,8 @@ export class CollisionData {
     cp: Vector
 
 
-    doPen:boolean
-    doColl:boolean
+    testPen:boolean
+    testColl:boolean
 
     constructor(body1: Body, body2: Body, normal: Vector, pen: number, cp: Vector, doPen:boolean, doColl:boolean) {
         this.body1 = body1;
@@ -22,8 +22,8 @@ export class CollisionData {
         this.pen = pen;
         this.cp = cp;
 
-        this.doPen = doPen
-        this.doColl = doColl
+        this.testPen = doPen
+        this.testColl = doColl
     }
 
     penRes() {
