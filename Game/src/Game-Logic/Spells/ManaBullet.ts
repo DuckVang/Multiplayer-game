@@ -14,7 +14,7 @@ export class ManaBullet extends Spell {
     }
     cast(dir: Vector) {
         let playrPos = WORLD.player.pos
-        let projectile = new BallProjectile(dir, playrPos)
+        let projectile = new BallProjectile(dir, playrPos, this)
 
         projectile.friction = 0
         let speed = dir.mult(1000)

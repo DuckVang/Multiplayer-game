@@ -8,7 +8,7 @@ export function PhysicsLoop(timestamp: number) {
     COLLISIONS.length = 0;
     BODIES.forEach((b) => {
         b.reposition();
-        b.collided = false
+        b.collidedObj = []
     })
 
     BODIES.forEach((b, index) => {
@@ -25,10 +25,13 @@ export function PhysicsLoop(timestamp: number) {
     });
 
     COLLISIONS.forEach((c) => {
-        c.body1.collided = true
-        c.body2.collided = true
-        
-        if(c.testPen)c.penRes();
-        if(c.testColl)c.collRes();
+
+        c.body1.collided(c.body2)
+        c.body2.collided(c.body1)
+
+    
+
+        if (c.testPen) c.penRes();
+        if (c.testColl) c.collRes();
     });
 }

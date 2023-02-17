@@ -23,4 +23,5 @@ export class TestPyramid extends Pyramid implements IGameBody {
         
 
     }
+    
 }

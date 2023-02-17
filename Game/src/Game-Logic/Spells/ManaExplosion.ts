@@ -17,7 +17,7 @@ export class ManaExplosion extends Spell {
     }
     cast(dir: Vector) {
         let playrPos = WORLD.player.pos
-        let mainProjectile = new BallProjectile(dir, playrPos)
+        let mainProjectile = new BallProjectile(dir, playrPos, this)
 
         mainProjectile.friction = 0
         let speed = dir.mult(1000)
@@ -29,11 +29,11 @@ export class ManaExplosion extends Spell {
                 let matrix = new Matrix(2, 2)
                 matrix.rotMx22(radius)
                 let newDir = matrix.multiplyVec(dir)
-                let miniProjectile = new BallProjectile(newDir, mainProjectile.pos)
+                let miniProjectile = new BallProjectile(newDir, mainProjectile.pos, this)
 
                 miniProjectile.friction = 0
 
-                let speed = newDir.mult(500)
+                let speed = newDir.mult(500-radius)
                 miniProjectile.vel = mainProjectile.vel.add(speed)
 
                 this.projectiles.push(miniProjectile)

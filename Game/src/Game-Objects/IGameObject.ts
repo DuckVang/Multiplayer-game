@@ -7,4 +7,6 @@ export interface IGameObject {
     motionTrail: MotionTrail
     graphics: Graphics
     render: () => void
+ 
+   
 }

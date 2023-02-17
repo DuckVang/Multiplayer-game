@@ -14,6 +14,7 @@ import { MapObject } from "../Map-Object/MapObjClass";
 import { Camera } from "pixi-game-camera"
 import { AddSelection } from "../Interactions/Selection";
 import Engine from "../../../Engine/src/Main";
+import { IProjectile } from "../Game-Objects/Attack-Types/Projectile/IProjectile";
 
 
 let instance: World
@@ -32,6 +33,8 @@ class World {
 
     UI_OBJECTS: UI[]
     MAP_OBJECTS: MapObject[]
+
+    SPELL_PROJ: IProjectile[]
 
     player: Player
 
@@ -67,7 +70,7 @@ class World {
         });
 
 
-
+        this.SPELL_PROJ = []
 
 
 

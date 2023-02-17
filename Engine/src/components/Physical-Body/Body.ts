@@ -40,10 +40,12 @@ export default abstract class Body {
 
     vertex: Vector[]
 
-    collided: boolean
-    // collidedObj:Body[]
+
+    collidedObj: Body[]
 
     graphics: Graphics
+
+    parent: any
 
 
     constructor() {
@@ -74,7 +76,10 @@ export default abstract class Body {
         this.angVel = 0;
         this.player = false;
 
-        this.collided = false
+
+        this.collidedObj = []
+
+        this.parent = this
 
         BODIES.push(this);
     }
@@ -96,9 +101,12 @@ export default abstract class Body {
             BODIES.splice(BODIES.indexOf(this), 1);
         }
     }
+    collided(...collidedObj: Body[]) {
+        this.collidedObj.push(...collidedObj)
+    }
     keyControl() { }
 
-    render(){}
+    render() { }
 
 }
 

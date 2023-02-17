@@ -29,6 +29,9 @@ export abstract class Spell {
 
     cast(dir: Vector) {
     }
+    effect(){
+        
+    }
     protected setRemove(duration: number,...projectiles: BallProjectile[] ) {
 
         setTimeout(() => {
