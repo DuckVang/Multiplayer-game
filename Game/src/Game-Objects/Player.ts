@@ -42,11 +42,10 @@ export class Player extends Ball implements IGameBody {
         this.health = this.maxHealth
         this.selected = 1
         this.maxSpeed = 10000
-
+        this.alive = true
         this.graphics = new Graphics()
 
         this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
-
 
         this.motionTrail = new MotionTrail(this)
 
@@ -59,10 +58,12 @@ export class Player extends Ball implements IGameBody {
 
     }
     Damaged(amount: number) {
+        if (this.alive) {
+            this.health -= amount
+            ShakeScreen()
+            if (this.health <= 0) this.Dead()
 
-        this.health -= amount
-        ShakeScreen()
-        if (this.health <= 0) this.Dead()
+        } else this.health = 0
 
     }
     Dead() {
@@ -70,8 +71,6 @@ export class Player extends Ball implements IGameBody {
         this.remove()
 
     }
-
-
 
     render() {
 
