@@ -100,7 +100,7 @@ export default abstract class Body {
             this.vel = this.vel.unit().mult(this.maxSpeed);
         }
         this.angVel *= (1 - this.angFriction);
-        this.comp.UpdateAABB()
+        
 
 
 

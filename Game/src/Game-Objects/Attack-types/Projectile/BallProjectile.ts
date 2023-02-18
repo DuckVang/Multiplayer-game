@@ -40,7 +40,7 @@ export class BallProjectile extends Ball implements IProjectile {
 
         WORLD.SPELL_PROJ.push(this)
 
-        this.PushTo(WORLD.engine)
+        WORLD.engine.BODIES.push(this)
 
     }
     collided(...collidedObj: Body[]): void {

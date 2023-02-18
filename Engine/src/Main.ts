@@ -28,6 +28,7 @@ export default class Engine {
 
         this.BODIES.forEach((b) => {
             b.reposition()
+            b.comp.UpdateAABB()
             this.GRID.add(b)
         })
 

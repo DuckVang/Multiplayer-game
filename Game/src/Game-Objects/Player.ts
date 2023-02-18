@@ -53,7 +53,7 @@ export class Player extends Ball implements IGameBody {
 
         this.motionTrail.Start()
 
-        this.PushTo(WORLD.engine)
+        WORLD.engine.BODIES.push(this)
 
     }
     CastSpell(dir: Vector) {
