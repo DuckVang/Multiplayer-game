@@ -62,7 +62,7 @@ class World {
         this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
 
-        this.engine = new Engine()
+        this.engine = new Engine(10,10,10)
         this.app = new Application({
             resizeTo: window,
             // backgroundColor: 0x2980b9,
