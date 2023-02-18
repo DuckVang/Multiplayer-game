@@ -1,13 +1,13 @@
 import Body from "../Physical-Body/Body";
 
-class Grid {
-    private cellSize: number;
-    private width: number;
-    private height: number;
-    private grid: any[][];
+export class Grid {
+    readonly cellSize: number;
+    readonly width: number;
+    readonly height: number;
+    readonly grid: any[][];
 
-    private numCols: number;
-    private numRows: number;
+    readonly numCols: number;
+    readonly numRows: number;
 
     constructor(cellSize: number, width: number, height: number) {
         this.cellSize = cellSize;
@@ -16,14 +16,14 @@ class Grid {
 
         this.numCols = Math.ceil(width / cellSize);
         this.numRows = Math.ceil(height / cellSize);
-        
+
         this.grid = new Array(this.numCols).fill(null).map(() => new Array(this.numRows).fill([]));
     }
 
     clear() {
         this.grid.forEach(column => column.forEach(cell => cell.objects.clear()));
     }
-    getObjectFromCell(x: number, y: number) {   
+    getObjectsFromCell(x: number, y: number) {
         return this.grid[x][y];
     }
 
