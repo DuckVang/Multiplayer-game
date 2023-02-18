@@ -13,9 +13,14 @@ export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<I
     vertex: Vector[]
     color: string
     AABB: {
-        min: Vector, max: Vector
+        min: Vector,
+        max: Vector,
     }
     UpdateAABB(): void
+
+    getAabbWidth(): number
+    getAabbHeight(): number
+
 
 }
 export class Shape implements IShape {
@@ -24,7 +29,10 @@ export class Shape implements IShape {
     vertex: Vector[]
     color: string
 
-    AABB: { min: Vector, max: Vector }
+    AABB: {
+        min: Vector,
+        max: Vector,
+    }
 
     constructor() {
         this.pos = new Vector(0, 0)
@@ -49,16 +57,14 @@ export class Shape implements IShape {
                 max.y = this.vertex[i].y;
             }
         }
-        //return lenght and width of AABB
-
         this.AABB = { min: min, max: max }
 
     }
-    getWidth(): number {
+    getAabbWidth(): number {
         return this.AABB.max.x - this.AABB.min.x;
     }
 
-    getHeight(): number {
+    getAabbHeight(): number {
         return this.AABB.max.y - this.AABB.min.y;
     }
 
