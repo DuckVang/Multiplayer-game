@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 
 module.exports = {
+  
+  watch: true,
   mode: "development",
   entry: {
     demo: "./Demo/src/index.ts",
@@ -32,6 +34,7 @@ module.exports = {
       chunks: ['demo']
     }),
     new HtmlWebpackPlugin({
+      cache: false,
       filename: 'game.index.html',
       template: "./Game/public/index.html",
       chunks: ['game']
@@ -47,6 +50,9 @@ module.exports = {
     compress: true,
     open: ["/game.index.html"], // Here
     
+    
+
+
   },
 
   resolve: {

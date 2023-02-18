@@ -11,7 +11,7 @@ export class Timer extends UI {
 
 
         this.x = WORLD.app.renderer.width / 2
-        this.y = 10
+        this.y = 10 
         this.timeLeft = WORLD.timeLeft
         this.text = new Text(this.timeLeft.toString(), {
             fontFamily: 'Arial',
@@ -24,6 +24,7 @@ export class Timer extends UI {
     }
 
     update() {
+
         this.timeLeft = WORLD.timeLeft
         this.text.text = this.timeLeft
 

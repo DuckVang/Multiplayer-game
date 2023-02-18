@@ -1,63 +1,109 @@
 import { CollisionData } from "./components/Collsions/CollisionData"
-import { checkColl, collisionHandlingCondition } from "./components/Collsions/Detection"
 import { Grid } from "./components/Collsions/Grid"
-import { FindCollisionsGrid } from "./components/Collsions/GridCollision"
-import { Ball } from "./components/Physical-Body/Ball"
 import Body from "./components/Physical-Body/Body"
-import { Box } from "./components/Physical-Body/Box"
-import { Wall } from "./components/Physical-Body/Wall"
-import { PhysicsLoop } from "./Loops/PhysicalLoop"
+
+import { checkColl, collisionHandlingCondition } from "./components/Collsions/Detection"
 export default class Engine {
+
+
 
     BODIES: Body[]
     COLLISIONS: CollisionData[]
 
     GRID: Grid
 
+
     constructor(cellSize: number, width: number, height: number) {
+
         this.BODIES = []
         this.COLLISIONS = []
         this.GRID = new Grid(cellSize, width, height)
     }
 
-    CreateBall(x: number, y: number, r: number, m: number) {
-        this.BODIES.push(new Ball(x, y, r, m))
-    }
-    CreatePyramid() {
 
-    }
-    CreateBox(x1: number, y1: number, x2: number, y2: number, w: number, m: number) {
-        this.BODIES.push(new Box(x1, y1, x2, y2, w, m))
-    }
-    CreateWall(x1: number, y1: number, x2: number, y2: number) {
-        this.BODIES.push(new Wall(x1, y1, x2, y2))
-    }
-    PushCustom(body: Body) {
-        this.BODIES.push(body)
-    }
     Loop() {
-        this.GRID.clear();
+
+        this.GRID.clear()
         this.COLLISIONS.length = 0;
 
         this.BODIES.forEach((b) => {
-            b.reposition();
+            b.reposition()
             this.GRID.add(b)
         })
-
+       
         
-        FindCollisionsGrid()
+        this.FindCollisionsGrid()
+        
 
         this.COLLISIONS.forEach((c) => {
+            
+            c.body1.collided(c.body2)
+            c.body2.collided(c.body1)
 
 
-        
-        c.body1.collided(c.body2)
-        c.body2.collided(c.body1)
+            if (c.testPen) c.penRes();
+            if (c.testColl) c.collRes();
+        });
 
-    
 
-        if (c.testPen) c.penRes();
-        if (c.testColl) c.collRes();
+
+    }
+    FindCollisionsGrid() {
+
+
+        for (let x = 0; x < this.GRID.numRows; x++) {
+
+            for (let y = 0; y < this.GRID.numCols; y++) {
+
+
+                const currentCell = this.GRID.getObjectsFromCell(x, y)
+
+                if (!currentCell) continue
+
+                for (let dx = -1; dx <= 1; dx++) {
+
+                    for (let dy = -1; dy <= 1; dy++) {
+
+                        const otherCell = this.GRID.getObjectsFromCell(x + dx, y + dy)
+
+                        if (!otherCell) continue
+
+
+                        this.CheckCellsColision(currentCell, otherCell)
+
+                    }
+
+                }
+
+
+            }
+        }
+
+
+
+    }
+    CheckCellsColision(cell1: Body[], cell2: Body[]) {
+
+        cell1.forEach(obj1 => {
+
+            cell2.forEach(obj2 => {
+
+                if (obj1 != obj2) {
+
+                    let bestSat = checkColl(obj1, obj2);
+                    if (bestSat) {
+
+                        if (collisionHandlingCondition(obj1, obj2)) {
+                            this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, true, true));
+                        }
+                        else {
+
+                            this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
+                        }
+
+                    }
+                }
+            });
         });
     }
 

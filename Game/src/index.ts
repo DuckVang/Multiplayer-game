@@ -25,8 +25,10 @@ import { TestPyramid } from "./Game-Objects/Test-Objects/Test-Pyramid";
 
 const testBox = new TestBox()
 
-const player = new Player(0,0)
-const player2 = new Player(0,100)
+const player = new Player(1000,1000)
+player.m =100
+const player2 = new Player(900,1000)
+player2.m =2000
 
 
 WORLD.AddUIObj(new Minimap())
@@ -39,7 +41,7 @@ WORLD.AddMapObj(new Zone())
 
 WORLD.SetPlayer(player)
 
-PutWallAround(-5000,-5000,5000,5000)
+PutWallAround(0,0,10000,10000)
 // const container = new PIXI.Container()
 // app.stage.addChild(container)
 

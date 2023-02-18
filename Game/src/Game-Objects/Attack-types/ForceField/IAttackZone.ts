@@ -3,10 +3,10 @@ import Vector from "../../../../../Engine/src/Math/Vector";
 
 export interface IAttackZone  {
 
-    
+    layer:number
 
     center: Vector
     power: number
-    
+
 
 }

@@ -9,9 +9,8 @@ export function MapLoop() {
     
     WORLD.MAP_OBJECTS.forEach((object) => {
 
-
         object.update()
-        
+    
     })
 
 }

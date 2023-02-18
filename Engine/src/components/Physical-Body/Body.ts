@@ -1,11 +1,12 @@
 
 import { Graphics } from "pixi.js"
+import Engine from "../../Main"
 import Vector from "../../Math/Vector"
-import BODIES from "../Models/Bodies"
-import { Shape } from "../Shapes/Shape"
+
 import { IShape } from "../Shapes/Shape"
 
 export default abstract class Body {
+    EngineParent: Engine
     //composition
     comp: IShape
     pos: Vector
@@ -51,7 +52,7 @@ export default abstract class Body {
     constructor() {
         this.comp = null;
         this.pos = new Vector(0, 0);
-        this.m = 0;
+        this.m = 10; //0
         this.inv_m = 0;
         this.inertia = 0;
         this.inv_inertia = 0;
@@ -81,7 +82,11 @@ export default abstract class Body {
 
         this.parent = this
 
-        BODIES.push(this);
+        
+    }
+    PushTo(Engine:Engine) {
+        this.EngineParent = Engine
+        this.EngineParent.BODIES.push(this)
     }
 
     reposition() {
@@ -98,8 +103,9 @@ export default abstract class Body {
 
     }
     remove() {
-        if (BODIES.indexOf(this) !== -1) {
-            BODIES.splice(BODIES.indexOf(this), 1);
+
+        if (this.EngineParent.BODIES.indexOf(this) !== -1) {
+            this.EngineParent.BODIES.splice(this.EngineParent.BODIES.indexOf(this), 1);
         }
     }
     collided(...collidedObj: Body[]) { }

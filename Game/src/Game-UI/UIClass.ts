@@ -7,6 +7,6 @@ export class UI extends Container{
     }
 
     update(){
-
+        console.log("UI Update")
     }
 }

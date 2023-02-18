@@ -7,6 +7,7 @@ export class BoxZone extends Box implements IAttackZone {
     power: number;
     constructor(center: Vector, power: number) {
         super(0, 0, 0, 0, 0, 0)
+        this.layer = 1
         this.center = center;
         this.power = power;
     }

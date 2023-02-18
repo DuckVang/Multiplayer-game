@@ -48,11 +48,13 @@ class World {
     interval: number
     timeLeft: number
 
+width: number
+height: number
 
 
-
-    constructor() {
-
+    constructor(width: number, height: number) {
+        
+        console.log("pog")
         if (instance)
             throw new Error("New instance cannot be created!!");
 
@@ -62,10 +64,12 @@ class World {
         this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
 
-        this.engine = new Engine()
+        this.width = width
+        this.height = height
+        this.engine = new Engine(1000, this.width, this.height)
         this.app = new Application({
             resizeTo: window,
-            // backgroundColor: 0x2980b9,
+             backgroundColor: 0x2980b9,
 
         });
 
@@ -79,19 +83,20 @@ class World {
         this.VIEWPORT = new Viewport({
             screenWidth: window.innerWidth,
             screenHeight: window.innerHeight,
-            worldWidth: 50000,
-            worldHeight: 50000,
+            worldWidth: this.width,
+            worldHeight: this.height,
             ticker: this.app.ticker,
 
             interaction: this.app.renderer.plugins.interaction
         })
+
+        
 
         this.VIEWPORT
             .drag()
             .pinch()
             .wheel()
             .decelerate()
-
 
 
 
@@ -141,6 +146,6 @@ class World {
 
 }
 
-const WORLD = new World()
+const WORLD = new World(10000,10000)
 
 export default WORLD
