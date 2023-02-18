@@ -12,16 +12,58 @@ export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<I
     pos: Vector
     vertex: Vector[]
     color: string
+    AABB: {
+        min: Vector, max: Vector
+    }
+    UpdateAABB(): void
 
 }
-export class Shape implements IShape{
+export class Shape implements IShape {
+
     pos: Vector
     vertex: Vector[]
     color: string
 
-    constructor(){
+    AABB: { min: Vector, max: Vector }
+
+    constructor() {
         this.pos = new Vector(0, 0)
         this.vertex = []
         this.color = ""
     }
+
+    UpdateAABB() {
+        let min = new Vector(0, 0);
+        let max = new Vector(0, 0);
+        for (let i = 0; i < this.vertex.length; i++) {
+            if (this.vertex[i].x < min.x) {
+                min.x = this.vertex[i].x;
+            }
+            if (this.vertex[i].y < min.y) {
+                min.y = this.vertex[i].y;
+            }
+            if (this.vertex[i].x > max.x) {
+                max.x = this.vertex[i].x;
+            }
+            if (this.vertex[i].y > max.y) {
+                max.y = this.vertex[i].y;
+            }
+        }
+        //return lenght and width of AABB
+
+        this.AABB = { min: min, max: max }
+
+    }
+    getWidth(): number {
+        return this.AABB.max.x - this.AABB.min.x;
+    }
+
+    getHeight(): number {
+        return this.AABB.max.y - this.AABB.min.y;
+    }
+
+
+
+
+
 }
