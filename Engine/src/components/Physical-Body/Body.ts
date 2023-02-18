@@ -4,7 +4,7 @@ import Engine from "../../Main"
 import Vector from "../../Math/Vector"
 
 import { IShape } from "../Shapes/Shape"
-
+let id = 0
 export default abstract class Body {
     EngineParent: Engine
     //composition
@@ -48,6 +48,8 @@ export default abstract class Body {
 
     parent: any
 
+    id: number
+
 
     constructor() {
         this.comp = null;
@@ -86,6 +88,7 @@ export default abstract class Body {
     }
     PushTo(Engine:Engine) {
         this.EngineParent = Engine
+        this.id = id++
         this.EngineParent.BODIES.push(this)
     }
 

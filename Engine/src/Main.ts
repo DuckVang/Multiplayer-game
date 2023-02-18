@@ -30,13 +30,13 @@ export default class Engine {
             b.reposition()
             this.GRID.add(b)
         })
-       
-        
+
+
         this.FindCollisionsGrid()
-        
+
 
         this.COLLISIONS.forEach((c) => {
-            
+
             c.body1.collided(c.body2)
             c.body2.collided(c.body1)
 
@@ -84,27 +84,54 @@ export default class Engine {
     }
     CheckCellsColision(cell1: Body[], cell2: Body[]) {
 
-        cell1.forEach(obj1 => {
+        let BODIES = cell1.concat(cell2)
 
-            cell2.forEach(obj2 => {
-
-                if (obj1 != obj2) {
-
-                    let bestSat = checkColl(obj1, obj2);
-                    if (bestSat) {
-
-                        if (collisionHandlingCondition(obj1, obj2)) {
-                            this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, true, true));
-                        }
-                        else {
-
-                            this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
-                        }
-
-                    }
-                }
-            });
+        const seen = new Set();
+        const filtered = BODIES.filter((obj) => {
+            const key = obj.id
+            const hasSeen = seen.has(key);
+            seen.add(key);
+            return !hasSeen;
         });
+
+
+        filtered.forEach((b, index) => {
+            for (let bodyPair = index + 1; bodyPair < filtered.length; bodyPair++) {
+                let bestSat = checkColl(filtered[index], filtered[bodyPair]);
+                if (bestSat) {
+                    if (collisionHandlingCondition(filtered[index], filtered[bodyPair])) {
+                        this.COLLISIONS.push(new CollisionData(filtered[index], filtered[bodyPair], bestSat.axis, bestSat.pen, bestSat.vertex, true, true));
+                    }
+                    else {
+                        this.COLLISIONS.push(new CollisionData(filtered[index], filtered[bodyPair], bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
+                    }
+
+                }
+            }
+        });
+
+
+        // cell1.forEach(obj1 => {
+
+        //     cell2.forEach(obj2 => {
+
+        //         if (obj1 != obj2) {
+
+        //             let bestSat = checkColl(obj1, obj2);
+        //             if (bestSat) {
+
+        //                 if (collisionHandlingCondition(obj1, obj2)) {
+        //                     this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, true, true));
+        //                 }
+        //                 else {
+
+        //                     this.COLLISIONS.push(new CollisionData(obj1, obj2, bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
+        //                 }
+
+        //             }
+        //         }
+        //     });
+        // });
     }
 
 }
