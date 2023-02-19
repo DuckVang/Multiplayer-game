@@ -25,27 +25,19 @@ export default class Engine {
 
         this.GRID.clear()
         this.COLLISIONS.length = 0;
-
+        
         this.BODIES.forEach((b) => {
             b.reposition()
             b.comp.UpdateAABB()
             this.GRID.add(b)
         })
-
-
+        
+    //    this.GRID.grid[0].forEach((element, index) => {
+    //     console.log(element, index)
+    //    });
+console.log(this.GRID.grid[0])
         this.FindCollisionsGrid()
-
-
-        this.COLLISIONS.forEach((c) => {
-
-            c.body1.collided(c.body2)
-            c.body2.collided(c.body1)
-
-
-            if (c.testPen) c.penRes();
-            if (c.testColl) c.collRes();
-        });
-
+    
 
 
     }
@@ -56,10 +48,8 @@ export default class Engine {
 
             for (let y = 0; y < this.GRID.numCols; y++) {
 
-
                 const currentCell = this.GRID.getObjectsFromCell(x, y)
 
-                if (!currentCell) continue
 
                 for (let dx = -1; dx <= 1; dx++) {
 
@@ -67,10 +57,10 @@ export default class Engine {
 
                         const otherCell = this.GRID.getObjectsFromCell(x + dx, y + dy)
 
-                        if (!otherCell) continue
+                        if (currentCell || otherCell)
+                            this.CheckCellsColision(currentCell, otherCell)
 
 
-                        this.CheckCellsColision(currentCell, otherCell)
 
                     }
 
@@ -84,18 +74,23 @@ export default class Engine {
 
     }
     CheckCellsColision(cell1: Body[], cell2: Body[]) {
-
         let BODIES = cell1.concat(cell2)
 
         const seen = new Set();
         const filtered = BODIES.filter((obj) => {
-            const key = obj.id
+            if (obj == null)
+                return false
+
+            const key = obj.id;
             const hasSeen = seen.has(key);
             seen.add(key);
             return !hasSeen;
         });
 
 
+
+
+        this.COLLISIONS.length = 0;
         filtered.forEach((b, index) => {
             for (let bodyPair = index + 1; bodyPair < filtered.length; bodyPair++) {
                 let bestSat = checkColl(filtered[index], filtered[bodyPair]);
@@ -110,6 +105,17 @@ export default class Engine {
                 }
             }
         });
+        
+        this.COLLISIONS.forEach((c) => {
+
+            c.body1.collided(c.body2)
+            c.body2.collided(c.body1)
+
+
+            if (c.testPen) c.penRes();
+            if (c.testColl) c.collRes();
+        });
+
 
 
         // cell1.forEach(obj1 => {

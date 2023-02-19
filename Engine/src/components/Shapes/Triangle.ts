@@ -51,4 +51,7 @@ export default class Triangle extends Shape {
         this.vertex[1] = this.pos.add(this.rotMat.multiplyVec(this.refDiam[1]));
         this.vertex[2] = this.pos.add(this.rotMat.multiplyVec(this.refDiam[2]));
     }
+    UpdateAABB(): void {
+        super.UpdateAABB()
+    }
 }

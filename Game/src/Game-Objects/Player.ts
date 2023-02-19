@@ -35,7 +35,7 @@ export class Player extends Ball implements IGameBody {
     savePos: any
 
     constructor(x: number, y: number) {
-        super(x, y, 30, 20)
+        super(x, y, 30, 2)
 
         this.spells = []
         this.maxHealth = 100
@@ -43,17 +43,16 @@ export class Player extends Ball implements IGameBody {
         this.selected = 1
         this.maxSpeed = 10000
         this.alive = true
-        
-        
         this.graphics = new Graphics()
 
         this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
 
         this.motionTrail = new MotionTrail(this)
 
-        this.motionTrail.Start()
+        this.motionTrail.TurnOn()
+        this.motionTrail.motionTrail = false
 
-        WORLD.engine.BODIES.push(this)
+        this.PushTo(WORLD.engine)
 
     }
     CastSpell(dir: Vector) {

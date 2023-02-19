@@ -28,7 +28,7 @@ const testBox = new TestBox()
 const player = new Player(1000,1000)
 player.m =100
 const player2 = new Player(900,1000)
-player2.m =2000
+player2.m =100
 
 
 WORLD.AddUIObj(new Minimap())

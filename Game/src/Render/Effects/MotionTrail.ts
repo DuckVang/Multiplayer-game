@@ -27,11 +27,11 @@ export class MotionTrail {
         this.motionTrailLength = 5
 
     }
-    Start() {
+    TurnOn() {
         this.intervalId = setInterval(this.SavePos, 100)
         this.motionTrail = true
     }
-    Stop() {
+    TurnOff() {
         clearInterval(this.intervalId)
         this.motionTrail = false
     }

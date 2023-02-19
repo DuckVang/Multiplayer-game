@@ -36,11 +36,11 @@ export class BallProjectile extends Ball implements IProjectile {
         let p = dir.mult(this.gap).add(pos)
         this.setPosition(p.x, p.y)
         this.motionTrail = new MotionTrail(this)
-        this.motionTrail.Start()
+        // this.motionTrail.Start()
 
         WORLD.SPELL_PROJ.push(this)
 
-        WORLD.engine.BODIES.push(this)
+        this.PushTo(WORLD.engine)
 
     }
     collided(...collidedObj: Body[]): void {

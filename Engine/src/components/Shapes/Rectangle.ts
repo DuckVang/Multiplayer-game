@@ -12,7 +12,7 @@ export interface IRectangle {
     rotMat: Matrix
 }
 
-export class Rectangle extends Shape{
+export class Rectangle extends Shape {
 
     pos: Vector
     vertex: Vector[]
@@ -53,5 +53,15 @@ export class Rectangle extends Shape{
         this.vertex[1] = this.pos.add(this.dir.mult(-this.length / 2)).add(this.dir.normal().mult(-this.width / 2));
         this.vertex[2] = this.pos.add(this.dir.mult(this.length / 2)).add(this.dir.normal().mult(-this.width / 2));
         this.vertex[3] = this.pos.add(this.dir.mult(this.length / 2)).add(this.dir.normal().mult(this.width / 2));
+    }
+    UpdateAABB(): void {
+        //AABB of rect
+        var minX = Math.min(this.vertex[0].x, this.vertex[1].x, this.vertex[2].x, this.vertex[3].x);
+        var maxX = Math.max(this.vertex[0].x, this.vertex[1].x, this.vertex[2].x, this.vertex[3].x);
+        var minY = Math.min(this.vertex[0].y, this.vertex[1].y, this.vertex[2].y, this.vertex[3].y);
+        var maxY = Math.max(this.vertex[0].y, this.vertex[1].y, this.vertex[2].y, this.vertex[3].y);
+
+        this.AABB = { min: new Vector(minX, minY), max: new Vector(maxX, maxY) };
+
     }
 }

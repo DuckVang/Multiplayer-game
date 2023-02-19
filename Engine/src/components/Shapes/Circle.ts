@@ -15,5 +15,11 @@ export class Circle extends Shape {
         this.pos = new Vector(x, y);
         this.r = r;
     }
+    UpdateAABB(): void {
+        this.AABB = {
+            min: new Vector(this.pos.x - this.r, this.pos.y - this.r),
+            max: new Vector(this.pos.x + this.r, this.pos.y + this.r)
+        }
+    }
 
 }

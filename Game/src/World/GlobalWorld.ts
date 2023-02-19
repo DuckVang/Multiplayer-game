@@ -66,7 +66,7 @@ height: number
 
         this.width = width
         this.height = height
-        this.engine = new Engine(1000, this.width, this.height)
+        this.engine = new Engine(10000, this.width, this.height)
         this.app = new Application({
             resizeTo: window,
              backgroundColor: 0x2980b9,

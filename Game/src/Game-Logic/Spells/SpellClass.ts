@@ -32,7 +32,7 @@ export abstract class Spell {
     effect(){
         
     }
-    protected setRemove(duration: number,...projectiles: BallProjectile[] ) {
+    protected setRemove(duration: number,...projectiles: Body[] ) {
 
         setTimeout(() => {
             projectiles.forEach(p => {
