@@ -35,7 +35,7 @@ export default class Engine {
     //    this.GRID.grid[0].forEach((element, index) => {
     //     console.log(element, index)
     //    });
-console.log(this.GRID.grid[0])
+
         this.FindCollisionsGrid()
     
 
@@ -101,13 +101,13 @@ console.log(this.GRID.grid[0])
                     else {
                         this.COLLISIONS.push(new CollisionData(filtered[index], filtered[bodyPair], bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
                     }
-
+                    
                 }
             }
+            console.log(this.COLLISIONS.length)
         });
         
         this.COLLISIONS.forEach((c) => {
-
             c.body1.collided(c.body2)
             c.body2.collided(c.body1)
 

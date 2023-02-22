@@ -22,6 +22,7 @@ export default abstract class Body {
     friction: number
     angFriction: number
     maxSpeed: number
+    orgColor: string
     color: string
     layer: number
 
@@ -50,6 +51,7 @@ export default abstract class Body {
 
     id: number
 
+    controls: any
 
     constructor() {
         this.comp = null;
@@ -79,28 +81,33 @@ export default abstract class Body {
         this.angVel = 0;
         this.player = false;
 
+this.orgColor = "gray"
+        this.color =this.orgColor
+
 
         this.collidedObj = []
 
         this.parent = this
 
-        
+
     }
-    PushTo(Engine:Engine) {
+    PushTo(Engine: Engine) {
         this.EngineParent = Engine
         this.id = id++
         this.EngineParent.BODIES.push(this)
     }
 
     reposition() {
-        this.acc = this.acc.unit().mult(this.keyForce);
+        if (this.controls)
+            this.acc = this.acc.unit().mult(this.keyForce);
+
         this.vel = this.vel.add(this.acc);
         this.vel = this.vel.mult(1 - this.friction);
         if (this.vel.mag() > this.maxSpeed && this.maxSpeed !== 0) {
             this.vel = this.vel.unit().mult(this.maxSpeed);
         }
         this.angVel *= (1 - this.angFriction);
-        
+
 
 
 
@@ -110,6 +117,7 @@ export default abstract class Body {
         if (this.EngineParent.BODIES.indexOf(this) !== -1) {
             this.EngineParent.BODIES.splice(this.EngineParent.BODIES.indexOf(this), 1);
         }
+        
     }
     collided(...collidedObj: Body[]) { }
 

@@ -7,31 +7,36 @@ import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
 import { Player } from "../../Game-Objects/Player";
-export class MeleeAttack extends Spell {
+import { ShakeScreen } from "../../World/Camera/ShakeScreen";
+export class Laser extends Spell {
 
 
     zone: BoxZone
     constructor() {
         super()
-        this.duration = 20
-        this.cooldownTime = 1000
+        this.duration = 3000
+        this.cooldownTime = 3000
     }
-    effect(...collidedObj:Body[]): void {
-        
+    effect(...collidedObj: Body[]): void {
+
         collidedObj.forEach(obj => {
-            if(obj instanceof Player) {
+            if (obj instanceof Player) {
                 obj.Damaged(10)
                 console.log(collidedObj)
                 obj.vel = obj.vel.add(this.dir.mult(1000))
             }
-            
+
         });
-        this.setRemove(0,this.zone)
+        
     }
     cast(dir: Vector) {
-        if(this.isCoolDown) return
-        let playrPos = WORLD.player.pos
-        this.zone= new BoxZone(dir, playrPos, this, 100, 100, "white", 120)
+        
+        if (this.isCoolDown) return
+
+        WORLD.player.vel = WORLD.player.vel.add(dir.mult(-30))
+        ShakeScreen()
+        
+        this.zone = new BoxZone(dir, WORLD.player.pos, this, 20, 500, "purple",300)
 
 
         this.setRemove(this.duration, this.zone)

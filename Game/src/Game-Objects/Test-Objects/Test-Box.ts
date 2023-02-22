@@ -13,8 +13,9 @@ export class TestBox extends Box implements IGameBody {
 
     motionTrail: MotionTrail
 
-    constructor() {
+    constructor(x: number, y: number) {
         super(200, 200, 300, 300, 30, 200)
+        this.setPosition(x,y)
         this.graphics = new Graphics()
         this.PushTo(WORLD.engine)
 

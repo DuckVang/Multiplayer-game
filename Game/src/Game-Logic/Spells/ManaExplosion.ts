@@ -6,6 +6,7 @@ import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallP
 import { Player } from "../../Game-Objects/Player";
 import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
+import Body from "../../../../Engine/src/components/Physical-Body/Body";
 
 export class ManaExplosion extends Spell {
 
@@ -30,6 +31,7 @@ export class ManaExplosion extends Spell {
 
         mainProjectile.friction = 0
         let speed = dir.mult(1000)
+
         mainProjectile.vel = mainProjectile.vel.add(speed)
         this.projectiles.push(mainProjectile)
         setTimeout(() => {

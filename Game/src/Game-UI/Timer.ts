@@ -1,32 +1,45 @@
-import WORLD from "../World/GlobalWorld";
+import { World } from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 import { Text } from "pixi.js";
+import { ShrinkZone } from "../Game-Logic/Zone";
 export class Timer extends UI {
 
 
     timeLeft: number
-    text: Text
-    constructor() {
-        super()
+    textBox: Text
+
+    isShrinking: boolean
+
+    
+
+    constructor(WORLD: World) {
+        super(WORLD)
+    
 
 
-        this.x = WORLD.app.renderer.width / 2
-        this.y = 10 
-        this.timeLeft = WORLD.timeLeft
-        this.text = new Text(this.timeLeft.toString(), {
+        this.x = this.WORLD.app.renderer.width / 2
+        this.y = 10
+        this.timeLeft = this.WORLD.timeLeft
+
+        this.isShrinking = false
+
+        this.textBox = new Text(this.timeLeft.toString(), {
             fontFamily: 'Arial',
-            fontSize: 24,
+            fontSize: 23,
             fill: 0xff3110,
             align: 'center',
         });
 
-        this.addChild(this.text)
+        this.addChild(this.textBox)
     }
 
     update() {
 
-        this.timeLeft = WORLD.timeLeft
-        this.text.text = this.timeLeft
+        this.timeLeft = this.WORLD.timeLeft
+        if (!this.isShrinking)
+            this.textBox.text = this.timeLeft
+        else
+            this.textBox.text = "ZONE !"
 
     }
 

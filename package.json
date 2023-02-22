@@ -6,6 +6,7 @@
     "color": "^4.2.3",
     "dat.gui": "^0.7.9",
     "edit-json-file": "^1.7.0",
+    "express": "^4.18.2",
     "lighten-darken-color": "^1.0.0",
     "lodash": "^4.17.21",
     "node": "^19.1.0",
@@ -15,6 +16,7 @@
     "pixi.js": "^6.5.9",
     "pm2": "^5.2.2",
     "random-helpers": "^1.1.0",
+    "socket.io": "^4.6.1",
     "stopwatch": "^0.2.0"
   },
   "scripts": {

@@ -24,13 +24,15 @@ export class BallProjectile extends Ball implements IProjectile {
 
 
 
-    constructor(dir: Vector, pos: Vector, spell: any) {
-        super(0, 0, 10, 2)
+    constructor(dir: Vector, pos: Vector, spell: any, r:number = 10, gap:number = 50) {
+        super(0, 0, r, 2)
 
         this.spell = spell
         this.graphics = new Graphics()
         this.projSpeed = 1000
-        this.gap = 50
+        this.gap = gap
+
+        this.color = "red"
 
         this.layer = 0
         let p = dir.mult(this.gap).add(pos)
