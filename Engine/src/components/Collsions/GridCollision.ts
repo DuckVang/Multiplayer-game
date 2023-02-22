@@ -9,8 +9,6 @@ export function FindCollisionsGrid() {
     let grid = Engine.prototype.GRID
 
     for (let x = 0; x < grid.width; x++) {
-
-
         for (let y = 0; y < grid.height; y++) {
 
             const currentCell = grid.getObjectsFromCell(x, y)

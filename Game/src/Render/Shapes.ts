@@ -8,8 +8,9 @@ import { IGameBody } from "../Game-Objects/IGameBody";
 
 export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1) {
 
-    const color = new Color('#FAD02C')
+    const color = new Color(ball.color)
     const body = GraphObj
+
     body.beginFill(color.rgbNumber(), alpha);
     body.drawCircle(ball.pos.x, ball.pos.y, ball.comp.r)
     body.endFill();
@@ -18,8 +19,8 @@ export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1)
 export function DrawWall(GraphObj: Graphics, wall: IGameBody,alpha: number = 1) {
 
     const line = GraphObj
-
-    line.lineStyle(2, 0xffd900, alpha);
+    const color = new Color(wall.color)
+    line.lineStyle(2, color.rgbNumber(), alpha);
     line.moveTo(wall.comp.start.x, wall.comp.start.y)
 
 
@@ -30,7 +31,7 @@ export function DrawWall(GraphObj: Graphics, wall: IGameBody,alpha: number = 1) 
 export function DrawBox(GraphObj: Graphics, box: IGameBody,alpha: number = 1) {
     const body = GraphObj
 
-    const color = new Color('#3F6D2A')
+    const color = new Color(box.color)
 
     body.beginFill(color.rgbNumber(),alpha);
 

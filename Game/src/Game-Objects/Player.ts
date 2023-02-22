@@ -15,6 +15,10 @@ import { IGameObject } from "./IGameObject"
 import { Timer } from "../Game-UI/Timer"
 import { IGameBody } from "./IGameBody"
 import { MotionTrail } from "../Render/Effects/MotionTrail"
+import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack"
+import { ColorBlink } from "../Render/ColorBlink"
+import { Laser } from "../Game-Logic/Spells/Laser"
+import { FireBall } from "../Game-Logic/Spells/FireBall"
 
 export class Player extends Ball implements IGameBody {
 
@@ -34,6 +38,9 @@ export class Player extends Ball implements IGameBody {
 
     savePos: any
 
+    invicibility: boolean
+    invicibilityTime: number
+
     constructor(x: number, y: number) {
         super(x, y, 30, 2)
 
@@ -44,12 +51,18 @@ export class Player extends Ball implements IGameBody {
         this.maxSpeed = 10000
         this.alive = true
         this.graphics = new Graphics()
-
-        this.spells.push(new ManaBullet(), new ManaExplosion(), new Dash())
+        this.color = "orange"
+        this.spells.push(new ManaBullet(), new ManaExplosion(), new FireBall(), new Dash(), new MeleeAttack(), new Laser())
 
         this.motionTrail = new MotionTrail(this)
 
-        this.motionTrail.Start()
+        this.motionTrail.TurnOn()
+        this.motionTrail.motionTrail = false
+
+        this.invicibility = false
+        this.invicibilityTime = 5000
+
+        this.PushTo(WORLD.engine)
 
     }
     CastSpell(dir: Vector) {
@@ -57,13 +70,30 @@ export class Player extends Ball implements IGameBody {
         this.spells[this.selected - 1].cast(dir)
 
     }
-    Damaged(amount: number) {
+    Damaged(amount: number, invicible: boolean = true) {
+        if (this.invicibility) return
+
         if (this.alive) {
+            
+            
             this.health -= amount
+            
             ShakeScreen()
             if (this.health <= 0) this.Dead()
+            
+            if(invicible){
+                
+                this.invicibility = true 
+                ColorBlink(this, "white", this.invicibilityTime)
+                setTimeout(() => {
+                    this.invicibility = false
+                }, this.invicibilityTime);
+
+            }
+            
 
         } else this.health = 0
+
 
     }
     Dead() {
@@ -75,6 +105,7 @@ export class Player extends Ball implements IGameBody {
     render() {
 
         this.graphics.clear()
+        this.graphics.zIndex = 0
         this.graphics = DrawBall(this.graphics, this, 1)
 
         this.motionTrail.Render()

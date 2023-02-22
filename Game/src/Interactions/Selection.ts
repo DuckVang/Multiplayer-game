@@ -25,7 +25,13 @@ export function AddSelection(player: Player) {
                 case 52:
                     player.selected = 4
                     break;
-
+                case 53:
+                    player.selected = 5
+                    break;
+                case 54:
+                    player.selected = 6
+                    break;
+                
                 default:
                     break;
             }

@@ -16,6 +16,8 @@ export abstract class Spell {
     duration: number
     gap: number
 
+    isCoolDown: boolean
+    cooldownTime: number
 
     constructor() {
 
@@ -25,14 +27,24 @@ export abstract class Spell {
         this.dir = new Vector(0, 0)
         this.duration = 0
         this.gap = 0
+        this.isCoolDown = false
+        this.cooldownTime = 0
     }
 
     cast(dir: Vector) {
     }
-    effect(){
-        
+    effect(...collidedObj:Body[]): void {
+
     }
-    protected setRemove(duration: number,...projectiles: BallProjectile[] ) {
+    cooldown() {
+        this.isCoolDown = true
+        setTimeout(() => {
+            this.isCoolDown = false
+        }, this.cooldownTime)
+
+
+    }
+    protected setRemove(duration: number , ...projectiles: Body[]) {
 
         setTimeout(() => {
             projectiles.forEach(p => {

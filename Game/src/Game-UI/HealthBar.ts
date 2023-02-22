@@ -1,6 +1,6 @@
 import { Application, Container, DisplayObject, Graphics } from "pixi.js";
 import BODIES from "../../../Engine/src/components/Models/Bodies";
-import WORLD from "../World/GlobalWorld";
+import  { World } from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 export class HealthBar extends UI {
 
@@ -9,8 +9,8 @@ export class HealthBar extends UI {
     barWidth: number
     bar: Graphics
 
-    constructor() {
-        super()
+    constructor(WORLD: World) {
+        super(WORLD)
         this.x = 10
         this.y = 10
 
@@ -34,7 +34,7 @@ export class HealthBar extends UI {
     }
     update() {
 
-        const player = WORLD.player
+        const player = this.WORLD.player
         this.bar.width = player.health / player.maxHealth * this.barWidth
 
 

@@ -32,6 +32,12 @@ export  class Line extends Shape{
         this.mag = this.vertex[1].subtr(this.vertex[0]).mag();
         this.pos = new Vector((this.vertex[0].x+this.vertex[1].x)/2, (this.vertex[0].y+this.vertex[1].y)/2);
     }
+    UpdateAABB(): void {
+        this.AABB = {
+            min: new Vector(this.pos.x - this.mag, this.pos.y - this.mag),
+            max: new Vector(this.pos.x + this.mag, this.pos.y + this.mag)
+        }
+    }
   
 
 }

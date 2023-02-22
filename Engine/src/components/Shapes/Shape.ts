@@ -18,8 +18,9 @@ export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<I
     }
     UpdateAABB(): void
 
-    getAabbWidth(): number
-    getAabbHeight(): number
+    getAABBWidth(): number
+    getAABBHeight(): number
+    getAABBCenter(): Vector
 
 
 }
@@ -41,31 +42,19 @@ export class Shape implements IShape {
     }
 
     UpdateAABB() {
-        let min = new Vector(0, 0);
-        let max = new Vector(0, 0);
-        for (let i = 0; i < this.vertex.length; i++) {
-            if (this.vertex[i].x < min.x) {
-                min.x = this.vertex[i].x;
-            }
-            if (this.vertex[i].y < min.y) {
-                min.y = this.vertex[i].y;
-            }
-            if (this.vertex[i].x > max.x) {
-                max.x = this.vertex[i].x;
-            }
-            if (this.vertex[i].y > max.y) {
-                max.y = this.vertex[i].y;
-            }
-        }
-        this.AABB = { min: min, max: max }
 
     }
-    getAabbWidth(): number {
+    getAABBWidth(): number {
         return this.AABB.max.x - this.AABB.min.x;
     }
 
-    getAabbHeight(): number {
+    getAABBHeight(): number {
         return this.AABB.max.y - this.AABB.min.y;
+    }
+    getAABBCenter(): Vector {
+        const centerX = (this.AABB.max.x + this.AABB.min.x) / 2;
+        const centerY = (this.AABB.max.y + this.AABB.min.y) / 2;
+        return new Vector(centerX, centerY);
     }
 
 

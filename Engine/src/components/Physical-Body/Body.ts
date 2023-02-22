@@ -1,11 +1,12 @@
 
 import { Graphics } from "pixi.js"
+import Engine from "../../Main"
 import Vector from "../../Math/Vector"
-import BODIES from "../Models/Bodies"
-import { Shape } from "../Shapes/Shape"
-import { IShape } from "../Shapes/Shape"
 
+import { IShape } from "../Shapes/Shape"
+let id = 0
 export default abstract class Body {
+    EngineParent: Engine
     //composition
     comp: IShape
     pos: Vector
@@ -21,6 +22,7 @@ export default abstract class Body {
     friction: number
     angFriction: number
     maxSpeed: number
+    orgColor: string
     color: string
     layer: number
 
@@ -47,11 +49,14 @@ export default abstract class Body {
 
     parent: any
 
+    id: number
+
+    controls: any
 
     constructor() {
         this.comp = null;
         this.pos = new Vector(0, 0);
-        this.m = 0;
+        this.m = 10; //0
         this.inv_m = 0;
         this.inertia = 0;
         this.inv_inertia = 0;
@@ -76,31 +81,43 @@ export default abstract class Body {
         this.angVel = 0;
         this.player = false;
 
+this.orgColor = "gray"
+        this.color =this.orgColor
+
 
         this.collidedObj = []
 
         this.parent = this
 
-        BODIES.push(this);
+
+    }
+    PushTo(Engine: Engine) {
+        this.EngineParent = Engine
+        this.id = id++
+        this.EngineParent.BODIES.push(this)
     }
 
     reposition() {
-        this.acc = this.acc.unit().mult(this.keyForce);
+        if (this.controls)
+            this.acc = this.acc.unit().mult(this.keyForce);
+
         this.vel = this.vel.add(this.acc);
         this.vel = this.vel.mult(1 - this.friction);
         if (this.vel.mag() > this.maxSpeed && this.maxSpeed !== 0) {
             this.vel = this.vel.unit().mult(this.maxSpeed);
         }
         this.angVel *= (1 - this.angFriction);
-        this.comp.UpdateAABB()
+
 
 
 
     }
     remove() {
-        if (BODIES.indexOf(this) !== -1) {
-            BODIES.splice(BODIES.indexOf(this), 1);
+
+        if (this.EngineParent.BODIES.indexOf(this) !== -1) {
+            this.EngineParent.BODIES.splice(this.EngineParent.BODIES.indexOf(this), 1);
         }
+        
     }
     collided(...collidedObj: Body[]) { }
 

@@ -12,10 +12,10 @@ export class CollisionData {
     cp: Vector
 
 
-    testPen:boolean
-    testColl:boolean
+    testPen: boolean
+    testColl: boolean
 
-    constructor(body1: Body, body2: Body, normal: Vector, pen: number, cp: Vector, doPen:boolean, doColl:boolean) {
+    constructor(body1: Body, body2: Body, normal: Vector, pen: number, cp: Vector, doPen: boolean, doColl: boolean) {
         this.body1 = body1;
         this.body2 = body2;
         this.normal = normal;
@@ -51,12 +51,16 @@ export class CollisionData {
         const new_sepVel = -sepVel * Math.min(this.body1.elasticity, this.body2.elasticity);
         const vsep_diff = new_sepVel - sepVel;
 
-        const impulse = vsep_diff / (this.body1.inv_m + this.body2.inv_m + impAug1 + impAug2);
-        const impulseVec = this.normal.mult(impulse);
+        const impulse = vsep_diff / (this.body1.inv_m + this.body2.inv_m + impAug1 + impAug2) ;
+        const impulseVec = this.normal.mult(impulse );
+
+        // this.body1.vel = this.body1.vel.add(impulseVec.mult(this.body1.inv_m));
 
         this.body1.vel = this.body1.vel.add(impulseVec.mult(this.body1.inv_m));
         this.body2.vel = this.body2.vel.add(impulseVec.mult(-this.body2.inv_m));
 
+
+       console.log(impulse)
         this.body1.angVel += this.body1.inv_inertia * Vector.cross(collArm1, impulseVec);
         this.body2.angVel -= this.body2.inv_inertia * Vector.cross(collArm2, impulseVec);
     }

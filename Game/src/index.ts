@@ -10,6 +10,8 @@ import { EnergyBar } from "./Game-UI/EnergyBar";
 import { Timer } from "./Game-UI/Timer";
 import { Zone } from "./Map-Object/Zone";
 import { TestPyramid } from "./Game-Objects/Test-Objects/Test-Pyramid";
+import Vector from "../../Engine/src/Math/Vector";
+
 
 
 
@@ -23,25 +25,22 @@ import { TestPyramid } from "./Game-Objects/Test-Objects/Test-Pyramid";
 // const box = new Box(100, 100, 200, 200, 100, 20)
 // box.angKeyForce = 0.005
 
-const testBox = new TestBox()
+let spawn = new Vector(WORLD.width / 2, WORLD.height / 2)
+const testBox = new TestBox(spawn.x + 100, spawn.y + 200)
 
-const player = new Player(0,0)
-const player2 = new Player(0,100)
+const player = new Player(spawn.x + 100, spawn.y + 100)
+player.m = 100
+const player2 = new Player(spawn.x, spawn.y)
+player2.m = 100
+
+WORLD.initUI()
 
 
-WORLD.AddUIObj(new Minimap())
-WORLD.AddUIObj(new HealthBar())
-WORLD.AddUIObj(new EnergyBar())
-WORLD.AddUIObj(new Timer())
 
 
-WORLD.AddMapObj(new Zone())
 
 WORLD.SetPlayer(player)
 
-PutWallAround(-5000,-5000,5000,5000)
-// const container = new PIXI.Container()
-// app.stage.addChild(container)
 
 //loop
 WORLD.SetPlayer(player)
