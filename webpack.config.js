@@ -11,7 +11,7 @@ module.exports = {
 
   watch: NODE_ENV === 'development',
   target: "node",
-  mode: NODE_ENV,
+  mode: "development",
   entry: {
     demo: "./Demo/src/index.ts",
     game: "./Game/src/index.ts"

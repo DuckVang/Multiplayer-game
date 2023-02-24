@@ -10,12 +10,12 @@ const app = express();
 //set up routes
 
 app.get("/", function (req, res) {
-    res.send("hello world");
+    res.send("hello wopogrssdsald");
 }
 );
 
 
 app.listen(process.env.port || 4000, function () {
-    console.log("now listening for requests");
+    console.log("now listening for requests " + "http://localhost:"  + 4000);
     }
 );

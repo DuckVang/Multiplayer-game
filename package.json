@@ -3,6 +3,7 @@
     "@pixi/display": "^6.5.9",
     "@pixi/events": "^7.1.2",
     "@pixi/interaction": "^6.5.9",
+    "@types/node": "^18.14.1",
     "color": "^4.2.3",
     "dat.gui": "^0.7.9",
     "edit-json-file": "^1.7.0",
@@ -25,7 +26,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open --config webpack.config.js",
-    "build": "webpack --mode production",
+    "build": "webpack",
     "start:dev": "NODE_ENV=development webpack",
     "run:dev": "NODE_ENV=development nodemon Dist/game.bundle.js"
   },
@@ -39,6 +40,7 @@
     "typescript": "^4.9.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-shell-plugin-next": "^2.3.1"
   }
 }
