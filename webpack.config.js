@@ -1,10 +1,13 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const nodeExternals = require('webpack-node-externals');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 
 module.exports = {
-  
-  watch: true,
+
+  watch: NODE_ENV === 'development',
+  target: "node",
   mode: "development",
   entry: {
     demo: "./Demo/src/index.ts",
@@ -24,10 +27,7 @@ module.exports = {
   },
 
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   title: 'Custom template',
-    //   template: "./Demo/public/index.html"
-    // }),
+ 
     new HtmlWebpackPlugin({
       filename: 'demo.index.html',
       template: "./Demo/public/index.html",
@@ -38,9 +38,13 @@ module.exports = {
       filename: 'game.index.html',
       template: "./Game/public/index.html",
       chunks: ['game']
+    }),
+    new WebpackShellPlugin({
+      onBuildEnd: ['npm run:dev']
     })
 
   ],
+  externals: [nodeExternals()],
 
   devServer: {
     static: {
@@ -48,11 +52,7 @@ module.exports = {
     },
     port: 8080,
     compress: true,
-    open: ["/game.index.html"], // Here
-    
-    
-
-
+    open: ["/game.index.html"], 
   },
 
   resolve: {
