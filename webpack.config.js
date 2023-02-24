@@ -1,14 +1,17 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const nodeExternals = require('webpack-node-externals');
-const WebpackShellPlugin = require('webpack-shell-plugin');
+const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 
+const {
+  NODE_ENV = 'production',
+} = process.env;
 
 module.exports = {
 
   watch: NODE_ENV === 'development',
   target: "node",
-  mode: "development",
+  mode: NODE_ENV,
   entry: {
     demo: "./Demo/src/index.ts",
     game: "./Game/src/index.ts"
@@ -39,8 +42,8 @@ module.exports = {
       template: "./Game/public/index.html",
       chunks: ['game']
     }),
-    new WebpackShellPlugin({
-      onBuildEnd: ['npm run:dev']
+    new WebpackShellPluginNext({
+      onBuildEnd: ['npm run run:dev']
     })
 
   ],
