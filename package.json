@@ -26,7 +26,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open --config webpack.config.js",
     "build": "webpack --mode production",
-    "start:dev": "NODE_ENV=development webpack"
+    "start:dev": "NODE_ENV=development webpack",
+    "run:dev": "NODE_ENV=development nodemon Dist/game.bundle.js"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
