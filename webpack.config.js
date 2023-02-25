@@ -13,7 +13,7 @@ module.exports = {
   target: "node",
   mode: "development",
   entry: {
-    demo: "./Demo/src/index.ts",
+    // demo: "./Demo/src/index.ts",
     game: "./Game/src/index.ts"
 
   },
@@ -31,11 +31,11 @@ module.exports = {
 
   plugins: [
  
-    new HtmlWebpackPlugin({
-      filename: 'demo.index.html',
-      template: "./Demo/public/index.html",
-      chunks: ['demo']
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'demo.index.html',
+    //   template: "./Demo/public/index.html",
+    //   chunks: ['demo']
+    // }),
     new HtmlWebpackPlugin({
       cache: false,
       filename: 'game.index.html',
