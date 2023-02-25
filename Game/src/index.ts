@@ -5,7 +5,7 @@
 // import WORLD from "./World/GlobalWorld";
 // import Vector from "../../Engine/src/Math/Vector";
 
-import "./Server/Server"
+import "../../Server/Server"
 
 
 
