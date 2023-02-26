@@ -33,11 +33,11 @@ module.exports = {
 
   plugins: [
  
-    // new HtmlWebpackPlugin({
-    //   filename: 'demo.index.html',
-    //   template: "./Demo/public/index.html",
-    //   chunks: ['demo']
-    // }),
+    new HtmlWebpackPlugin({
+      filename: 'client.index.html',
+      template: "./Client/public/index.html",
+      chunks: ['client']
+    }),
     new HtmlWebpackPlugin({
       cache: false,
       filename: 'game.index.html',
