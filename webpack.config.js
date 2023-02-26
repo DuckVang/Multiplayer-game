@@ -14,7 +14,9 @@ module.exports = {
   mode: "development",
   entry: {
     // demo: "./Demo/src/index.ts",
-    game: "./Game/src/index.ts"
+    game: "./Game/src/index.ts",
+    client: "./Client/index.ts",
+    server: "./Server/index.ts"
 
   },
   module: {
