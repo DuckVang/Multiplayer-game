@@ -1,6 +1,6 @@
 import { Shape } from "../../../Engine/src/components/Shapes/Shape";
 import Vector from "../../../Engine/src/Math/Vector";
-import IGameBody from "./interfaces/IGameBody";
+
 class Player  {
 
     pos: Vector

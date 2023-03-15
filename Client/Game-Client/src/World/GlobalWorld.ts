@@ -1,7 +1,7 @@
 import { Viewport } from "pixi-viewport";
 
 import Vector from "../../../../Engine/src/Math/Vector";
-import { Application, Container, Filter, filters, Graphics, Sprite } from "pixi.js";
+import { Application, Container } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 
 import { AddControl } from "../Interactions/Movement";
