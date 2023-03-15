@@ -7,7 +7,6 @@ import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import { Player } from "../../Game-Objects/Player";
-import { ShakeScreen } from "../../World/Camera/ShakeScreen";
 export class Laser extends Spell {
 
 
@@ -29,20 +28,20 @@ export class Laser extends Spell {
         });
         
     }
-    cast(dir: Vector) {
+    // cast(dir: Vector) {
         
-        if (this.isCoolDown) return
+    //     if (this.isCoolDown) return
 
-        WORLD.player.vel = WORLD.player.vel.add(dir.mult(-30))
-        ShakeScreen()
+    //     WORLD.player.vel = WORLD.player.vel.add(dir.mult(-30))
+    //     ShakeScreen()
         
-        this.zone = new BoxZone(dir, WORLD.player.pos, this, 20, 500, "purple",300)
+    //     this.zone = new BoxZone(dir, WORLD.player.pos, this, 20, 500, "purple",300)
 
 
-        this.setRemove(this.duration, this.zone)
-        this.cooldown()
+    //     this.setRemove(this.duration, this.zone)
+    //     this.cooldown()
 
-    }
+    // }
 
 
 }

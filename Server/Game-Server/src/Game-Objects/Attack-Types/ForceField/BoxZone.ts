@@ -5,15 +5,13 @@ import { Spell } from "../../../Game-Logic/Spells/SpellClass";
 import WORLD from "../../../World/GlobalWorld";
 import { ISpellZone } from "./ISpellZone";
 import Body from "../../../../../../Engine/src/components/Physical-Body/Body";
-import { DrawBox } from "../../../Render/Shapes";
-import { MotionTrail } from "../../../Render/Effects/MotionTrail";
+
 
 export class BoxZone extends Box implements ISpellZone {
     spell: Spell;
     center: Vector;
     power: number;
-    graphics: Graphics;
-    motionTrail: MotionTrail;
+   
     gap: number;
     constructor(dir: Vector, pos: Vector, spell: Spell, width: number = 100, length: number = 100, color:string = "grey", gap = 1) {
         super(0, 0, width, width, length, 1)
@@ -40,13 +38,4 @@ export class BoxZone extends Box implements ISpellZone {
     }
 
 
-    render() {
-
-        this.graphics.clear()
-        this.graphics = DrawBox(this.graphics, this, 1)
-
-
-
-
-    }
 }

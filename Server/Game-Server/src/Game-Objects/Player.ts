@@ -3,20 +3,13 @@ import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
-import { ShakeScreen } from "../World/Camera/ShakeScreen"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"
-import { AddControl } from "../Interactions/Movement"
-import { DrawBall } from "../Render/Shapes"
 import WORLD from "../World/GlobalWorld"
 import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
 import { Dash } from "../Game-Logic/Spells/Dash"
-import { IGameObject } from "./IGameObject"
-import { Timer } from "../Game-UI/Timer"
 import { IGameBody } from "./IGameBody"
-import { MotionTrail } from "../Render/Effects/MotionTrail"
 import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack"
-import { ColorBlink } from "../Render/ColorBlink"
 import { Laser } from "../Game-Logic/Spells/Laser"
 import { FireBall } from "../Game-Logic/Spells/FireBall"
 
@@ -34,7 +27,7 @@ export class Player extends Ball implements IGameBody {
     selected: number
 
 
-    motionTrail: MotionTrail
+    motionTrail: boolean
 
     savePos: any
 
@@ -54,10 +47,6 @@ export class Player extends Ball implements IGameBody {
         this.color = "orange"
         this.spells.push(new ManaBullet(), new ManaExplosion(), new FireBall(), new Dash(), new MeleeAttack(), new Laser())
 
-        this.motionTrail = new MotionTrail(this)
-
-        this.motionTrail.TurnOn()
-        this.motionTrail.motionTrail = false
 
         this.invicibility = false
         this.invicibilityTime = 5000
@@ -78,13 +67,13 @@ export class Player extends Ball implements IGameBody {
             
             this.health -= amount
             
-            ShakeScreen()
+           
             if (this.health <= 0) this.Dead()
             
             if(invicible){
                 
                 this.invicibility = true 
-                ColorBlink(this, "white", this.invicibilityTime)
+               
                 setTimeout(() => {
                     this.invicibility = false
                 }, this.invicibilityTime);
@@ -102,13 +91,5 @@ export class Player extends Ball implements IGameBody {
 
     }
 
-    render() {
 
-        this.graphics.clear()
-        this.graphics.zIndex = 0
-        this.graphics = DrawBall(this.graphics, this, 1)
-
-        this.motionTrail.Render()
-
-    }
 }

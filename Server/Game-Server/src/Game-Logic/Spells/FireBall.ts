@@ -6,6 +6,7 @@ import WORLD from "../../World/GlobalWorld";
 import { Burn } from "./ELemental-Effect/Burn";
 import { Spell } from "./SpellClass";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
+import { ids } from "webpack";
 export class FireBall extends Spell {
 
 
@@ -17,8 +18,8 @@ export class FireBall extends Spell {
         Burn(100,...collidedObj)
         this.setRemove(0, ...this.projectiles)
     }
-    cast(dir: Vector) {
-        let playrPos = WORLD.player.pos
+    cast(dir: Vector,id:any) {
+        let playrPos = WORLD.PLAYERS[id].pos
         let projectile = new BallProjectile(dir, playrPos, this, 50, 150)
 
         projectile.friction = 0
@@ -26,7 +27,7 @@ export class FireBall extends Spell {
         let speed = dir.mult(500)
         projectile.vel = projectile.vel.add(speed)
 
-        WORLD.player.vel = WORLD.player.vel.add(dir.mult(-10))
+        WORLD.PLAYERS[id].vel = WORLD.PLAYERS[id].vel.add(dir.mult(-10))
 
         this.projectiles.push(projectile)
         this.setRemove(this.duration, ...this.projectiles)

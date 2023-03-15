@@ -19,21 +19,21 @@ export class Dash extends Spell {
 
 
     }
-    cast(dir: Vector) {
-        WORLD.player.motionTrail.motionTrail = true
+    cast(dir: Vector, id: any) {
+        WORLD.PLAYERS[id].motionTrail = true
         console.log("dash")
         let newdir = dir.mult(this.distance)
-        WORLD.player.controls = false
-        
-        
-        WORLD.player.vel = WORLD.player.vel.add(newdir)
-        
-        
-        
-        
+        WORLD.PLAYERS[id].controls = false
+
+
+        WORLD.PLAYERS[id].vel = WORLD.PLAYERS[id].vel.add(newdir)
+
+
+
+
         setTimeout(() => {
-            WORLD.player.controls = true
-            WORLD.player.motionTrail.motionTrail = false
+            WORLD.PLAYERS[id].controls = true
+            WORLD.PLAYERS[id].motionTrail = false
 
 
         }, this.duration)

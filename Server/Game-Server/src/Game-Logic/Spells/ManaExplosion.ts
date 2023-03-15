@@ -25,36 +25,36 @@ export class ManaExplosion extends Spell {
         })
         
     }
-    cast(dir: Vector) {
-        let playrPos = WORLD.player.pos
-        let mainProjectile = new BallProjectile(dir, playrPos, this)
+    // cast(dir: Vector) {
+    //     let playrPos = WORLD.player.pos
+    //     let mainProjectile = new BallProjectile(dir, playrPos, this)
 
-        mainProjectile.friction = 0
-        let speed = dir.mult(1000)
+    //     mainProjectile.friction = 0
+    //     let speed = dir.mult(1000)
 
-        mainProjectile.vel = mainProjectile.vel.add(speed)
-        this.projectiles.push(mainProjectile)
-        setTimeout(() => {
+    //     mainProjectile.vel = mainProjectile.vel.add(speed)
+    //     this.projectiles.push(mainProjectile)
+    //     setTimeout(() => {
 
-            for (let radius = 0; radius < 360; radius += 30) {
-                let matrix = new Matrix(2, 2)
-                matrix.rotMx22(radius)
-                let newDir = matrix.multiplyVec(dir)
-                let miniProjectile = new BallProjectile(newDir, mainProjectile.pos, this)
+    //         for (let radius = 0; radius < 360; radius += 30) {
+    //             let matrix = new Matrix(2, 2)
+    //             matrix.rotMx22(radius)
+    //             let newDir = matrix.multiplyVec(dir)
+    //             let miniProjectile = new BallProjectile(newDir, mainProjectile.pos, this)
 
-                miniProjectile.friction = 0
+    //             miniProjectile.friction = 0
 
-                let speed = newDir.mult(500-radius)
-                miniProjectile.vel = mainProjectile.vel.add(speed)
+    //             let speed = newDir.mult(500-radius)
+    //             miniProjectile.vel = mainProjectile.vel.add(speed)
 
-                this.projectiles.push(miniProjectile)
+    //             this.projectiles.push(miniProjectile)
 
-            }
-            this.setRemove(0, mainProjectile)
-            this.setRemove(this.duration, ...this.projectiles)
+    //         }
+    //         this.setRemove(0, mainProjectile)
+    //         this.setRemove(this.duration, ...this.projectiles)
 
-        }, this.detonationTime)
+    //     }, this.detonationTime)
 
 
-    }
+    // }
 }

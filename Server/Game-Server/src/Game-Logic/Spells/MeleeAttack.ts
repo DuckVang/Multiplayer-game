@@ -28,16 +28,16 @@ export class MeleeAttack extends Spell {
         });
         this.setRemove(0,this.zone)
     }
-    cast(dir: Vector) {
-        if(this.isCoolDown) return
-        let playrPos = WORLD.player.pos
-        this.zone= new BoxZone(dir, playrPos, this, 100, 100, "white", 120)
+    // cast(dir: Vector) {
+    //     if(this.isCoolDown) return
+    //     let playrPos = WORLD.player.pos
+    //     this.zone= new BoxZone(dir, playrPos, this, 100, 100, "white", 120)
 
 
-        this.setRemove(this.duration, this.zone)
-        this.cooldown()
+    //     this.setRemove(this.duration, this.zone)
+    //     this.cooldown()
 
-    }
+    // }
 
 
 }

@@ -1,6 +1,5 @@
 import { Graphics } from "pixi.js";
 import { Wall } from "../../../../../Engine/src/components/Physical-Body/Wall";
-import { DrawLine } from "../../Render/Shapes";
 import WORLD from "../../World/GlobalWorld";
 
 export class MapWall extends Wall {
@@ -12,9 +11,7 @@ export class MapWall extends Wall {
         
     }
 
-    render() {
-        DrawLine(this.graphics,this.comp.start, this.comp.end)
-    }
+ 
 }
 export function PutWallAround(x1: number, y1: number, x2: number, y2: number){
 

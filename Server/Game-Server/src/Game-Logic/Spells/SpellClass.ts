@@ -31,8 +31,7 @@ export abstract class Spell {
         this.cooldownTime = 0
     }
 
-    cast(dir: Vector) {
-    }
+    cast(dir: Vector, id: any) {}
     effect(...collidedObj:Body[]): void {
 
     }

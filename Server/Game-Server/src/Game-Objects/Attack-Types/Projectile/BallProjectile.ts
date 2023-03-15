@@ -2,10 +2,8 @@ import { Graphics } from "pixi.js"
 import { Ball } from "../../../../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../../../Engine/src/Math/Vector"
-import { MotionTrail } from "../../../Render/Effects/MotionTrail"
-import { DrawBall } from "../../../Render/Shapes"
+
 import WORLD from "../../../World/GlobalWorld"
-import { IGameObject } from "../../IGameObject"
 import { IProjectile } from "./IProjectile"
 
 
@@ -19,7 +17,7 @@ export class BallProjectile extends Ball implements IProjectile {
     projSpeed: number
     gap: number
 
-    motionTrail: MotionTrail
+
 
 
 
@@ -37,7 +35,6 @@ export class BallProjectile extends Ball implements IProjectile {
         this.layer = 0
         let p = dir.mult(this.gap).add(pos)
         this.setPosition(p.x, p.y)
-        this.motionTrail = new MotionTrail(this)
         // this.motionTrail.Start()
 
         WORLD.SPELL_PROJ.push(this)
@@ -50,12 +47,4 @@ export class BallProjectile extends Ball implements IProjectile {
     }
 
 
-    render() {
-
-        this.graphics.clear()
-        this.graphics = DrawBall(this.graphics, this, 1)
-
-        this.motionTrail.Render()
-
-    }
 }
