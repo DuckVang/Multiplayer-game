@@ -1,7 +1,7 @@
 
 
 import { io, Socket } from "socket.io-client";
-import instance from "../Game-Client/src/World/GlobalWorld";
+// import instance from "../Game-Client/src/World/GlobalWorld";
 let instance: Client
 class Client {
 
@@ -14,7 +14,7 @@ class Client {
 
 
             alert(data)
-            this.socket.emit("clientToServer", "Hello from " + socket.id)
+            this.socket.emit("clientToServer", "Hello from " + this.socket.id)
 
 
         })
@@ -24,6 +24,15 @@ class Client {
             instance.updateObjects(data.Objects)
 
         })
+    }
+
+
+    updatePlayer(player: any) {
+        
+        this.socket.emit("UpdatePlayer", player)
+    }
+    updateObjects(objects: any) {
+        this.socket.emit("UpdateObjects", objects)
     }
 
 

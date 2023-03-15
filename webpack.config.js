@@ -4,9 +4,14 @@ const nodeExternals = require('webpack-node-externals');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const {merge} = require('webpack-merge');
 const {
-  NODE_ENV = 'production',
+  NODE_ENV = 'development',
 } = process.env;
+
+
+
 let defaultConfig = {
+
+
   watch: NODE_ENV === 'development',
   module: {
     rules: [

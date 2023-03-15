@@ -2,7 +2,7 @@ import { Graphics } from "pixi.js"
 import * as Color from "color"
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../Engine/src/Math/Vector";
-import IGameBody from "../interfaces/IGameBody";
+import { IGameBody } from "../Game-Objects/IGameBody";
 
 
 
@@ -16,7 +16,7 @@ export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1)
     body.endFill();
     return body
 }
-export function DrawWall(GraphObj: Graphics, wall: IGameBody, alpha: number = 1) {
+export function DrawWall(GraphObj: Graphics, wall: IGameBody,alpha: number = 1) {
 
     const line = GraphObj
     const color = new Color(wall.color)
@@ -28,12 +28,12 @@ export function DrawWall(GraphObj: Graphics, wall: IGameBody, alpha: number = 1)
     return line
 
 }
-export function DrawBox(GraphObj: Graphics, box: IGameBody, alpha: number = 1) {
+export function DrawBox(GraphObj: Graphics, box: IGameBody,alpha: number = 1) {
     const body = GraphObj
 
     const color = new Color(box.color)
 
-    body.beginFill(color.rgbNumber(), alpha);
+    body.beginFill(color.rgbNumber(),alpha);
 
     body.moveTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
     body.lineTo(box.comp.vertex[1].x, box.comp.vertex[1].y)
@@ -45,12 +45,12 @@ export function DrawBox(GraphObj: Graphics, box: IGameBody, alpha: number = 1) {
 
 
 }
-export function DrawPyramid(GraphObj: Graphics, pyramid: IGameBody, alpha: number = 1) {
+export function DrawPyramid(GraphObj:Graphics, pyramid: IGameBody, alpha: number = 1){
     const body = GraphObj
 
     const color = new Color('#3F6D2A')
 
-    body.beginFill(color.rgbNumber(), alpha);
+    body.beginFill(color.rgbNumber(),alpha);
 
     body.moveTo(pyramid.comp.vertex[0].x, pyramid.comp.vertex[0].y)
     body.lineTo(pyramid.comp.vertex[1].x, pyramid.comp.vertex[1].y)

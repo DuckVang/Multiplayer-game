@@ -1,7 +1,7 @@
 import { World } from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 import { Text } from "pixi.js";
-import { ShrinkZone } from "../Game-Logic/Zone";
+
 export class Timer extends UI {
 
 

@@ -31,8 +31,8 @@
     "dev": "webpack serve --open --config webpack.config.js",
     "build": "webpack",
     "start:dev": "NODE_ENV=development webpack",
-    "run:dev": "NODE_ENV=development nodemon Dist/server.bundle.js",
-    "run:devC": "NODE_ENV=development nodemon Dist/client.bundle.js"
+    "devS": "NODE_ENV=development nodemon Dist/server.bundle.js",
+    "devC": "NODE_ENV=development nodemon Dist/client.bundle.js"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",

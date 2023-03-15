@@ -1,8 +1,8 @@
 import { interactiveTarget } from "pixi.js"
 import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball"
 import Vector from "../../../../../Engine/src/Math/Vector"
-import  IGameBody  from "../../interfaces/IGameBody"
-import  IGameObject  from "../../interfaces/IGameObject"
+import { IGameBody } from "../../Game-Objects/IGameBody"
+import { IGameObject } from "../../Game-Objects/IGameObject"
 import { Timer } from "../../Game-UI/Timer"
 import { DrawBall } from "../Shapes"
 

@@ -5,11 +5,13 @@ import cors from "cors"
 
 //set up express app
 
+const players: any = []
+
+
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 app.use(cors())
-const players: any = []
 
 app.get("/", function (req, res) {
     res.send("hello" + players.toString());
@@ -39,8 +41,12 @@ io.on("connection", (socket: Socket) => {
         console.log(players)
         io.emit("UpdatePlayer", players)
 
+    })
+    socket.on("UpdatePlayer", (player) => {
+        console.log(player)
+    })
+    socket.on("UpdateObjects", (objects) => {
+        console.log(objects)
     }
-
     )
-
 })

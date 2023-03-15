@@ -1,5 +1,5 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
-import Player from "../Player"
+import { Player } from "../Game-Objects/Player";
 
 
 export function AddSelection(player: Player) {
@@ -31,7 +31,7 @@ export function AddSelection(player: Player) {
                 case 54:
                     player.selected = 6
                     break;
-
+                
                 default:
                     break;
             }
