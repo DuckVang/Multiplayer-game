@@ -5,8 +5,11 @@ import { io, Socket } from "socket.io-client";
 let instance: Client
 class Client {
 
+    
+
     socket: Socket
     constructor() {
+        console.log("client is alive pog")
         if (!instance) instance = this
         this.socket = io("http://localhost:4000")
 
@@ -18,12 +21,14 @@ class Client {
 
 
         })
+        
         this.socket.on("UpdateState", (data) => {
 
             instance.updatePlayer(data.player)
             instance.updateObjects(data.Objects)
 
         })
+    
     }
 
 
@@ -33,6 +38,10 @@ class Client {
     }
     updateObjects(objects: any) {
         this.socket.emit("UpdateObjects", objects)
+    }
+    send(data: any) {
+        this.socket.emit("sendMessServer", data)
+        console.log("sent ="+ data)
     }
 
 
