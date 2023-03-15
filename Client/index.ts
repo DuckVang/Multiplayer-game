@@ -1,9 +1,8 @@
+import WORLD from "./Game-Client/src/World/GlobalWorld"
 import client from "./Networking/socket"
-import WORLD from "../Game/src/World/GlobalWorld"
+import { AddControl } from "./Game-Client/src/Interactions/Movement"
+import Player from "./Game-Client/src/Player"
 
-client.send("naaaa")
-client.send("na")
-client.send("n")
-
+WORLD.addControls(new Player())
 
 

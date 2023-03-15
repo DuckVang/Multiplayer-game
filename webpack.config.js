@@ -55,7 +55,7 @@ const clientConfig = merge(defaultConfig, {
   
   plugins:[new HtmlWebpackPlugin({
     filename: 'client.index.html',
-    template: "./Client/public/index.html",
+    template: "./Client/Game-Client/public/index.html",
    
   })],
   output: {

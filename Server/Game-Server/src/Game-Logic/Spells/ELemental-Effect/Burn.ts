@@ -1,6 +1,5 @@
 import { Player } from "../../../Game-Objects/Player"
 import Body from "../../../../../../Engine/src/components/Physical-Body/Body"
-import { ColorBlink } from "../../../Render/ColorBlink"
 
 export function Burn(duration: number = 3000, ...collidedObj: Body[]): void {
     collidedObj.forEach((body) => {

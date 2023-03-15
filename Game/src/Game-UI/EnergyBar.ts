@@ -1,5 +1,4 @@
 import { Application, Container, DisplayObject, Graphics } from "pixi.js";
-import BODIES from "../../../../Engine/src/components/Models/Bodies";
 import  { World } from "../World/GlobalWorld";
 import { UI } from "./UIClass";
 export class EnergyBar extends UI {

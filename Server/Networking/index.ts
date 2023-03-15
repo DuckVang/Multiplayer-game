@@ -61,6 +61,12 @@ class GameServer {
                 messages.push(data)
                 console.log(messages)
             })
+            socket.on("userCommands", (data) => {
+                console.count("userCommands")
+                console.log("moved " + data)
+
+
+            })
         })
     }
 }

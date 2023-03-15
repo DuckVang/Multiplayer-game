@@ -10,45 +10,45 @@ let minZoneRadius = 0.1
 
 export function ShrinkZone() {
 
-    zoneRadius = WORLD.zone.zoneRadius
-    minZoneRadius *= WORLD.zone.orgZoneRadius
+    // zoneRadius = WORLD.zone.zoneRadius
+    // minZoneRadius *= WORLD.zone.orgZoneRadius
 
-    WORLD.timer.isShrinking = true
-    const zone = setInterval(() => {
+    // WORLD.timer.isShrinking = true
+    // const zone = setInterval(() => {
 
-        WORLD.zone.zoneRadius -= zoneRadius * percent
+    //     WORLD.zone.zoneRadius -= zoneRadius * percent
 
-        if (WORLD.zone.zoneRadius <= zoneRadius * minShrink) {
+    //     if (WORLD.zone.zoneRadius <= zoneRadius * minShrink) {
 
-            clearInterval(zone)
-            timer()
-        }
+    //         clearInterval(zone)
+    //         timer()
+    //     }
 
-    }, 1000)
+    // }, 1000)
 
 
 
 }
 function timer() {
 
-    const timer = setInterval(() => {
+    // const timer = setInterval(() => {
 
-        WORLD.timer.isShrinking = false
-        WORLD.timeLeft--
+    //     // WORLD.timer.isShrinking = false
+    //     WORLD.timeLeft--
 
-        if (WORLD.timeLeft <= 0) {
-            WORLD.timeLeft = WORLD.interval
-            clearInterval(timer)
-            if (WORLD.zone.zoneRadius >= minZoneRadius) ShrinkZone()
-        }
+    //     if (WORLD.timeLeft <= 0) {
+    //         WORLD.timeLeft = WORLD.interval
+    //         clearInterval(timer)
+    //         // if (WORLD.zone.zoneRadius >= minZoneRadius) ShrinkZone()
+    //     }
 
 
-    }, 1000)
+    // }, 1000)
 
 }
 
 
 export function CheckInZone() {
 
-    if (WORLD.player.pos.subtr(WORLD.zone.pos).mag() > WORLD.zone.zoneRadius) WORLD.player.Damaged(0.1,false)
+    // if (WORLD.player.pos.subtr(WORLD.zone.pos).mag() > WORLD.zone.zoneRadius) WORLD.player.Damaged(0.1,false)
 }

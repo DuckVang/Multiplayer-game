@@ -62,11 +62,7 @@ export class World {
 
 
     constructor() {
-        
-        if (instance)
-        throw new Error("New instance cannot be created!!");
-        
-        instance = new World()
+
 
     }
     init(width: number, height: number) {
@@ -145,6 +141,12 @@ export class World {
 
 
     }
+    addControls(player: Player) {
+        AddControl(player)
+
+
+
+    }
     Start() {
 
         MainLoop()
@@ -187,6 +189,7 @@ export class World {
 
 }
 
-
+instance = new World()
+instance.init(10000, 10000)
 
 export default instance

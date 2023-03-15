@@ -54,32 +54,32 @@ export class Player extends Ball implements IGameBody {
         this.PushTo(WORLD.engine)
 
     }
-    CastSpell(dir: Vector) {
+    CastSpell(dir: Vector, id: any) {
 
-        this.spells[this.selected - 1].cast(dir)
+        this.spells[this.selected - 1].cast(dir,id)
 
     }
     Damaged(amount: number, invicible: boolean = true) {
         if (this.invicibility) return
 
         if (this.alive) {
-            
-            
+
+
             this.health -= amount
-            
-           
+
+
             if (this.health <= 0) this.Dead()
-            
-            if(invicible){
-                
-                this.invicibility = true 
-               
+
+            if (invicible) {
+
+                this.invicibility = true
+
                 setTimeout(() => {
                     this.invicibility = false
                 }, this.invicibilityTime);
 
             }
-            
+
 
         } else this.health = 0
 
