@@ -46,5 +46,5 @@ class Client {
 
 
 }
-const client = new Client()
-export default client;
+const CLIENT = new Client()
+export default CLIENT;

@@ -1,5 +1,5 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
-import client from "../../../Networking/socket";
+import CLIENT from "../../../Networking/socket";
 let justPressed = false;
 
 export function AddControl(body: any) {
@@ -74,6 +74,6 @@ export function AddControl(body: any) {
             down: obj.down,
             action: obj.action
         }
-        client.socket.emit('userCommands', userCommands);
+        CLIENT.socket.emit('userCommands', userCommands);
     }
 }

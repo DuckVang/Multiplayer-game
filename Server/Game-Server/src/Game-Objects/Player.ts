@@ -1,5 +1,4 @@
 import * as Color from "color"
-import { DisplayObject, Graphics } from "pixi.js"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
 import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
@@ -43,7 +42,6 @@ export class Player extends Ball implements IGameBody {
         this.selected = 1
         this.maxSpeed = 10000
         this.alive = true
-        this.graphics = new Graphics()
         this.color = "orange"
         this.spells.push(new ManaBullet(), new ManaExplosion(), new FireBall(), new Dash(), new MeleeAttack(), new Laser())
 

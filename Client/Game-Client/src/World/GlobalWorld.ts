@@ -20,7 +20,8 @@ import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
 import Player from "../Player";
 import { Socket } from "socket.io-client";
-import client from "../../../Networking/socket";
+import CLIENT from "../../../Networking/socket";
+import { Client } from "socket.io/dist/client";
 
 
 
@@ -141,12 +142,7 @@ export class World {
 
 
     }
-    addControls(player: Player) {
-        AddControl(player)
 
-
-
-    }
     Start() {
 
         MainLoop()
@@ -162,7 +158,12 @@ export class World {
     createPlayer() {
         if (!this.player)
             this.player = new Player()
+            CLIENT.socket.emit("createPlayer", this.player)
+
+        AddControl(this.player)
         SetCameraTo(this.player)
+
+        console.log("player created")
     }
 
     AddUIObj(obj: UI) {

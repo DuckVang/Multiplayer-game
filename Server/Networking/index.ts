@@ -43,9 +43,9 @@ class GameServer {
                 console.log(data)
 
             })
-            socket.on("newPlayer", () => {
+            socket.on("createPlayer", () => {
                 players[socket.id] = new Player(0, 0)
-                console.log(players)
+                console.log(socket.id + " created")
                 io.emit("UpdatePlayer", players)
 
             })
