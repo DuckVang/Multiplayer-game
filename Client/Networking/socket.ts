@@ -5,7 +5,7 @@ import { io, Socket } from "socket.io-client";
 let instance: Client
 class Client {
 
-    
+
 
     socket: Socket
     constructor() {
@@ -21,19 +21,23 @@ class Client {
 
 
         })
-        
+
         this.socket.on("UpdateState", (data) => {
 
             instance.updatePlayer(data.player)
             instance.updateObjects(data.Objects)
 
         })
-    
+        this.socket.on("updatePlayers", (data) => {
+
+            console.log(data)
+        })
+
     }
 
 
     updatePlayer(player: any) {
-        
+
         this.socket.emit("UpdatePlayer", player)
     }
     updateObjects(objects: any) {
@@ -41,7 +45,7 @@ class Client {
     }
     send(data: any) {
         this.socket.emit("sendMessServer", data)
-        console.log("sent ="+ data)
+        console.log("sent =" + data)
     }
 
 

@@ -3,11 +3,12 @@ import { Socket, Server } from "socket.io";
 import { createServer } from "http";
 import cors from "cors"
 import { Player } from "../Game-Server/src/Game-Objects/Player";
+import types from "../types";
 
 //set up express app
 const ips: string[] = []
 
-const players: any = []
+const players: any = {}
 const messages: any[] = []
 
 const app = express();
@@ -45,29 +46,62 @@ class GameServer {
             })
             socket.on("createPlayer", () => {
                 players[socket.id] = new Player(0, 0)
+                console.log(players[socket.id])
                 console.log(socket.id + " created")
-                io.emit("UpdatePlayer", players)
 
             })
-            socket.on("UpdatePlayer", (player) => {
-                players[socket.id] = player
-                console.log(socket.id + ": " + player.pos)
-                io.emit("UpdateState", { player: players, Objects: [] })
-            })
-            socket.on("UpdateObjects", (objects) => {
-                console.log(objects)
-            })
+
+            //
+            //later put into server loop
+            //
+
+            // socket.on("UpdatePlayers", (player) => {
+
+
+            //     console.log(socket.id + ": " + player.pos)
+            //     socket.broadcast.emit("UpdatePlayers", { player: players, Objects: [] })
+            // })
+            // socket.on("UpdateObjects", (objects) => {
+            //     console.log(objects)
+            // })
+
+
+
             socket.on("sendMessServer", (data) => {
                 messages.push(data)
                 console.log(messages)
             })
+
+
             socket.on("userCommands", (data) => {
-                console.count("userCommands")
-                console.log("moved " + data)
+
+                players[socket.id].left = data.left
+                players[socket.id].right = data.right
+                players[socket.id].up = data.up
+                players[socket.id].down = data.down
+
+                console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
+
 
 
             })
         })
+        this.serverLoop()
+    }
+    static serverLoop() {
+
+        setInterval(() => {
+
+            let playersComp = Object.keys(players).reduce((result: any, key: string) => {
+                result[key] = players[key].comp
+                return result
+            }, {})
+
+            
+            io.emit("updatePlayers", playersComp)
+            console.count("server loop")
+            console.log(playersComp)
+        }, 1000)
     }
 }
 
