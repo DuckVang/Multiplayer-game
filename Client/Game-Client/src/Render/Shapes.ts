@@ -6,13 +6,13 @@ import IGameBody from "../interfaces/IGameBody";
 
 
 
-export function DrawBall(GraphObj: Graphics, ball: IGameBody, alpha: number = 1) {
+export function DrawBall(GraphObj: Graphics, ball: any, alpha: number = 1) {
 
-    const color = new Color(ball.color)
+    const color = new Color("gray")
     const body = GraphObj
 
     body.beginFill(color.rgbNumber(), alpha);
-    body.drawCircle(ball.pos.x, ball.pos.y, ball.comp.r)
+    body.drawCircle(ball.pos.x, ball.pos.y, ball.r)
     body.endFill();
     return body
 }

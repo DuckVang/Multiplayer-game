@@ -1,5 +1,5 @@
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
-import Player from "../../Player";
+import {Player} from "../../Player";
 import instance from "../GlobalWorld";
 
 

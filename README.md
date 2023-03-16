@@ -6,3 +6,4 @@
 -  Nové typy útoků, zóny, objekty, které nereagují na collision response, 
    v budoucnu budou sloužit k vytváření lečícícch/poškozujících/buffing zón
 TODO: Change clearing to canvas.rectClear(), maybe delete checked collision from grid
+TODO: změnit logiku vykreslování, místo dávání všeho do grafik tak to vykreslit do viewportu a posunout cameru ne podle graphicu ale podle pozice (spectate a jeho socket id )

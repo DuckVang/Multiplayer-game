@@ -1,7 +1,7 @@
 import { Shape } from "../../../Engine/src/components/Shapes/Shape";
 import Vector from "../../../Engine/src/Math/Vector";
 
-class Player  {
+export class Player  {
 
     pos: Vector
     comp: Shape
@@ -43,4 +43,4 @@ class Player  {
     }
 }
 
-export default Player
+export const PLAYER = new Player()

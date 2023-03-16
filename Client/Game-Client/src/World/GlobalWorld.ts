@@ -1,7 +1,7 @@
 import { Viewport } from "pixi-viewport";
 
 import Vector from "../../../../Engine/src/Math/Vector";
-import { Application, Container } from "pixi.js";
+import { Application, Container, Graphics } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 
 import { AddControl } from "../Interactions/Movement";
@@ -18,7 +18,7 @@ import { Timer } from "../Game-UI/Timer";
 import { Minimap } from "../Game-UI/Minimap";
 import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
-import Player from "../Player";
+import { PLAYER, Player } from "../Player";
 import { Socket } from "socket.io-client";
 import CLIENT from "../../../Networking/socket";
 import { Client } from "socket.io/dist/client";
@@ -30,6 +30,7 @@ let instance: World
 export class World {
 
     OBJECTS: any[]
+    PLAYERS: Player[]
 
     app: Application
 
@@ -43,6 +44,7 @@ export class World {
     UI_OBJECTS: UI[]
     MAP_OBJECTS: MapObject[]
 
+    BACKGROUND: Graphics
 
     player: Player
 
@@ -60,7 +62,7 @@ export class World {
     width: number
     height: number
 
-
+    playerID: string
 
     constructor() {
 
@@ -69,6 +71,9 @@ export class World {
     init(width: number, height: number) {
 
 
+        this.playerID = CLIENT.socket.id
+
+        this.PLAYERS = []
         this.OBJECTS = []
         this.UI_OBJECTS = []
         this.MAP_OBJECTS = []
@@ -138,7 +143,8 @@ export class World {
         this.AddMapObj(this.zone)
 
 
-
+        this.BACKGROUND = new Graphics()
+        this.VIEWPORT.addChild(this.BACKGROUND)
 
 
     }
@@ -156,12 +162,11 @@ export class World {
         this.player.health = data.health
     }
     createPlayer() {
-        if (!this.player)
-            this.player = new Player()
-            CLIENT.socket.emit("createPlayer", this.player)
 
-        AddControl(this.player)
-        SetCameraTo(this.player)
+        CLIENT.socket.emit("createPlayer")
+
+        AddControl(PLAYER)
+
 
         console.log("player created")
     }

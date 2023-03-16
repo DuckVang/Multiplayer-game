@@ -4,6 +4,7 @@ import { createServer } from "http";
 import cors from "cors"
 import { Player } from "../Game-Server/src/Game-Objects/Player";
 import types from "../types";
+import { Constants } from "../Game-Server/src/Constants";
 
 //set up express app
 const ips: string[] = []
@@ -46,24 +47,10 @@ class GameServer {
             })
             socket.on("createPlayer", () => {
                 players[socket.id] = new Player(0, 0)
-                console.log(players[socket.id])
-                console.log(socket.id + " created")
+
+                socket.emit(Constants.MSG_TYPES.JOIN_GAME, socket.id)
 
             })
-
-            //
-            //later put into server loop
-            //
-
-            // socket.on("UpdatePlayers", (player) => {
-
-
-            //     console.log(socket.id + ": " + player.pos)
-            //     socket.broadcast.emit("UpdatePlayers", { player: players, Objects: [] })
-            // })
-            // socket.on("UpdateObjects", (objects) => {
-            //     console.log(objects)
-            // })
 
 
 
@@ -92,17 +79,32 @@ class GameServer {
 
         setInterval(() => {
 
-            let playersComp = Object.keys(players).reduce((result: any, key: string) => {
-                result[key] = players[key].comp
-                return result
-            }, {})
+            const playersComp = returnObjectsOnlyWith(players, "comp")
 
+            const update = {
+                players: playersComp
+            }
+
+
+            io.emit(Constants.MSG_TYPES.GAME_UPDATE, update)
             
-            io.emit("updatePlayers", playersComp)
             console.count("server loop")
             console.log(playersComp)
+
         }, 1000)
     }
+}
+
+function returnObjectsOnlyWith(dict: any, property: any) {
+
+    let playersComp = Object.keys(dict).reduce((result: any, key: string) => {
+        result[key] = dict[key][property]
+        return result
+    }, {})
+
+    return playersComp
+
+
 }
 
 export default GameServer
