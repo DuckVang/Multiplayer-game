@@ -8,35 +8,45 @@ export function AddControl(body: any) {
 
         document.addEventListener('keydown', function (e: any) {
 
+            switch (e.keyCode) {
+                case 65:
+                    if (body.left === false) {
+                        justPressed = true;
+                    }
+                    body.left = true;
+                    break;
 
-            if (e.keyCode === 37) {
-                if (body.left === false) {
-                    justPressed = true;
-                }
-                body.left = true;
-            }
-            if (e.keyCode === 38) {
-                if (body.up === false) {
-                    justPressed = true;
-                }
-                body.up = true;
-            }
-            if (e.keyCode === 39) {
-                if (body.right === false) {
-                    justPressed = true;
-                }
-                body.right = true;
-            }
-            if (e.keyCode === 40) {
-                if (body.down === false) {
-                    justPressed = true;
-                }
-                body.down = true;
+                case 87:
+                    if (body.up === false) {
+                        justPressed = true;
+                    }
+                    body.up = true;
+                    break;
+
+                case 68:
+                    if (body.right === false) {
+                        justPressed = true;
+                    }
+                    body.right = true;
+                    break;
+
+                case 83:
+                    if (body.down === false) {
+                        justPressed = true;
+                    }
+                    body.down = true;
+                    break;
+
+                default: break
+
             }
             if (justPressed === true) {
+                
                 emitUserCommands(body);
                 justPressed = false;
             }
+          
+
 
         });
 
@@ -72,8 +82,8 @@ export function AddControl(body: any) {
             up: obj.up,
             right: obj.right,
             down: obj.down,
-            action: obj.action
         }
+        console.log(userCommands)
         CLIENT.socket.emit('userCommands', userCommands);
     }
 }

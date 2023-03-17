@@ -5,6 +5,8 @@ import cors from "cors"
 import { Player } from "../Game-Server/src/Game-Objects/Player";
 import types from "../types";
 import { Constants } from "../Game-Server/src/Constants";
+import WORLD from "../Game-Server/src/World/GlobalWorld";
+import Vector from "../../Engine/src/Math/Vector";
 
 //set up express app
 const ips: string[] = []
@@ -61,13 +63,16 @@ class GameServer {
 
 
             socket.on("userCommands", (data) => {
-
+                console.log(data)
                 players[socket.id].left = data.left
                 players[socket.id].right = data.right
                 players[socket.id].up = data.up
                 players[socket.id].down = data.down
 
-                console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
+                // console.log(players[socket.id])
+                // console.log()
+
+                // console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
 
 
 
@@ -78,20 +83,36 @@ class GameServer {
     static serverLoop() {
 
         setInterval(() => {
+            console.log("BODIES: " + WORLD.engine.BODIES.length)
+            
+            if (WORLD.engine.BODIES[0] != undefined) {
+                // WORLD.engine.BODIES[0].vel = new Vector(1,0)
+                console.log(WORLD.engine.BODIES[0].pos.x)
+                // console.log(WORLD.engine.BODIES[0].left)
+                // console.log(WORLD.engine.BODIES[0])
+            }
+            
+            WORLD.Loop()
+            // for (const key in players) {
+            //     console.log(players[key].pos)
+            // }
 
             const playersComp = returnObjectsOnlyWith(players, "comp")
 
+            // for (const key in playersComp) {
+            //     console.log(players[key].comp.pos)
+            // }
             const update = {
                 players: playersComp
             }
 
 
             io.emit(Constants.MSG_TYPES.GAME_UPDATE, update)
-            
-            console.count("server loop")
-            console.log(playersComp)
 
-        }, 1000)
+            console.count("server loop")
+            // console.log(playersComp)
+
+        }, 100000)
     }
 }
 

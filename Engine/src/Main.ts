@@ -32,9 +32,6 @@ export default class Engine {
             this.GRID.add(b)
         })
         
-    //    this.GRID.grid[0].forEach((element, index) => {
-    //     console.log(element, index)
-    //    });
 
         this.FindCollisionsGrid()
     

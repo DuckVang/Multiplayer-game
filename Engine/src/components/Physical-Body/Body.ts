@@ -81,14 +81,13 @@ export default abstract class Body {
         this.angVel = 0;
         this.player = false;
 
-this.orgColor = "gray"
-        this.color =this.orgColor
+        this.orgColor = "gray"
+        this.color = this.orgColor
 
 
         this.collidedObj = []
 
         this.parent = this
-
 
     }
     PushTo(Engine: Engine) {
@@ -117,7 +116,7 @@ this.orgColor = "gray"
         if (this.EngineParent.BODIES.indexOf(this) !== -1) {
             this.EngineParent.BODIES.splice(this.EngineParent.BODIES.indexOf(this), 1);
         }
-        
+
     }
     collided(...collidedObj: Body[]) { }
 

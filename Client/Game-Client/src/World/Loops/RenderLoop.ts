@@ -17,7 +17,7 @@ export function RenderLoop() {
     //     DrawBall(instance.BACKGROUND, player.comp)
 
     // });
-
+    // console.log(CLIENT.gameUpdate.players)
     for (const key in CLIENT.gameUpdate.players) {
         DrawBall(instance.BACKGROUND, CLIENT.gameUpdate.players[key])
     }

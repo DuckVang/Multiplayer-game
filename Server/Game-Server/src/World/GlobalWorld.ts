@@ -71,6 +71,9 @@ export class World {
         StartGame()
         MainLoop()
     }
+    Loop(){
+        MainLoop()
+    }
 
 
 
