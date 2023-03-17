@@ -18,14 +18,14 @@ export function RenderLoop() {
 
     // });
     // console.log(CLIENT.gameUpdate.players)
+    instance.BACKGROUND.beginFill(0x000000)
+    instance.BACKGROUND.drawRect(0, 0, instance.width, instance.height)
+
+
     for (const key in CLIENT.gameUpdate.players) {
         DrawBall(instance.BACKGROUND, CLIENT.gameUpdate.players[key])
     }
 
-
-
-}
-function renderPlayer() {
 
 
 }

@@ -48,7 +48,7 @@ class GameServer {
 
             })
             socket.on("createPlayer", () => {
-                players[socket.id] = new Player(0, 0)
+                players[socket.id] = new Player(WORLD.width / 2, WORLD.height / 2)
 
                 socket.emit(Constants.MSG_TYPES.JOIN_GAME, socket.id)
 

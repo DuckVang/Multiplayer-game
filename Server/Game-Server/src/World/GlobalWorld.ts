@@ -36,7 +36,7 @@ export class World {
 
     constructor(width: number, height: number) {
 
-        console.log("pog")
+        
         if (instance)
             throw new Error("New instance cannot be created!!");
 
@@ -72,7 +72,7 @@ export class World {
     //     MainLoop()
     // }
 
-    
+
     Loop(dt: number) {
         MainLoop(dt)
     }
