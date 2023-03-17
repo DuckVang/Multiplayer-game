@@ -60,7 +60,7 @@ export class CollisionData {
         this.body2.vel = this.body2.vel.add(impulseVec.mult(-this.body2.inv_m));
 
 
-       console.log(impulse)
+       //console.log(impulse)
         this.body1.angVel += this.body1.inv_inertia * Vector.cross(collArm1, impulseVec);
         this.body2.angVel -= this.body2.inv_inertia * Vector.cross(collArm2, impulseVec);
     }

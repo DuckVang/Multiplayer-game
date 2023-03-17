@@ -101,7 +101,7 @@ export default class Engine {
 
                 }
             }
-            console.log(this.COLLISIONS.length)
+            // console.log(this.COLLISIONS.length)
         });
 
         this.COLLISIONS.forEach((c) => {
