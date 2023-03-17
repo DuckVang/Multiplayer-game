@@ -75,7 +75,7 @@ export default abstract class Body {
 
         this.vel = new Vector(0, 0);
         this.acc = new Vector(0, 0);
-        this.keyForce = 1;
+        this.keyForce = 50;
         this.angKeyForce = 0.1;
         this.angle = 0;
         this.angVel = 0;
