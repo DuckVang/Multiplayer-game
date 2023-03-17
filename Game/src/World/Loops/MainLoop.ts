@@ -14,22 +14,22 @@ import { Player } from "../../Game-Objects/Player"
 import { Wall } from "../../../../Engine/src/components/Physical-Body/Wall"
 
 
-export function MainLoop() {
+export function MainLoop(dt:number) {
 
-    FollowPlayer()
-    UILoop()
-    MapLoop()
-    WatchMouse()
-    UserInputs()
-    WORLD.engine.Loop();
-    GameLoop()
-    RenderBodiesLoop()
-
-
+    // FollowPlayer()
+    // UILoop()
+    // MapLoop()
+    // WatchMouse()
+    // UserInputs()
+    // WORLD.engine.Loop(dt);
+    // GameLoop()
+    // RenderBodiesLoop()
 
 
 
 
-    requestAnimationFrame(() => MainLoop())
+
+
+    // requestAnimationFrame(() => MainLoop(dt))
 
 }

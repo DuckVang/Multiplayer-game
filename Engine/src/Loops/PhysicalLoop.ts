@@ -4,10 +4,10 @@ import { CollisionData } from "../components/Collsions/CollisionData";
 import { checkColl, collisionHandlingCondition } from "../components/Collsions/Detection";
 
 
-export function PhysicsLoop(timestamp: number) {
+export function PhysicsLoop(dt: number) {
     COLLISIONS.length = 0;
     BODIES.forEach((b) => {
-        b.reposition();
+        b.reposition(dt);
         b.collidedObj = []
     })
 

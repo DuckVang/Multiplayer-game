@@ -143,8 +143,8 @@ export class World {
 
     }
     Start() {
-        StartGame()
-        MainLoop()
+        // StartGame()
+        // MainLoop()
     }
 
     AddUIObj(obj: UI) {

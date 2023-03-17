@@ -21,20 +21,20 @@ export default class Engine {
     }
 
 
-    Loop() {
+    Loop(dt: number) {
 
         this.GRID.clear()
         this.COLLISIONS.length = 0;
-        
+
         this.BODIES.forEach((b) => {
-            b.reposition()
+            b.reposition(dt)
             b.comp.UpdateAABB()
             this.GRID.add(b)
         })
-        
+
 
         this.FindCollisionsGrid()
-    
+
 
 
     }
@@ -98,12 +98,12 @@ export default class Engine {
                     else {
                         this.COLLISIONS.push(new CollisionData(filtered[index], filtered[bodyPair], bestSat.axis, bestSat.pen, bestSat.vertex, false, false));
                     }
-                    
+
                 }
             }
             console.log(this.COLLISIONS.length)
         });
-        
+
         this.COLLISIONS.forEach((c) => {
             c.body1.collided(c.body2)
             c.body2.collided(c.body1)

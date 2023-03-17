@@ -39,8 +39,8 @@ export class Pyramid extends Body {
         this.angle += this.angVel;
     }
 
-    reposition() {
-        super.reposition();
+    reposition(dt: number) {
+        super.reposition(dt);
         this.setPosition(this.pos.add(this.vel).x, this.pos.add(this.vel).y);
     }
     keyControl() {

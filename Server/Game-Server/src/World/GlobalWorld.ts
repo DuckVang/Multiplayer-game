@@ -44,7 +44,7 @@ export class World {
 
 
         this.PLAYERS = []
- 
+
 
         this.width = width
         this.height = height
@@ -63,16 +63,18 @@ export class World {
 
         this.interval = 10
         this.timeLeft = this.interval
-        
+
 
 
     }
-    Start() {
-        StartGame()
-        MainLoop()
-    }
-    Loop(){
-        MainLoop()
+    // Start() {
+    //     StartGame()
+    //     MainLoop()
+    // }
+
+    
+    Loop(dt: number) {
+        MainLoop(dt)
     }
 
 

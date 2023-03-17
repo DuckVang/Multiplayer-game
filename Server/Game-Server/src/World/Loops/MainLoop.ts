@@ -9,14 +9,15 @@ import { Wall } from "../../../../../Engine/src/components/Physical-Body/Wall"
 import { UserInputs } from "./UserInputs"
 
 
-export function MainLoop() {
+export function MainLoop(dt: number) {
 
 
 
 
 
     UserInputs()
-    WORLD.engine.Loop();
+    WORLD.engine.Loop(dt);
+
     // GameLoop()
 
 

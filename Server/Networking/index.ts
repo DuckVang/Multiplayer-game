@@ -81,27 +81,27 @@ class GameServer {
         this.serverLoop()
     }
     static serverLoop() {
-
+        const LOW_LIMIT = 0.0167;          // Keep At/Below 60fps
+        const HIGH_LIMIT = 0.1;
+        let lastUpdateTime: number
         setInterval(() => {
-            console.log("BODIES: " + WORLD.engine.BODIES.length)
-            
-            if (WORLD.engine.BODIES[0] != undefined) {
-                // WORLD.engine.BODIES[0].vel = new Vector(1,0)
-                console.log(WORLD.engine.BODIES[0].pos.x)
-                // console.log(WORLD.engine.BODIES[0].left)
-                // console.log(WORLD.engine.BODIES[0])
-            }
-            
-            WORLD.Loop()
-            // for (const key in players) {
-            //     console.log(players[key].pos)
-            // }
+
+            const now = Date.now();
+            let dt = (now - lastUpdateTime) / 1000;
+            if (dt < LOW_LIMIT)
+                dt = LOW_LIMIT;
+            else if (dt > HIGH_LIMIT)
+                dt = HIGH_LIMIT;
+
+            lastUpdateTime = now;
+
+
+            WORLD.Loop(dt)
+
 
             const playersComp = returnObjectsOnlyWith(players, "comp")
 
-            // for (const key in playersComp) {
-            //     console.log(players[key].comp.pos)
-            // }
+
             const update = {
                 players: playersComp
             }
@@ -110,9 +110,9 @@ class GameServer {
             io.emit(Constants.MSG_TYPES.GAME_UPDATE, update)
 
             console.count("server loop")
-            // console.log(playersComp)
 
-        }, 100000)
+            console.log("FPS: " + 1 / dt)
+        }, 0)
     }
 }
 

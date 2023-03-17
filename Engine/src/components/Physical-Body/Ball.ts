@@ -21,8 +21,8 @@ export class Ball extends Body {
         this.comp.pos.set(x, y)
     }
 
-    reposition() {
-        super.reposition();
+    reposition(dt: number) {
+        super.reposition(dt);
         this.setPosition(this.pos.add(this.vel).x, this.pos.add(this.vel).y);
     }
 
