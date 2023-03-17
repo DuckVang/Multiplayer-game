@@ -1,4 +1,5 @@
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
+import { Constants } from "../../../Constants";
 import CLIENT from "../../../Networking/socket";
 let justPressed = false;
 
@@ -84,6 +85,6 @@ export function AddControl(body: any) {
             down: obj.down,
         }
         console.log(userCommands)
-        CLIENT.socket.emit('userCommands', userCommands);
+        CLIENT.socket.emit(Constants.INTERACTIONS.MOVEMENT, userCommands);
     }
 }

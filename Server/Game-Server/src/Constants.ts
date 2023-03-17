@@ -7,5 +7,10 @@ export const Constants = {
         INPUT: "input",
         GAME_OVER: "game_over",
 
+    },
+    INTERACTIONS:{
+        MOVEMENT: "movement",
+        MOUSE_CLICK: "mouse_click",
+        SELECT: "select",
     }
 }

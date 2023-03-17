@@ -62,7 +62,7 @@ class GameServer {
             })
 
 
-            socket.on("userCommands", (data) => {
+            socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
                 console.log(data)
                 players[socket.id].left = data.left
                 players[socket.id].right = data.right
