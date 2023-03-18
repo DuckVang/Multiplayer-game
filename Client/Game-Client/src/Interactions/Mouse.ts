@@ -26,7 +26,13 @@ export function HandleClick() {
 }
 function emitClick(direction: Vector) {
 
-    CLIENT.socket.emit(Constants.INTERACTIONS.MOUSE_CLICK, direction);
+    const command = {
+
+        direction: direction,
+        selected: instance.player.selected
+    }
+
+    CLIENT.socket.emit(Constants.INTERACTIONS.MOUSE_CLICK, command);
 }
 
 // function GetDirection(x: number, y: number) {
