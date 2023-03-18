@@ -31,8 +31,8 @@ export abstract class Spell {
         this.cooldownTime = 0
     }
 
-    cast(dir: Vector, id: any) {}
-    effect(...collidedObj:Body[]): void {
+    cast(dir: Vector, id: string) { }
+    effect(...collidedObj: Body[]): void {
 
     }
     cooldown() {
@@ -43,7 +43,7 @@ export abstract class Spell {
 
 
     }
-    protected setRemove(duration: number , ...projectiles: Body[]) {
+    protected setRemove(duration: number, ...projectiles: Body[]) {
 
         setTimeout(() => {
             projectiles.forEach(p => {

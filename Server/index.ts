@@ -1,2 +1,2 @@
-import GameServer from "./Networking/index"
-GameServer.start()
+import gameServer from "./Networking"
+gameServer.start()

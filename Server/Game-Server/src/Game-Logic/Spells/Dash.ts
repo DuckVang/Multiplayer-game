@@ -1,6 +1,7 @@
 import BODIES from "../../../../../Engine/src/components/Models/Bodies";
 import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../../Engine/src/Math/Vector";
+import gameServer from "../../../../Networking";
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile";
 import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
@@ -19,21 +20,23 @@ export class Dash extends Spell {
 
 
     }
-    cast(dir: Vector, id: any) {
-        WORLD.PLAYERS[id].motionTrail = true
+    cast(dir: Vector, id: string) {
+        const player = gameServer.players[id]
+
+        player.motionTrail = true
         console.log("dash")
-        let newdir = dir.mult(this.distance)
-        WORLD.PLAYERS[id].controls = false
+        let newDir = dir.mult(this.distance)
+        player.controls = false
 
 
-        WORLD.PLAYERS[id].vel = WORLD.PLAYERS[id].vel.add(newdir)
+        player.vel = player.vel.add(newDir)
 
 
 
 
         setTimeout(() => {
-            WORLD.PLAYERS[id].controls = true
-            WORLD.PLAYERS[id].motionTrail = false
+            player.controls = true
+            player.motionTrail = false
 
 
         }, this.duration)
