@@ -21,25 +21,27 @@ export function MainLoop() {
     // UILoop()
     // MapLoop()
     // WatchMouse()
+    console.group("main loop")
     setInterval(() => {
 
 
         
         if (CLIENT.gameUpdate) {
             const update = CLIENT.gameUpdate
-console.count("main loop2")
+            console.count("main loop")
             const mainPlayer = update.players[CLIENT.socket.id]
 
             //WHY COLLISION IS NOT WORKING IN FOLLOW, WHY IS IT WORKING NOW?!? MAYBE GRID out of range? OHHH it is out of range, leftest/highest point of grid is 0,0
             console.log(mainPlayer.pos)
             console.log(update.players)
             Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y })
+            WatchMouse()
             RenderLoop()
-
         }
 
 
     }, 0)
+
 
 
 

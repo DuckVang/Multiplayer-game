@@ -1,5 +1,8 @@
 import { Graphics, Sprite } from "pixi.js";
+import { emit } from "process";
 import Vector from "../../../../Engine/src/Math/Vector";
+import { Constants } from "../../../Constants";
+import CLIENT from "../../../Networking/socket";
 import instance from "../World/GlobalWorld"
 
 export function WatchMouse() {
@@ -21,7 +24,11 @@ export function HandleClick() {
         instance.player.CastSpell(direction)
 
 
-        
+    emitClick(direction)
+}
+function emitClick(direction: Vector) {
+
+    CLIENT.socket.emit(Constants.INTERACTIONS.MOUSE_CLICK, direction);
 }
 
 // function GetDirection(x: number, y: number) {
