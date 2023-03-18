@@ -11,7 +11,7 @@ import Vector from "../../Engine/src/Math/Vector";
 //set up express app
 const ips: string[] = []
 
-const players: any = {}
+const players: { [key: string]: Player } = {}
 const messages: any[] = []
 
 const app = express();
