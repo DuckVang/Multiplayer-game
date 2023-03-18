@@ -1,4 +1,4 @@
-import { Constants } from "../../../Constants";
+import { Constants } from "../../../../Shared/Constants";
 import CLIENT from "../../../Networking/socket";
 let justPressed = false;
 

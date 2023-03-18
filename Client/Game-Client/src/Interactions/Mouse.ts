@@ -1,7 +1,7 @@
 import { PlatformPath } from "node:path/win32";
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../Engine/src/Math/Vector";
-import { Constants } from "../../../Constants";
+import { Constants } from "../../../../Shared/Constants";
 import CLIENT from "../../../Networking/socket";
 import { Player } from "../Player";
 import instance from "../World/GlobalWorld";

@@ -3,7 +3,7 @@ import { Socket, Server } from "socket.io";
 import { createServer } from "http";
 import cors from "cors";
 import { Player } from "../Game-Server/src/Game-Objects/Player";
-import { Constants } from "../Game-Server/src/Constants";
+import { Constants } from "../../Shared/Constants";
 import WORLD from "../Game-Server/src/World/GlobalWorld";
 import Vector from "../../Engine/src/Math/Vector";
 
