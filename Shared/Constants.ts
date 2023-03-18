@@ -12,5 +12,14 @@ export const Constants = {
         MOVEMENT: "movement",
         MOUSE_CLICK: "mouse_click",
         SELECT: "select",
+    },
+    SPELL:{
+        FIREBALL: "fireball",
+        MANA_BULLET: "mana_bullet",
+    },
+    SHAPES:{
+        CIRCLE: "circle",
+        RECTANGLE: "rectangle",
+    
     }
 }
