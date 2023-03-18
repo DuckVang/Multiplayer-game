@@ -1,3 +1,4 @@
+import { Constants } from "../../../../Shared/Constants";
 import Vector from "../../Math/Vector";
 import { Shape } from "./Shape";
 
@@ -11,7 +12,7 @@ export class Circle extends Shape {
     r: number
 
     constructor(x: number, y: number, r: number) {
-        super()
+        super(Constants.SHAPES.CIRCLE)
         this.pos = new Vector(x, y);
         this.r = r;
     }

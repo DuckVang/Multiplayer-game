@@ -8,18 +8,20 @@ export const Constants = {
         GAME_OVER: "game_over",
 
     },
-    INTERACTIONS:{
+    INTERACTIONS: {
         MOVEMENT: "movement",
         MOUSE_CLICK: "mouse_click",
         SELECT: "select",
     },
-    SPELL:{
+    SPELL: {
         FIREBALL: "fireball",
         MANA_BULLET: "mana_bullet",
     },
-    SHAPES:{
+    SHAPES: {
         CIRCLE: "circle",
         RECTANGLE: "rectangle",
-    
+        TRIANGLE: "triangle",
+        LINE: "line",
+
     }
 }

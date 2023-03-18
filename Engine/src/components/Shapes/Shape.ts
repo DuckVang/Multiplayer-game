@@ -4,10 +4,12 @@ import { ICircle } from "./Circle"
 import { IRectangle } from "./Rectangle"
 import { ILine } from "./Line"
 import { ITriangle } from "./Triangle"
+import { type } from "os"
 
 
 
 export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<ILine>, Partial<ITriangle> {
+    type: string
 
     pos: Vector
     vertex: Vector[]
@@ -24,7 +26,8 @@ export interface IShape extends Partial<ICircle>, Partial<IRectangle>, Partial<I
 
 
 }
-export class Shape implements IShape {
+export abstract class Shape implements IShape {
+    type: string
 
     pos: Vector
     vertex: Vector[]
@@ -35,7 +38,7 @@ export class Shape implements IShape {
         max: Vector,
     }
 
-    constructor() {
+    constructor(type: string) {
         this.pos = new Vector(0, 0)
         this.vertex = []
         this.color = ""
