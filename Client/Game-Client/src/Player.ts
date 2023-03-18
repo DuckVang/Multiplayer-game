@@ -25,7 +25,7 @@ export class Player  {
         this.pos = pos
         this.comp = comp
 
-        this.selected = 1
+        this.selected = 0
         this.maxHealth = 100
         this.health = this.maxHealth
         this.maxEnergy = 100
@@ -43,4 +43,5 @@ export class Player  {
     }
 }
 
-export const PLAYER = new Player()
+const PLAYER = new Player()
+export {PLAYER}
