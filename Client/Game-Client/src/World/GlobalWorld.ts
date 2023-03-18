@@ -17,6 +17,7 @@ import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
 import { PLAYER, Player } from "../Player";
 import CLIENT from "../../../Networking/socket";
+import { WatchMouse } from "../Interactions/Mouse";
 
 
 
@@ -161,6 +162,7 @@ export class World {
         CLIENT.socket.emit("createPlayer")
 
         AddControl(PLAYER)
+        WatchMouse(PLAYER)
 
 
         console.log("player created")
@@ -194,3 +196,4 @@ instance = new World()
 instance.init(10000, 10000)
 
 export default instance
+
