@@ -5,23 +5,18 @@ import { Application, Container, Graphics } from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 
 import { AddControl } from "../Interactions/Movement";
-import { SetCameraTo } from "./Camera/Camera";
 
 import { MainLoop } from "./Loops/MainLoop";
 import { MapObject } from "../Map-Object/MapObjClass";
-import { Camera } from "pixi-game-camera"
-import { AddSelection } from "../Interactions/Selection";
+import { Camera } from "pixi-game-camera";
 
 
 import { Zone } from "../Map-Object/Zone";
 import { Timer } from "../Game-UI/Timer";
-import { Minimap } from "../Game-UI/Minimap";
 import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
 import { PLAYER, Player } from "../Player";
-import { Socket } from "socket.io-client";
 import CLIENT from "../../../Networking/socket";
-import { Client } from "socket.io/dist/client";
 
 
 

@@ -1,6 +1,4 @@
-import * as Color from "color"
 import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
-import Body from "../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../Engine/src/Math/Vector"
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
 import { Spell } from "../Game-Logic/Spells/SpellClass"

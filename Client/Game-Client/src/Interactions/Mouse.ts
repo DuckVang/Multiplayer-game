@@ -1,9 +1,7 @@
-import { Graphics, Sprite } from "pixi.js";
-import { emit } from "process";
 import Vector from "../../../../Engine/src/Math/Vector";
 import { Constants } from "../../../Constants";
 import CLIENT from "../../../Networking/socket";
-import instance from "../World/GlobalWorld"
+import instance from "../World/GlobalWorld";
 
 export function WatchMouse() {
 
