@@ -12,7 +12,10 @@ import { FireBall } from "../Game-Logic/Spells/FireBall"
 
 export class Player extends Ball implements IGameBody {
 
+
     private spells: Spell[]
+
+    socketID: string
 
     alive: boolean
 
@@ -31,9 +34,9 @@ export class Player extends Ball implements IGameBody {
     invicibility: boolean
     invicibilityTime: number
 
-    constructor(x: number, y: number) {
+    constructor(x: number, y: number, socketID: string) {
         super(x, y, 30, 2)
-
+        this.socketID = socketID
         this.spells = []
         this.maxHealth = 100
         this.health = this.maxHealth
@@ -50,9 +53,10 @@ export class Player extends Ball implements IGameBody {
         this.PushTo(WORLD.engine)
 
     }
-    CastSpell(dir: Vector, id: any) {
-
-        this.spells[this.selected - 1].cast(dir,id)
+    CastSpell(dir: Vector, selected: any) {
+       
+        this.spells[selected].cast(dir, this.socketID)
+        console.log(WORLD.engine.BODIES.length)
 
     }
     Damaged(amount: number, invicible: boolean = true) {
