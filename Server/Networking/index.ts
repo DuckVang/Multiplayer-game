@@ -5,6 +5,7 @@ import cors from "cors";
 import { Player } from "../Game-Server/src/Game-Objects/Player";
 import { Constants } from "../Game-Server/src/Constants";
 import WORLD from "../Game-Server/src/World/GlobalWorld";
+import Vector from "../../Engine/src/Math/Vector";
 
 //set up express app
 const ips: string[] = []
@@ -61,11 +62,15 @@ class GameServer {
 
 
             socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
-                console.log(data)
-                players[socket.id].left = data.left
-                players[socket.id].right = data.right
-                players[socket.id].up = data.up
-                players[socket.id].down = data.down
+
+
+                const { left, right, up, down } = data
+
+
+                players[socket.id].left = left
+                players[socket.id].right = right
+                players[socket.id].up = up
+                players[socket.id].down = down
 
                 // console.log(players[socket.id])
                 // console.log()
@@ -76,7 +81,10 @@ class GameServer {
 
             })
             socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
-                players[socket.id].CastSpell(data.x, data.y)
+
+                const { direction, selected } = data
+                players[socket.id].CastSpell(new Vector(direction.x, direction.y), selected)
+                
             })
         })
         this.serverLoop()
