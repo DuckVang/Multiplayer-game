@@ -26,7 +26,7 @@ export class BallProjectile extends Ball implements IProjectile {
         super(0, 0, r, 2)
 
         this.spell = spell
-        this.graphics = new Graphics()
+    
         this.projSpeed = 1000
         this.gap = gap
 
