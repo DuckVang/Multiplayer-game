@@ -77,6 +77,9 @@ class GameServer {
 
 
             })
+            socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
+                players[socket.id].CastSpell(data.x, data.y)
+            })
         })
         this.serverLoop()
     }
