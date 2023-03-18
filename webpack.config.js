@@ -10,7 +10,7 @@ const {
 
 
 let defaultConfig = {
-
+  devtool: "eval-source-map",
 
   watch: NODE_ENV === 'development',
   module: {
