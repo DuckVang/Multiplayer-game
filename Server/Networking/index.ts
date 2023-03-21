@@ -6,6 +6,9 @@ import { Player } from "../Game-Server/src/Game-Objects/Player";
 import { Constants } from "../../Shared/Constants";
 import WORLD from "../Game-Server/src/World/GlobalWorld";
 import Vector from "../../Engine/src/Math/Vector";
+import { IGameBody } from "../Game-Server/src/Game-Objects/IGameBody";
+import { Circle } from "pixi.js";
+import { IShape, Shape } from "../../Engine/src/components/Shapes/Shape";
 
 //set up express app
 
@@ -17,12 +20,14 @@ const io = new Server(server, { cors: { origin: "*" } });
 class GameServer {
     ips: string[]
     players: { [key: string]: Player }
+    objects: IGameBody[]
 
     messages: any[]
 
     constructor() {
         this.ips = []
         this.players = {}
+        this.objects = []
         this.messages = []
     }
 
@@ -31,9 +36,10 @@ class GameServer {
         app.use(cors())
 
         app.get("/", function (req, res) {
-            this.ips.push(req.ip)
+            // this.ips.push(req.ip)
 
-            res.send("hello world" + this.ips)
+            // res.send("hello world" + this.ips)
+            res.send("hello world")
         }
         );
 
@@ -97,7 +103,7 @@ class GameServer {
         })
         this.serverLoop()
     }
-     serverLoop() {
+    serverLoop() {
         const LOW_LIMIT = 0.0167;          // Keep At/Below 60fps
         const HIGH_LIMIT = 0.1;
         let lastUpdateTime: number
@@ -117,11 +123,17 @@ class GameServer {
 
 
             const playersComp = returnObjectsOnlyWith(this.players, "comp")
+            const objectsComp = this.objects.map((obj) => obj.comp)
+            const update:{
+                players: { [key: string]: Circle },
+                objects: IShape[]
+            } = {
+                players: playersComp,
+                objects: objectsComp
 
 
-            const update = {
-                players: playersComp
             }
+           
 
 
             io.emit(Constants.MSG_TYPES.GAME_UPDATE, update)

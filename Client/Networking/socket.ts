@@ -3,7 +3,7 @@
 import { io, Socket } from "socket.io-client";
 import WORLD from "../../Game/src/World/GlobalWorld";
 import { Constants } from "../../Shared/Constants";
-import {Player} from "../Game-Client/src/Player";
+import { Player } from "../Game-Client/src/Player";
 import STATE from "../State";
 // import instance from "../Game-Client/src/World/GlobalWorld";
 let instance: Client
@@ -26,7 +26,7 @@ class Client {
 
         })
 
-        this.socket.on(Constants.MSG_TYPES.GAME_UPDATE, (data) => {
+        this.socket.on(Constants.MSG_TYPES.GAME_UPDATE, (data: { players: { [key: string]: Player }, objects: any[] }) => {
 
             this.gameUpdate = data
 

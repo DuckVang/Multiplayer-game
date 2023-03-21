@@ -11,14 +11,16 @@ export class ManaBullet extends Spell {
 
     constructor() {
         super()
-        this.duration = 1000
+        this.duration = 4000
     }
     cast(dir: Vector, id: string) {
         let playerPos = gameServer.players[id].pos
-        let projectile = new BallProjectile(dir, playerPos, this)
+        let projectile = new BallProjectile(id,dir, playerPos, this)
 
         projectile.friction = 0
+        
         let speed = dir.mult(1000)
+     
         projectile.vel = projectile.vel.add(speed)
 
         this.projectiles.push(projectile)

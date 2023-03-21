@@ -8,7 +8,7 @@ import { IGameBody } from "../IGameBody"
 
 
 
-export class TestBall extends Ball implements IGameBody {
+export class TestBall extends Ball {
 
    
     constructor() {

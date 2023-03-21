@@ -41,7 +41,7 @@ export class MotionTrail {
                 let ratio = (i + 1) / this.motionPos.length;
                 let tempBall = this.obj
                 tempBall.pos = pos
-                this.obj.graphics = DrawBall(this.obj.graphics, tempBall, ratio)
+                this.obj.graphics = DrawBall(this.obj.graphics, tempBall.comp, ratio)
 
             });
         }

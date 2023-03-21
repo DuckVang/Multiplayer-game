@@ -1,12 +1,17 @@
-import { Graphics } from "pixi.js"
+
 import * as Color from "color"
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
+import { IShape, Shape } from "../../../../Engine/src/components/Shapes/Shape"
 import Vector from "../../../../Engine/src/Math/Vector";
 import IGameBody from "../interfaces/IGameBody";
+import { Line } from "../../../../Engine/src/components/Shapes/Line";
+import { Circle } from "../../../../Engine/src/components/Shapes/Circle";
+import { Rectangle } from "../../../../Engine/src/components/Shapes/Rectangle";
+import { Graphics } from "pixi.js";
 
 
 
-export function DrawBall(GraphObj: Graphics, ball: any, alpha: number = 1) {
+export function DrawBall(GraphObj: Graphics, ball: IShape, alpha: number = 1) {
 
     const color = new Color("gray")
     const body = GraphObj
@@ -16,46 +21,46 @@ export function DrawBall(GraphObj: Graphics, ball: any, alpha: number = 1) {
     body.endFill();
     return body
 }
-export function DrawWall(GraphObj: Graphics, wall: IGameBody, alpha: number = 1) {
+export function DrawWall(GraphObj: Graphics, wall: IShape, alpha: number = 1) {
 
     const line = GraphObj
     const color = new Color(wall.color)
     line.lineStyle(2, color.rgbNumber(), alpha);
-    line.moveTo(wall.comp.start.x, wall.comp.start.y)
+    line.moveTo(wall.start.x, wall.start.y)
 
 
-    line.lineTo(wall.comp.end.x, wall.comp.end.y)
+    line.lineTo(wall.end.x, wall.end.y)
     return line
 
 }
-export function DrawBox(GraphObj: Graphics, box: IGameBody, alpha: number = 1) {
+export function DrawBox(GraphObj: Graphics, box: IShape, alpha: number = 1) {
     const body = GraphObj
 
     const color = new Color(box.color)
 
     body.beginFill(color.rgbNumber(), alpha);
 
-    body.moveTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
-    body.lineTo(box.comp.vertex[1].x, box.comp.vertex[1].y)
-    body.lineTo(box.comp.vertex[2].x, box.comp.vertex[2].y)
-    body.lineTo(box.comp.vertex[3].x, box.comp.vertex[3].y)
-    body.lineTo(box.comp.vertex[0].x, box.comp.vertex[0].y)
+    body.moveTo(box.vertex[0].x, box.vertex[0].y)
+    body.lineTo(box.vertex[1].x, box.vertex[1].y)
+    body.lineTo(box.vertex[2].x, box.vertex[2].y)
+    body.lineTo(box.vertex[3].x, box.vertex[3].y)
+    body.lineTo(box.vertex[0].x, box.vertex[0].y)
     body.endFill();
     return body
 
 
 }
-export function DrawPyramid(GraphObj: Graphics, pyramid: IGameBody, alpha: number = 1) {
+export function DrawPyramid(GraphObj: Graphics, pyramid: IShape, alpha: number = 1) {
     const body = GraphObj
 
     const color = new Color('#3F6D2A')
 
     body.beginFill(color.rgbNumber(), alpha);
 
-    body.moveTo(pyramid.comp.vertex[0].x, pyramid.comp.vertex[0].y)
-    body.lineTo(pyramid.comp.vertex[1].x, pyramid.comp.vertex[1].y)
-    body.lineTo(pyramid.comp.vertex[2].x, pyramid.comp.vertex[2].y)
-    body.lineTo(pyramid.comp.vertex[0].x, pyramid.comp.vertex[0].y)
+    body.moveTo(pyramid.vertex[0].x, pyramid.vertex[0].y)
+    body.lineTo(pyramid.vertex[1].x, pyramid.vertex[1].y)
+    body.lineTo(pyramid.vertex[2].x, pyramid.vertex[2].y)
+    body.lineTo(pyramid.vertex[0].x, pyramid.vertex[0].y)
     body.endFill();
     return body
 }

@@ -42,6 +42,7 @@ export abstract class Shape implements IShape {
         this.pos = new Vector(0, 0)
         this.vertex = []
         this.color = ""
+        this.type = type
     }
 
     UpdateAABB() {

@@ -6,7 +6,7 @@ import { Pyramid } from "../../../../../Engine/src/components/Physical-Body/Pyra
 import { IGameBody } from "../IGameBody"
 
 
-export class TestPyramid extends Pyramid implements IGameBody {
+export class TestPyramid extends Pyramid  {
 
     motionTrail:boolean
 

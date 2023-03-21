@@ -23,7 +23,7 @@ export class FireBall extends Spell {
         let player = gameServer.players[id]
 
         let playerPos = player.pos
-        let projectile = new BallProjectile(dir, playerPos, this, 50, 150)
+        let projectile = new BallProjectile(id,dir, playerPos, this, 50, 150)
 
         projectile.friction = 0
         projectile.m = 100

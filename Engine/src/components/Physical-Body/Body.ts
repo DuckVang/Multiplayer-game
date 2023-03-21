@@ -99,10 +99,10 @@ export default abstract class Body {
     reposition(dt: number) {
         if (this.controls)
             this.acc = this.acc.unit().mult(this.keyForce);
-
+        //wtf proc se velocity jednoho předmětu nezvyšuje 
         this.vel = this.vel.add(this.acc);
         this.vel = this.vel.mult(1 - this.friction);
- 
+
         this.vel = this.vel.mult(dt);
         if (this.vel.mag() > this.maxSpeed && this.maxSpeed !== 0) {
             this.vel = this.vel.unit().mult(this.maxSpeed);

@@ -9,6 +9,7 @@ import { IGameBody } from "./IGameBody"
 import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack"
 import { Laser } from "../Game-Logic/Spells/Laser"
 import { FireBall } from "../Game-Logic/Spells/FireBall"
+import gameServer from "../../../Networking"
 
 export class Player extends Ball implements IGameBody {
 
@@ -34,9 +35,9 @@ export class Player extends Ball implements IGameBody {
     invicibility: boolean
     invicibilityTime: number
 
-    constructor(x: number, y: number, socketID: string) {
+    constructor(x: number, y: number, sokcetID: string) {
         super(x, y, 30, 2)
-        this.socketID = socketID
+
         this.spells = []
         this.maxHealth = 100
         this.health = this.maxHealth
@@ -51,12 +52,19 @@ export class Player extends Ball implements IGameBody {
         this.invicibilityTime = 5000
 
         this.PushTo(WORLD.engine)
+        this.addTo(gameServer.players, sokcetID)
+
+    }
+
+    addTo(dict: { [key: string]: Player }, socketID: string): void {
+        this.socketID = socketID
+        dict[socketID] = this
 
     }
     CastSpell(dir: Vector, selected: any) {
-       
+
         this.spells[selected].cast(dir, this.socketID)
-        console.log(WORLD.engine.BODIES.length)
+        console.log(dir)
 
     }
     Damaged(amount: number, invicible: boolean = true) {

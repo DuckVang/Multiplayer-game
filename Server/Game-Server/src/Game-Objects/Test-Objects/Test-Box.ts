@@ -8,7 +8,7 @@ import { IGameBody } from "../IGameBody"
 
 
 
-export class TestBox extends Box implements IGameBody {
+export class TestBox extends Box  {
 
 
 
