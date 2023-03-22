@@ -7,25 +7,21 @@ import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 
 export class ManaBullet extends Spell {
+  constructor() {
+    super();
+    this.duration = 4000;
+  }
+  cast(dir: Vector, id: string) {
+    let playerPos = gameServer.players[id].pos;
+    const projectile = new BallProjectile(id, dir, playerPos, this);
 
+    projectile.friction = 0;
 
-    constructor() {
-        super()
-        this.duration = 4000
-    }
-    cast(dir: Vector, id: string) {
-        let playerPos = gameServer.players[id].pos
-        let projectile = new BallProjectile(id,dir, playerPos, this)
+    let speed = dir.mult(50);
 
-        projectile.friction = 0
-        
-        let speed = dir.mult(1000)
-     
-        projectile.vel = projectile.vel.add(speed)
+    projectile.vel = projectile.vel.add(speed);
 
-        this.projectiles.push(projectile)
-        this.setRemove(this.duration, ...this.projectiles)
-    }
-
-
+    this.projectiles.push(projectile);
+    this.setRemove(this.duration, ...this.projectiles);
+  }
 }

@@ -30,8 +30,8 @@ export class Box extends Body {
         this.pos.set(x, y);
         this.angle = a;
         this.comp.pos = this.pos;
-        this.comp.getVertices(this.angle + this.angVel);
-        this.angle += this.angVel;
+        this.comp.getVertices(this.angle + this.angVelDT);
+        this.angle += this.angVelDT;
     }
     
     reposition(dt: number) {

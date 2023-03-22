@@ -31,7 +31,7 @@ export class BallProjectile extends Ball implements IProjectile {
 
         this.spell = spell
 
-        this.projSpeed = 1000
+        this.projSpeed = 10
         this.gap = gap
 
         this.color = "red"

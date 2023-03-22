@@ -23,7 +23,7 @@ export class Ball extends Body {
 
     reposition(dt: number) {
         super.reposition(dt);
-        this.setPosition(this.pos.add(this.vel).x, this.pos.add(this.vel).y);
+        this.setPosition(this.pos.add(this.velDT).x, this.pos.add(this.velDT).y);
     }
 
     keyControl() {
