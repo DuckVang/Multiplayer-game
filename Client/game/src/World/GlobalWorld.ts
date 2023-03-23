@@ -73,7 +73,7 @@ export class World {
       backgroundAlpha: 0.5,
     });
 
-    const appNode = document.getElementById("app-container");
+    const appNode = document.getElementById("pixi-app");
 
     appNode.appendChild(this.app.view);
 

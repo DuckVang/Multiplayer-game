@@ -5,38 +5,32 @@ const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
+
 * {
-    background-color: rgba(246, 160, 0, 0.411);
+    background-color: rgba(200, 200, 200, 0.411);
+    box-sizing: border-box;
+    
 }
 
 html {
     height: 100vh;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 body {
     height: 100%;
     display: flex;
 }
 
-main {
-    margin: auto;
+#root{
+width: 100%;
+height: 100%;
 
-    width: 450px;
-    height: 300px;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    display: flex;
-
-    .left {
-        background-color: rgba(0, 0, 255, 0.152);
-        flex: 1;
-        display: flex;
-        
-        flex-direction: column;
-        button {
-        }
-    }
-    .right {
-        flex: 1;
-    }
 }
+
+
 `;
 export default GlobalStyle;
