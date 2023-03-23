@@ -1,72 +1,84 @@
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const nodeExternals = require('webpack-node-externals');
-const WebpackShellPluginNext = require('webpack-shell-plugin-next');
-const {merge} = require('webpack-merge');
-const {
-  NODE_ENV = 'development',
-} = process.env;
-
-
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
+const WebpackShellPluginNext = require("webpack-shell-plugin-next");
+const { merge } = require("webpack-merge");
+const { NODE_ENV = "development" } = process.env;
 
 let defaultConfig = {
   devtool: "eval-source-map",
 
-  watch: NODE_ENV === 'development',
+  watch: NODE_ENV === "development",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
-      { test: /\.css$/, use: ["style-loader", "css-loader"], }
-    ]
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', ".css"],
+    extensions: [".tsx", ".ts", ".js", ".css"],
   },
-  
+};
 
-    
-    
-  
-}
-
-
-const serverConfig =merge(defaultConfig,{
+const serverConfig = merge(defaultConfig, {
   externals: [nodeExternals()],
-  entry:  "./Server/index.ts",
-  target: 'node',
+  entry: "./Server/index.ts",
+  target: "node",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'server.bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "server/server.bundle.js",
   },
-  plugins:[  new WebpackShellPluginNext({
-    onBuildEnd: ['npm run run:dev']
-  })],
+  plugins: [
+    new WebpackShellPluginNext({
+      onBuildEnd: ["npm run run:dev"],
+    }),
+  ],
   //…
-})
+});
 
 const clientConfig = merge(defaultConfig, {
-  target: 'web', // <=== can be omitted as default is 'web'
-  
-  entry:  "./Client/index.ts",
-  
-  plugins:[new HtmlWebpackPlugin({
-    filename: 'client.index.html',
-    template: "./Client/Game-Client/public/index.html",
-   
-  })],
+  target: "web", // <=== can be omitted as default is 'web'
+
+  entry: "./Client/index.tsx",
+  module: {
+    // exclude node_modules
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+    ],
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "client/client.index.html",
+      template: "./Client/public/index.html",
+    }),
+  ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'client.bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "client/client.bundle.js",
   },
   //…
-})
+});
 
-module.exports = [clientConfig,serverConfig];
-
+module.exports = [clientConfig, serverConfig];
 
 // module.exports = {
 
@@ -93,7 +105,7 @@ module.exports = [clientConfig,serverConfig];
 //   },
 
 //   plugins: [
- 
+
 //     new HtmlWebpackPlugin({
 //       filename: 'client.index.html',
 //       template: "./Client/public/index.html",
@@ -118,13 +130,13 @@ module.exports = [clientConfig,serverConfig];
 //     },
 //     port: 8080,
 //     compress: true,
-//     open: ["/game.index.html"], 
+//     open: ["/game.index.html"],
 //   },
 
 //   resolve: {
 //     extensions: ['.tsx', '.ts', '.js', ".css"],
 //   },
-  
+
 //   output: {
 //     filename: '[name].bundle.js',
 //     path: path.resolve(__dirname, './Dist'),

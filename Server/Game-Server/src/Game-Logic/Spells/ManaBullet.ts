@@ -22,6 +22,6 @@ export class ManaBullet extends Spell {
     projectile.vel = projectile.vel.add(speed);
 
     this.projectiles.push(projectile);
-    this.setRemove(this.duration, ...this.projectiles);
+    this.setRemove(this.duration, projectile);
   }
 }

@@ -1,5 +1,5 @@
 import { Constants } from "../../../../Shared/Constants";
-import CLIENT from "../../../Networking/socket";
+import CLIENT from "../../Networking/socket";
 let justPressed = false;
 
 export function AddControl(body: any) {
