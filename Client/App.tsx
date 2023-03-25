@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GlobalStyle from "./style/GlobalStyle";
-
+import JoinButton from "./src/components/JoinButton";
 const StyledMain = styled.main`
   #pixi-app {
     display: none;
@@ -45,7 +45,7 @@ export default function App() {
           <div className="head">
             <h1>Game name</h1>
           </div>
-          <button>Join Game</button>
+          <JoinButton />
         </div>
         <div className="right"></div>
       </StyledMain>

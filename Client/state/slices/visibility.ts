@@ -13,7 +13,6 @@ const initialState = {
   [PagesType.GAME]: false,
 } as VisibilityState;
 
-type OptionsPage = {};
 
 export const visibilitySlice = createSlice({
   name: "visibility",
