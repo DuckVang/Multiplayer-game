@@ -13,16 +13,28 @@ const initialState = {
   [PagesType.GAME]: false,
 } as VisibilityState;
 
-
 export const visibilitySlice = createSlice({
   name: "visibility",
   initialState,
   reducers: {
-    switchVisibility: (state: VisibilityState, action: SwitchVisibilityAction) => {
+    switchVisibility: (
+      state: VisibilityState,
+      action: SwitchVisibilityAction
+    ) => {
       state[action.payload] = !state[action.payload];
     },
   },
 });
-export const {switchVisibility} = visibilitySlice.actions
+const { switchVisibility } = visibilitySlice.actions;
 
-export default visibilitySlice.reducer
+export const switchVisibilityOf = (payload: PagesType) => {
+  if (!payload) {
+    throw new Error("Component is required");
+  }
+
+  return switchVisibility(payload);
+};
+
+
+
+export default visibilitySlice.reducer;

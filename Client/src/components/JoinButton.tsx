@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import WORLD from "../../game/src/World/GlobalWorld";
 
-import { switchVisibility } from "../../state/slices/visibility";
+import { switchVisibilityOf } from "../../state/slices/visibility";
 import { PagesType } from "../../state/types";
 
 const StyledButton = styled.button`
@@ -15,7 +15,7 @@ function JoinButton() {
   function HandleClick() {
     //   WORLD.createPlayer();
     //   WORLD.Start();
-    dispatch(switchVisibility(PagesType.GAME));
+    dispatch(switchVisibilityOf(PagesType.GAME));
     console.log("game started");
   }
   return <StyledButton onClick={HandleClick}>Join Game</StyledButton>;
