@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import visibilityReducer from "./slices/visibility";
 const store = configureStore({
   reducer: {
-    visibility: visibilityReducer,
+    visibility: visibilityReducer
   },
 });
 
@@ -13,6 +13,4 @@ export type AppDispatch = typeof store.dispatch;
 
 export default store
 
-function visibilityReducer(state: unknown, action: any): unknown {
-  throw new Error("Function not implemented.");
-}
+

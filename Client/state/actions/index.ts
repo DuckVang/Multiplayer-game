@@ -1,11 +1,13 @@
-import { Pages } from "../actions-types";
+import { PagesType } from "../types";
+import { switchVisibility } from "../slices/visibility";
 
 
 
-interface SwitchVisibilityAction {
+export interface SwitchVisibilityAction {
   type: "switch";
-  payload: Pages
+  payload: PagesType
 }
 
 
-export type Action = SwitchVisibilityAction
+
+export  type Action = SwitchVisibilityAction

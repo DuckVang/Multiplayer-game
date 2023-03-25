@@ -2,7 +2,7 @@ export enum ActionsType {
   SWITCH = "switch",
 }
 
-export enum Pages {
+export enum PagesType {
     MAINPAGE = "mainpage",
     GAME = "gamecanvas"
 
