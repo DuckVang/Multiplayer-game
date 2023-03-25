@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Socket } from "socket.io";
 import styled from "styled-components";
+import CLIENT from "../../game/Networking/socket";
 import WORLD from "../../game/src/World/GlobalWorld";
 
 import { switchVisibilityOf } from "../../state/slices/visibility";
@@ -15,8 +17,9 @@ function JoinButton() {
   function HandleClick() {
     //   WORLD.createPlayer();
     //   WORLD.Start();
-    dispatch(switchVisibilityOf(PagesType.GAME));
-    console.log("game started");
+    // dispatch(switchVisibilityOf(PagesType.GAME));
+
+    CLIENT.socket.emit("message", "hello from")
   }
   return <StyledButton onClick={HandleClick}>Join Game</StyledButton>;
 
