@@ -31,6 +31,10 @@ class Client {
             this.gameUpdate = data
 
         })
+        this.socket.on(Constants.MSG_TYPES.MESSAGE, (data)=>{
+
+            console.log(data)
+        })
 
 
     }

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Socket } from "socket.io";
 import styled from "styled-components";
+import { Constants } from "../../../Shared/Constants";
 import CLIENT from "../../game/Networking/socket";
 import WORLD from "../../game/src/World/GlobalWorld";
 
@@ -20,6 +21,7 @@ function JoinButton() {
     // dispatch(switchVisibilityOf(PagesType.GAME));
 
     CLIENT.socket.emit("message", "hello from")
+   
   }
   return <StyledButton onClick={HandleClick}>Join Game</StyledButton>;
 

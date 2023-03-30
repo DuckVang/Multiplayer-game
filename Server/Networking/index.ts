@@ -9,35 +9,47 @@ import Vector from "../../Engine/src/Math/Vector";
 import { IGameBody } from "../Game-Server/src/Game-Objects/IGameBody";
 import { Circle } from "pixi.js";
 import { IShape, Shape } from "../../Engine/src/components/Shapes/Shape";
+import Lobby from "./lobby";
 
 //set up express app
+const DefaultRoom = new Lobby("defaultLobby");
+const Lobby1 = new Lobby("lobby1");
+const Lobby2 = new Lobby("lobby2");
+
+const Lobbies: { [key: string]: Lobby } = {
+  [DefaultRoom.name]: DefaultRoom,
+  [Lobby1.name]: Lobby1,
+  [Lobby2.name]: Lobby2,
+};
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
 
 class GameServer {
   ips: string[];
+  rooms: { [key: string]: Lobby };
   players: { [key: string]: Player };
   objects: IGameBody[];
 
   messages: any[];
 
+  io: Server;
+
   constructor() {
     this.ips = [];
+    this.rooms = {};
     this.players = {};
     this.objects = [];
     this.messages = [];
+
+    this.io = new Server(server, { cors: { origin: "*" } });
   }
 
   start() {
     app.use(cors());
 
     app.get("/", function (req, res) {
-      // this.ips.push(req.ip)
-
-      // res.send("hello world" + this.ips)
-      res.send("hello world");
+      res.send({ message: "hey bro", rooms: this.rooms });
     });
 
     server.listen(process.env.port || 4000, function () {
@@ -48,51 +60,54 @@ class GameServer {
       );
     });
 
-    io.on("connection", (socket: Socket) => {
+    this.io.on("connection", (socket: Socket) => {
       console.log("made socket connection " + socket.id);
 
-      socket.emit("serverToClient", "Hello from server betch");
+      socket.emit(Constants.MSG_TYPES.AVL_LOBBIES, {
+        lobbies: Object.keys(Lobbies),
+      });
 
-      socket.on("clientToServer", (data) => {
+      // DefaultRoom.AddSocket(socket);
+      socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
+        Lobbies[data.lobbyName].AddSocket(socket);
+      });
+
+      socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
         console.log(data);
+        this.io.emit(Constants.MSG_TYPES.MESSAGE, {
+          message: data + " from " + socket.id,
+        });
       });
-      socket.on("createPlayer", () => {
-        this.players[socket.id] = new Player(
-          WORLD.width / 2,
-          WORLD.height / 2,
-          socket.id
-        );
-
-        socket.emit(Constants.MSG_TYPES.JOIN_GAME, socket.id);
-      });
-
-      socket.on("sendMessServer", (data) => {
-        this.messages.push(data);
-        console.log(this.messages);
+      socket.on("disconnect", (reason) => {
+        console.log(reason + " from " + socket.id);
       });
 
       socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
-        const { left, right, up, down } = data;
+        const room = this.rooms[data.room];
+        const { left, right, up, down } = data.directions;
 
-        this.players[socket.id].left = left;
-        this.players[socket.id].right = right;
-        this.players[socket.id].up = up;
-        this.players[socket.id].down = down;
+        room.players[socket.id].left = left;
+        room.players[socket.id].right = right;
+        room.players[socket.id].up = up;
+        room.players[socket.id].down = down;
 
         // console.log(players[socket.id])
         // console.log()
 
         // console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
       });
+
       socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
-        const { direction, selected } = data;
-        this.players[socket.id].CastSpell(
+        const room = this.rooms[data.room];
+        const { direction, selected } = data.mouse;
+        room.players[socket.id].CastSpell(
           new Vector(direction.x, direction.y),
           selected
         );
       });
     });
-    this.serverLoop();
+
+    // this.serverLoop();
   }
   serverLoop() {
     const LOW_LIMIT = 0.0167; // Keep At/Below 60fps
@@ -118,7 +133,7 @@ class GameServer {
         objects: objectsComp,
       };
 
-      io.emit(Constants.MSG_TYPES.GAME_UPDATE, update);
+      this.io.emit(Constants.MSG_TYPES.GAME_UPDATE, update);
 
       // console.count("server loop")
       // console.log("FPS: " + 1 / dt)

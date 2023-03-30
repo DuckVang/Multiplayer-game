@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GlobalStyle from "./style/GlobalStyle";
 import JoinButton from "./src/components/JoinButton";
 import LobbyList from "./src/components/LobbyList";
+import Chat from "./src/components/Chat";
 const StyledMain = styled.main`
   #pixi-app {
     display: none;
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
+      <Chat />
       <StyledMain className="react-app">
         <div className="left">
           <div className="head">

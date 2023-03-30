@@ -6,6 +6,8 @@ export const Constants = {
         GAME_UPDATE: "game_update",
         INPUT: "input",
         GAME_OVER: "game_over",
+        MESSAGE:"message",
+        AVL_LOBBIES: "available_lobbies"
 
     },
     INTERACTIONS: {

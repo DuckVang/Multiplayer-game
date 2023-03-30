@@ -1,103 +1,91 @@
-import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball"
-import Vector from "../../../../Engine/src/Math/Vector"
-import { ManaBullet } from "../Game-Logic/Spells/ManaBullet"
-import { Spell } from "../Game-Logic/Spells/SpellClass"
-import WORLD from "../World/GlobalWorld"
-import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion"
-import { Dash } from "../Game-Logic/Spells/Dash"
-import { IGameBody } from "./IGameBody"
-import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack"
-import { Laser } from "../Game-Logic/Spells/Laser"
-import { FireBall } from "../Game-Logic/Spells/FireBall"
-import gameServer from "../../../Networking"
+import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball";
+import Vector from "../../../../Engine/src/Math/Vector";
+import { ManaBullet } from "../Game-Logic/Spells/ManaBullet";
+import { Spell } from "../Game-Logic/Spells/SpellClass";
+import WORLD, { World } from "../World/GlobalWorld";
+import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion";
+import { Dash } from "../Game-Logic/Spells/Dash";
+import { IGameBody } from "./IGameBody";
+import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack";
+import { Laser } from "../Game-Logic/Spells/Laser";
+import { FireBall } from "../Game-Logic/Spells/FireBall";
+import gameServer from "../../../Networking";
+import Lobby from "../../../Networking/lobby";
 
 export class Player extends Ball implements IGameBody {
+  private spells: Spell[];
 
+  socketID: string;
 
-    private spells: Spell[]
+  alive: boolean;
 
-    socketID: string
+  maxHealth: number;
+  health: number;
+  maxEnergy: number;
+  energy: number;
 
-    alive: boolean
+  selected: number;
 
-    maxHealth: number
-    health: number
-    maxEnergy: number
-    energy: number
+  motionTrail: boolean;
 
-    selected: number
+  savePos: any;
 
+  invicibility: boolean;
+  invicibilityTime: number;
 
-    motionTrail: boolean
+  constructor(x: number, y: number, sokcetID: string, lobby: Lobby) {
+    super(x, y, 30, 2);
 
-    savePos: any
+    this.spells = [];
+    this.maxHealth = 100;
+    this.health = this.maxHealth;
+    this.selected = 1;
+    this.maxSpeed = 10000;
+    this.alive = true;
+    this.color = "orange";
+    this.spells.push(
+      new ManaBullet(),
+      new ManaExplosion(),
+      new FireBall(),
+      new Dash(),
+      new MeleeAttack(),
+      new Laser()
+    );
 
-    invicibility: boolean
-    invicibilityTime: number
+    this.invicibility = false;
+    this.invicibilityTime = 5000;
 
-    constructor(x: number, y: number, sokcetID: string) {
-        super(x, y, 30, 2)
+    this.PushTo(lobby.GAME.engine);
+    this.addTo(lobby.players, sokcetID);
+  }
 
-        this.spells = []
-        this.maxHealth = 100
-        this.health = this.maxHealth
-        this.selected = 1
-        this.maxSpeed = 10000
-        this.alive = true
-        this.color = "orange"
-        this.spells.push(new ManaBullet(), new ManaExplosion(), new FireBall(), new Dash(), new MeleeAttack(), new Laser())
+  addTo(dict: { [key: string]: Player }, socketID: string): void {
+    this.socketID = socketID;
+    dict[socketID] = this;
+  }
+  CastSpell(dir: Vector, selected: any) {
+    this.spells[selected].cast(dir, this.socketID);
+    console.log(dir);
+  }
+  Damaged(amount: number, invicible: boolean = true) {
+    if (this.invicibility) return;
 
+    if (this.alive) {
+      this.health -= amount;
 
-        this.invicibility = false
-        this.invicibilityTime = 5000
+      if (this.health <= 0) this.Dead();
 
-        this.PushTo(WORLD.engine)
-        this.addTo(gameServer.players, sokcetID)
+      if (invicible) {
+        this.invicibility = true;
 
-    }
-
-    addTo(dict: { [key: string]: Player }, socketID: string): void {
-        this.socketID = socketID
-        dict[socketID] = this
-
-    }
-    CastSpell(dir: Vector, selected: any) {
-
-        this.spells[selected].cast(dir, this.socketID)
-        console.log(dir)
-
-    }
-    Damaged(amount: number, invicible: boolean = true) {
-        if (this.invicibility) return
-
-        if (this.alive) {
-
-
-            this.health -= amount
-
-
-            if (this.health <= 0) this.Dead()
-
-            if (invicible) {
-
-                this.invicibility = true
-
-                setTimeout(() => {
-                    this.invicibility = false
-                }, this.invicibilityTime);
-
-            }
-
-
-        } else this.health = 0
-
-
-    }
-    Dead() {
-        this.alive = false
-        this.remove()
-
-    }
-
-
+        setTimeout(() => {
+          this.invicibility = false;
+        }, this.invicibilityTime);
+      }
+    } else this.health = 0;
+  }
+  Dead() {
+    this.alive = false;
+    this.remove();
+  }
 }
