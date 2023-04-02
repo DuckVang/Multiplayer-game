@@ -15,7 +15,7 @@ import { Timer } from "../Game-UI/Timer";
 import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
 import { PLAYER, Player } from "../Player";
-import CLIENT from "../../Networking/socket";
+import CLIENT from "../../../Networking/Client";
 import { WatchMouse } from "../Interactions/Mouse";
 
 let instance: World;

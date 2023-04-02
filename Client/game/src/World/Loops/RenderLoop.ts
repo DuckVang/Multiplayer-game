@@ -1,4 +1,4 @@
-import CLIENT from "../../../Networking/socket";
+import CLIENT from "../../../../Networking/Client";
 import { Player } from "../../Player";
 import { DrawBall, DrawBox } from "../../Render/Shapes";
 import instance from "../GlobalWorld";

@@ -17,7 +17,8 @@ class Lobby {
   }
   AddSocket(socket: Socket) {
     socket.join(this.name);
-    this.SendMessage()
+    console.log(socket.id + " joined to " + this.name )
+    // this.SendMessage()
   }
   SendMessage() {
     this.EmitToRoom(Constants.MSG_TYPES.MESSAGE, "hi from" + this.name);

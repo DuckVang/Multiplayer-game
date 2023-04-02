@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Constants } from "../../../Shared/Constants";
-import CLIENT from "../../game/Networking/socket";
+import CLIENT from "../../Networking/Client";
 
 const StyledChat = styled.div`
   position: absolute;

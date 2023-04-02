@@ -5,7 +5,7 @@ import { RenderLoop } from "./RenderLoop"
 
 
 
-import CLIENT from "../../../Networking/socket"
+import CLIENT from "../../../../Networking/Client"
 import Body from "../../../../../Engine/src/components/Physical-Body/Body"
 import { PLAYER } from "../../Player"
 

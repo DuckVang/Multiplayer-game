@@ -75,7 +75,8 @@ class GameServer {
 
       // DefaultRoom.AddSocket(socket);
       socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
-        Lobbies[data.lobbyName].AddSocket(socket);
+        
+        Lobbies[data.lobby].AddSocket(socket);
       });
 
       socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
