@@ -11,6 +11,8 @@ import { Circle } from "pixi.js";
 import { IShape, Shape } from "../../Engine/src/components/Shapes/Shape";
 import Lobby from "./lobby";
 
+require('dotenv').config()
+
 //set up express app
 const DefaultRoom = new Lobby("defaultLobby");
 const Lobby1 = new Lobby("lobby1");
@@ -52,11 +54,15 @@ class GameServer {
       res.send({ message: "hey bro", rooms: this.rooms });
     });
 
+    app.get("/lobbies", function (req, res) {
+      res.send({ lobbies: Object.keys(Lobbies) });
+    });
+
     server.listen(process.env.port || 4000, function () {
       console.log(
-        "Pog server is now listening for requests: " +
-          "http://localhost:" +
-          4000
+        `Pog server is now listening for requests: http://localhost:${
+          process.env.port || 4000
+        }`
       );
     });
 
