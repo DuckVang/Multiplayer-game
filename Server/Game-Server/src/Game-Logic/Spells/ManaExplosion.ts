@@ -4,7 +4,6 @@ import Matrix from "../../../../../Engine/src/Math/Matrix";
 import Vector from "../../../../../Engine/src/Math/Vector";
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile";
 import { Player } from "../../Game-Objects/Player";
-import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 

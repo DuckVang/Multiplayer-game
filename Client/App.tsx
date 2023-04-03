@@ -1,15 +1,13 @@
-import React from "react";
+import React, { PropsWithRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import GlobalStyle from "./style/GlobalStyle";
 import JoinButton from "./src/components/JoinButton";
 import LobbyList from "./src/components/LobbyList";
 import Chat from "./src/components/Chat";
-const StyledMain = styled.main`
-  #pixi-app {
-    display: none;
-    position: static;
-  }
+import store, { RootState } from "./state/store";
+import { useSelector } from "react-redux";
 
+const StyledMain = styled.main`
   margin: auto;
 
   width: 450px;
@@ -39,21 +37,25 @@ const StyledMain = styled.main`
 `;
 
 export default function App() {
+  const isVisible = useSelector(
+    (state: RootState) => state.visibility.mainpage
+  );
+
   return (
     <>
-      <GlobalStyle />
       <Chat />
-      <StyledMain className="react-app">
-        <div className="left">
-          <div className="head">
-            <h1>Game name</h1>
+      {isVisible && (
+        <StyledMain className="react-app">
+          <div className="left">
+            <div className="head">
+              <h1>Game name</h1>
+            </div>
+            <LobbyList />
+            <JoinButton />
           </div>
-          <LobbyList />
-          <JoinButton />
-        </div>
-        <div className="right"></div>
-      </StyledMain>
-      <div id="pixi-app"></div>
+          <div className="right"></div>
+        </StyledMain>
+      )}
     </>
   );
 }

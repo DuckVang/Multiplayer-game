@@ -5,6 +5,11 @@ const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
+#pixi-app {
+    
+    position: absolute;
+    z-index: -1;
+  }
 
 * {
     background-color: rgba(200, 200, 200, 0.411);
@@ -22,6 +27,8 @@ body {
 }
 
 #root{
+    position: relative;
+    z-index: 0;
 width: 100%;
 height: 100%;
 

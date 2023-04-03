@@ -3,7 +3,6 @@ import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../../Engine/src/Math/Vector";
 import { BoxZone } from "../../Game-Objects/Attack-Types/ForceField/BoxZone";
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile";
-import WORLD from "../../World/GlobalWorld";
 import { Spell } from "./SpellClass";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import { Player } from "../../Game-Objects/Player";

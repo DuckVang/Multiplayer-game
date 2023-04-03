@@ -1,6 +1,8 @@
 import Body from "../../../../../Engine/src/components/Physical-Body/Body"
 import Vector from "../../../../../Engine/src/Math/Vector"
+import Lobby from "../../../../Networking/lobby"
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile"
+import { Player } from "../../Game-Objects/Player"
 
 export abstract class Spell {
 
@@ -31,7 +33,7 @@ export abstract class Spell {
         this.cooldownTime = 0
     }
 
-    cast(dir: Vector, id: string) { }
+    cast(dir: Vector, socketID: string, lobby:Lobby) { }
     effect(...collidedObj: Body[]): void {
 
     }

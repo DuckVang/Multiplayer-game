@@ -10,7 +10,7 @@ type VisibilityState = {
 
 const initialState = {
   [PagesType.MAINPAGE]: true,
-  [PagesType.GAME]: false,
+  [PagesType.GAME]: true,
 } as VisibilityState;
 
 export const visibilitySlice = createSlice({

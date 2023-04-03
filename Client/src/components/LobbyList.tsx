@@ -23,8 +23,8 @@ function LobbyList() {
 
   return (
     <>
-      <select name="lobbies" id="lobbies" value={lobby} onChange={HandleChange}>
-        <option disabled selected>
+      <select name="lobbies" id="lobbies" onChange={HandleChange}>
+        <option disabled selected value="select">
           -- select an option --
         </option>
 

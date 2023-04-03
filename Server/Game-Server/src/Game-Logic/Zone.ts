@@ -1,6 +1,5 @@
 
 import { Player } from "../Game-Objects/Player"
-import WORLD from "../World/GlobalWorld"
 
 
 let percent = 0.01

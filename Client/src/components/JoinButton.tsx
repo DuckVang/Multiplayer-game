@@ -10,20 +10,19 @@ import { switchVisibilityOf } from "../../state/slices/visibility";
 import { PagesType } from "../../state/types";
 import store from "../../state/store";
 
-
 const StyledButton = styled.button`
   background-color: aliceblue;
 `;
 
 function JoinButton() {
   function HandleClick() {
-    //   WORLD.createPlayer();
-    //   WORLD.Start();
-    // dispatch(switchVisibilityOf(PagesType.GAME));
+    store.dispatch(switchVisibilityOf(PagesType.MAINPAGE));
     const selected = store.getState().lobby.selectedLobby;
     if (!selected) return;
-
     CLIENT.joinLobby(selected);
+
+    WORLD.createPlayer();
+    WORLD.Start();
   }
   return <StyledButton onClick={HandleClick}>Join Game</StyledButton>;
 }

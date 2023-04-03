@@ -2,18 +2,17 @@ import { Ball } from "../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../Engine/src/Math/Vector";
 import { ManaBullet } from "../Game-Logic/Spells/ManaBullet";
 import { Spell } from "../Game-Logic/Spells/SpellClass";
-import WORLD, { World } from "../World/GlobalWorld";
 import { ManaExplosion } from "../Game-Logic/Spells/ManaExplosion";
 import { Dash } from "../Game-Logic/Spells/Dash";
 import { IGameBody } from "./IGameBody";
 import { MeleeAttack } from "../Game-Logic/Spells/MeleeAttack";
-import { Laser } from "../Game-Logic/Spells/Laser";
+
 import { FireBall } from "../Game-Logic/Spells/FireBall";
-import gameServer from "../../../Networking";
 import Lobby from "../../../Networking/lobby";
+import SpellStorage from "../Game-Logic/Spells/SpellStorage";
 
 export class Player extends Ball implements IGameBody {
-  private spells: Spell[];
+ spellStorage: SpellStorage
 
   socketID: string;
 
@@ -32,40 +31,39 @@ export class Player extends Ball implements IGameBody {
 
   invicibility: boolean;
   invicibilityTime: number;
+  lobby: Lobby;
+  d: any[];
 
-  constructor(x: number, y: number, sokcetID: string, lobby: Lobby) {
+  constructor(x: number, y: number, socketID: string, lobby: Lobby) {
     super(x, y, 30, 2);
 
-    this.spells = [];
+    this.lobby = lobby
+    this.socketID = socketID
+
+    this.PushTo(lobby.GAME.engine);
+    this.AddTo(lobby.players, socketID);
+
+    this.spellStorage = new SpellStorage(this)
     this.maxHealth = 100;
     this.health = this.maxHealth;
     this.selected = 1;
     this.maxSpeed = 10000;
     this.alive = true;
     this.color = "orange";
-    this.spells.push(
-      new ManaBullet(),
-      new ManaExplosion(),
-      new FireBall(),
-      new Dash(),
-      new MeleeAttack(),
-      new Laser()
-    );
+   
 
     this.invicibility = false;
     this.invicibilityTime = 5000;
 
-    this.PushTo(lobby.GAME.engine);
-    this.addTo(lobby.players, sokcetID);
+   
   }
 
-  addTo(dict: { [key: string]: Player }, socketID: string): void {
-    this.socketID = socketID;
+  AddTo(dict: { [key: string]: IGameBody }, socketID: string): void {
+    
     dict[socketID] = this;
   }
   CastSpell(dir: Vector, selected: any) {
-    this.spells[selected].cast(dir, this.socketID);
-    console.log(dir);
+    this.spellStorage.cast(dir, selected)
   }
   Damaged(amount: number, invicible: boolean = true) {
     if (this.invicibility) return;
