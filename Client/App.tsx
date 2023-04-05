@@ -43,19 +43,18 @@ export default function App() {
 
   return (
     <>
-      <Chat />
-      {isVisible && (
-        <StyledMain className="react-app">
-          <div className="left">
-            <div className="head">
-              <h1>Game name</h1>
-            </div>
-            <LobbyList />
-            <JoinButton />
+      {/* <Chat /> */}
+      <StyledMain className={`react-app ${!isVisible ? "notVisible" : ""}`}>
+        <div className="left">
+          <div className="head">
+            <h1>Game name</h1>
           </div>
-          <div className="right"></div>
-        </StyledMain>
-      )}
+          <LobbyList />
+          <JoinButton />
+        </div>
+        <div className="right"></div>
+      </StyledMain>
+      
     </>
   );
 }

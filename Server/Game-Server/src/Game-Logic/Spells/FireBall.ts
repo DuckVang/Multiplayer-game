@@ -7,8 +7,9 @@ import { Burn } from "./ELemental-Effect/Burn";
 import { Spell } from "./SpellClass";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import { ids } from "webpack";
-import gameServer from "../../../../Networking";
+import GAME_SERVER from "../../../../Networking";
 import Lobby from "../../../../Networking/lobby";
+import { Player } from "../../Game-Objects/Player";
 export class FireBall extends Spell {
   constructor() {
     super();
@@ -18,12 +19,10 @@ export class FireBall extends Spell {
     Burn(100, ...collidedObj);
     this.setRemove(0, ...this.projectiles);
   }
-  cast(dir: Vector, id: string, lobby: Lobby) {
-    let player = gameServer.players[id];
-
+  cast(dir: Vector, player: Player, lobby: Lobby) {
     let playerPos = player.pos;
     let projectile = new BallProjectile(
-      id,
+      player.socketID,
       lobby,
       this,
       dir,

@@ -15,7 +15,7 @@ class SpellStorage {
   cast(dir: Vector, selected: number) {
     const spell = this.spells[selected];
     if (!spell) return;
-    spell.cast(dir, this.player.socketID, this.player.lobby);
+    spell.cast(dir, this.player, this.player.lobby);
   }
 }
 export default SpellStorage;

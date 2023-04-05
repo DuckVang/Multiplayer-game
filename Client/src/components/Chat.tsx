@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Constants } from "../../../Shared/Constants";
-import CLIENT from "../../Networking/Client";
+
+import GAME_CLIENT from "../../Networking/Client";
+import { MSG_TYPES } from "../../../Shared/Constants";
 
 const StyledChat = styled.div`
   position: absolute;
@@ -25,11 +25,11 @@ function Chat() {
     "piog",
   ]);
   const [message, setMessage] = useState("");
-  CLIENT.socket.on(Constants.MSG_TYPES.MESSAGE, (data) =>
+  GAME_CLIENT.socket.on(MSG_TYPES.MESSAGE, (data:{message: string}) =>
     setChatMessages([...chatMessages, data.message])
   );
   function SendMessage() {
-    CLIENT.socket.emit(Constants.MSG_TYPES.MESSAGE, message);
+    GAME_CLIENT.socket.emit(MSG_TYPES.MESSAGE, message);
     setChatMessages([...chatMessages, message]);
     setMessage("");
   }

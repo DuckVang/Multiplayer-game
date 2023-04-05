@@ -1,7 +1,7 @@
 import BODIES from "../../../../../Engine/src/components/Models/Bodies";
 import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../../Engine/src/Math/Vector";
-import gameServer from "../../../../Networking";
+import GAME_SERVER from "../../../../Networking";
 import Lobby from "../../../../Networking/lobby";
 import { BallProjectile } from "../../Game-Objects/Attack-Types/Projectile/BallProjectile";
 import { Player } from "../../Game-Objects/Player";

@@ -2,7 +2,8 @@
 import Vector from "../../Math/Vector"
 import Matrix from "../../Math/Matrix"
 import { Shape } from "./Shape"
-import { Constants } from "../../../../Shared/Constants"
+import { SHAPES_TYPES } from "../../../../Shared/Constants"
+
 export interface ITriangle {
 
 
@@ -29,7 +30,7 @@ export default class Triangle extends Shape {
 
     constructor(x1:number, y1:number, x2:number, y2:number, x3:number, y3:number){
 
-        super(Constants.SHAPES.TRIANGLE)
+        super(SHAPES_TYPES.TRIANGLE)
         this.vertex[0] = new Vector(x1, y1);
         this.vertex[1] = new Vector(x2, y2);
         this.vertex[2] = new Vector(x3, y3);

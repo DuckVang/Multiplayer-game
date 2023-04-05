@@ -33,7 +33,7 @@ export abstract class Spell {
         this.cooldownTime = 0
     }
 
-    cast(dir: Vector, socketID: string, lobby:Lobby) { }
+    cast(dir: Vector, player: Player, lobby:Lobby) { }
     effect(...collidedObj: Body[]): void {
 
     }

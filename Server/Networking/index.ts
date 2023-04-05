@@ -3,58 +3,61 @@ import { Socket, Server } from "socket.io";
 import { createServer } from "http";
 import cors from "cors";
 import { Player } from "../Game-Server/src/Game-Objects/Player";
-import { Constants } from "../../Shared/Constants";
+
 import Vector from "../../Engine/src/Math/Vector";
 import { IGameBody } from "../Game-Server/src/Game-Objects/IGameBody";
 import Lobby from "./lobby";
+import { addListeners } from "./listeners";
 
-require('dotenv').config()
+require("dotenv").config();
 
 //set up express app
 const DefaultRoom = new Lobby("defaultLobby");
 // const Lobby1 = new Lobby("lobby1");
 // const Lobby2 = new Lobby("lobby2");
 
-const Lobbies: { [key: string]: Lobby } = {
-  [DefaultRoom.name]: DefaultRoom,
-  // [Lobby1.name]: Lobby1,
-  // [Lobby2.name]: Lobby2,
-};
-
-DefaultRoom.Start()
+DefaultRoom.Start();
 
 const app = express();
 const server = createServer(app);
 
-class GameServer {
+export class GameServer {
   ips: string[];
   rooms: { [key: string]: Lobby };
   players: { [key: string]: Player };
   objects: IGameBody[];
+  Lobbies: { [key: string]: Lobby };
 
   messages: any[];
 
   io: Server;
 
   constructor() {
+    this.io = new Server(server, { cors: { origin: "*" } });
+
     this.ips = [];
     this.rooms = {};
     this.players = {};
     this.objects = [];
     this.messages = [];
+    this.Lobbies = {
+      [DefaultRoom.name]: DefaultRoom,
+      // [Lobby1.name]: Lobby1,
+      // [Lobby2.name]: Lobby2,
+    };
 
-    this.io = new Server(server, { cors: { origin: "*" } });
+    addListeners(this);
   }
 
   start() {
     app.use(cors());
 
-    app.get("/", function (req, res) {
-      res.send({ message: "hey bro", rooms: this.rooms });
-    });
+    // app.get("/", function (req, res) {
+    //   res.send({ message: "hey bro", rooms: this.rooms });
+    // });
 
-    app.get("/lobbies", function (req, res) {
-      res.send({ lobbies: Object.keys(Lobbies) });
+    app.get("/lobbies", (req, res) => {
+      res.send({ lobbies: Object.keys(this.Lobbies) });
     });
 
     server.listen(process.env.port || 4000, function () {
@@ -65,49 +68,48 @@ class GameServer {
       );
     });
 
-    this.io.on("connection", (socket: Socket) => {
-      console.log("made socket connection " + socket.id);
+    // this.io.on("connection", (socket: Socket) => {
+    //   console.log("made socket connection " + socket.id);
 
-      
-      // DefaultRoom.AddSocket(socket);
-      socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
-        Lobbies[data.lobby].AddSocket(socket);
-      });
+    //   // DefaultRoom.AddSocket(socket);
+    //   socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
+    //     Lobbies[data.lobby].AddSocket(socket);
+    //   });
 
-      // socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
-      //   console.log(data);
-      //   this.io.emit(Constants.MSG_TYPES.MESSAGE, {
-      //     message: data + " from " + socket.id,
-      //   });
-      // });
-      // socket.on("disconnect", (reason) => {
-      //   console.log(reason + " from " + socket.id);
-      // });
+    //   // socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
+    //   //   console.log(data);
+    //   //   this.io.emit(Constants.MSG_TYPES.MESSAGE, {
+    //   //     message: data + " from " + socket.id,
+    //   //   });
+    //   // });
+    //   // socket.on("disconnect", (reason) => {
+    //   //   console.log(reason + " from " + socket.id);
+    //   // });
 
-      // socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
-      //   const room = this.rooms[data.room];
-      //   const { left, right, up, down } = data.directions;
+    //   // socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
+    //   //   const room = this.rooms[data.room];
+    //   //   const { left, right, up, down } = data.directions;
 
-      //   room.players[socket.id].left = left;
-      //   room.players[socket.id].right = right;
-      //   room.players[socket.id].up = up;
-      //   room.players[socket.id].down = down;
+    //   //   room.players[socket.id].left = left;
+    //   //   room.players[socket.id].right = right;
+    //   //   room.players[socket.id].up = up;
+    //   //   room.players[socket.id].down = down;
 
-      //   // console.log(players[socket.id])
-      //   // console.log()
+    //   //   // console.log(players[socket.id])
+    //   //   // console.log()
 
-      //   // console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
-      // });
+    //   //   // console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
+    //   // });
 
-      // socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
-      //   const room = this.rooms[data.room];
-      //   const { direction, selected } = data.mouse;
-      //   room.players[socket.id].CastSpell(
-      //     new Vector(direction.x, direction.y),
-      //     selected
-      //   );
-      // });
-    });
+    //   // socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
+    //   //   const room = this.rooms[data.room];
+    //   //   const { direction, selected } = data.mouse;
+    //   //   room.players[socket.id].CastSpell(
+    //   //     new Vector(direction.x, direction.y),
+    //   //     selected
+    //   //   );
+    //   // });
+    // });
 
     // this.serverLoop();
   }
@@ -120,11 +122,8 @@ class GameServer {
     //   let dt = (now - lastUpdateTime) / 1000;
     //   if (dt < LOW_LIMIT) dt = LOW_LIMIT;
     //   else if (dt > HIGH_LIMIT) dt = HIGH_LIMIT;
-
     //   lastUpdateTime = now;
-
     //   WORLD.Loop(dt);
-
     //   const playersComp = returnObjectsOnlyWith(this.players, "comp");
     //   const objectsComp = this.objects.map((obj) => obj.comp);
     //   const update: {
@@ -134,9 +133,7 @@ class GameServer {
     //     players: playersComp,
     //     objects: objectsComp,
     //   };
-
     //   this.io.emit(Constants.MSG_TYPES.GAME_UPDATE, update);
-
     //   // console.count("server loop")
     //   // console.log("FPS: " + 1 / dt)
     // }, 0);
@@ -151,5 +148,6 @@ function returnObjectsOnlyWith(dict: any, property: any) {
 
   return playersComp;
 }
-const gameServer = new GameServer();
-export default gameServer;
+const GAME_SERVER = new GameServer();
+
+export default GAME_SERVER;

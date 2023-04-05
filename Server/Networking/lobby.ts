@@ -1,12 +1,13 @@
 import { Socket } from "socket.io";
-import gameServer from ".";
+import GAME_SERVER from ".";
 import { Circle } from "../../Engine/src/components/Shapes/Circle";
 import { IShape } from "../../Engine/src/components/Shapes/Shape";
-import { Constants } from "../../Shared/Constants";
+
 import { IGameBody } from "../Game-Server/src/Game-Objects/IGameBody";
 import { Player } from "../Game-Server/src/Game-Objects/Player";
 import { World } from "../Game-Server/src/World/GlobalWorld";
 import { returnObjectsOnlyWith } from "../utils";
+import { MSG_TYPES } from "../../Shared/Constants";
 
 class Lobby {
   name: string;
@@ -19,15 +20,20 @@ class Lobby {
     this.name = name;
     this.objects = [];
     this.players = {};
+    this.SPELL_PROJ = [];
     this.GAME = new World(10000, 10000);
   }
   AddSocket(socket: Socket) {
     socket.join(this.name);
     console.log(socket.id + " joined to " + this.name);
+
     // this.SendMessage()
   }
+  CreatePlayer(socket: Socket) {
+    new Player(this.GAME.width / 2, this.GAME.height / 2, socket.id, this);
+  }
   SendMessage() {
-    this.EmitToRoom(Constants.MSG_TYPES.MESSAGE, "hi from" + this.name);
+    this.EmitToRoom(MSG_TYPES.MESSAGE, "hi from" + this.name);
   }
   private ServerLoop() {
     const LOW_LIMIT = 0.0167; // Keep At/Below 60fps
@@ -43,8 +49,7 @@ class Lobby {
 
       this.GAME.Loop(dt);
 
-      
-        const playersComp = returnObjectsOnlyWith(this.players, "comp");
+      const playersComp = returnObjectsOnlyWith(this.players, "comp");
       const objectsComp = this.objects.map((obj) => obj.comp);
       const update: {
         players: { [key: string]: Circle };
@@ -54,7 +59,7 @@ class Lobby {
         objects: objectsComp,
       };
 
-      this.EmitToRoom(Constants.MSG_TYPES.GAME_UPDATE, update);
+      this.EmitToRoom(MSG_TYPES.GAME_UPDATE, update);
 
       // console.count("server loop")
       // console.log("FPS: " + 1 / dt)
@@ -66,7 +71,7 @@ class Lobby {
   }
 
   private EmitToRoom(action: string, data: any = null) {
-    gameServer.io.to(this.name).emit(action, data);
+    GAME_SERVER.io.to(this.name).emit(action, data);
   }
 }
 export default Lobby;

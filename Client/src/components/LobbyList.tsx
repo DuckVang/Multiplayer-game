@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Constants } from "../../../Shared/Constants";
-import CLIENT from "../../Networking/Client";
+
+import GAME_CLIENT from "../../Networking/Client";
 import store from "../../state/store";
 import { SelectLobby } from "../../state/slices/lobby";
 const baseURL = "https://localhost:4000/lobbies";

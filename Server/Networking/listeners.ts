@@ -1,48 +1,52 @@
 import { Socket } from "socket.io";
-import { Constants } from "../../Shared/Constants";
+import { INTERACTIONS_TYPES, MSG_TYPES } from "../../Shared/Constants";
 import Vector from "../../Engine/src/Math/Vector";
 import Lobby from "./lobby";
-import { Server } from "http";
+
 import { GameServer } from ".";
 
 export function addListeners(server: GameServer) {
-  this.io.on("connection", (socket: Socket) => {
+  server.io.on("connection", (socket: Socket) => {
     console.log("made socket connection " + socket.id);
 
-    socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
+    socket.on(MSG_TYPES.JOIN_GAME, (data) => {
       server.Lobbies[data.lobby].AddSocket(socket);
-      
+    });
+    socket.on(MSG_TYPES.CREATE_PLAYER, (data) => {
+      server.Lobbies[data.lobby].CreatePlayer(socket);
     });
 
     socket.on("disconnect", (reason) => {
       console.log(reason + " from " + socket.id);
     });
 
-    socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
-      console.log(data);
-      this.io.emit(Constants.MSG_TYPES.MESSAGE, {
+    socket.on(MSG_TYPES.MESSAGE, (data) => {
+      this.io.emit(MSG_TYPES.MESSAGE, {
         message: data + " from " + socket.id,
       });
     });
 
-
-    socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
-      const room = this.rooms[data.room];
+    socket.on(INTERACTIONS_TYPES.MOVEMENT, (data) => {
+      console.log(data);
+      const lobby = server.Lobbies[data.lobby];
       const { left, right, up, down } = data.directions;
 
-      room.players[socket.id].left = left;
-      room.players[socket.id].right = right;
-      room.players[socket.id].up = up;
-      room.players[socket.id].down = down;
+      const player = lobby.players[socket.id];
+      if (!player) return;
+
+      player.left = left;
+      player.right = right;
+      player.up = up;
+      player.down = down;
     });
 
-    socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
-      const room = this.rooms[data.room];
+    socket.on(INTERACTIONS_TYPES.MOUSE_CLICK, (data) => {
+      const lobby = server.Lobbies[data.lobby];
       const { direction, selected } = data.mouse;
-      room.players[socket.id].CastSpell(
-        new Vector(direction.x, direction.y),
-        selected
-      );
+      const player = lobby.players[socket.id];
+      if (!player) return;
+      console.log(direction);
+      player.CastSpell(new Vector(direction.x, direction.y), selected);
     });
   });
 }

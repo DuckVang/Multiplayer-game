@@ -1,4 +1,4 @@
-import { Constants } from "../../../../Shared/Constants"
+import { SHAPES_TYPES } from "../../../../Shared/Constants"
 import Matrix from "../../Math/Matrix"
 import Vector from "../../Math/Vector"
 import { IShape, Shape } from "./Shape"
@@ -26,7 +26,7 @@ export  class Line extends Shape{
     end: Vector
 
     constructor(x0:number, y0:number, x1:number, y1:number){
-        super(Constants.SHAPES.LINE)
+        super(SHAPES_TYPES.LINE)
         this.vertex[0] = new Vector(x0, y0);
         this.vertex[1] = new Vector(x1, y1);
         this.dir = this.vertex[1].subtr(this.vertex[0]).unit();

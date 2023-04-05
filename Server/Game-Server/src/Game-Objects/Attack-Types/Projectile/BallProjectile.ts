@@ -2,7 +2,7 @@ import { Graphics } from "pixi.js";
 import { Ball } from "../../../../../../Engine/src/components/Physical-Body/Ball";
 import Body from "../../../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../../../Engine/src/Math/Vector";
-import gameServer from "../../../../../Networking";
+import GAME_SERVER from "../../../../../Networking";
 import Lobby from "../../../../../Networking/lobby";
 
 import { IGameBody } from "../../IGameBody";
@@ -55,7 +55,7 @@ export class BallProjectile extends Ball implements IProjectile {
   }
   remove() {
     super.remove();
-    gameServer.objects.splice(gameServer.objects.indexOf(this), 1);
+    GAME_SERVER.objects.splice(GAME_SERVER.objects.indexOf(this), 1);
   }
   collided(...collidedObj: Body[]): void {
     this.spell.effect(...collidedObj);

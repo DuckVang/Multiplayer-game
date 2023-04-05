@@ -15,8 +15,9 @@ import { Timer } from "../Game-UI/Timer";
 import { HealthBar } from "../Game-UI/HealthBar";
 import { EnergyBar } from "../Game-UI/EnergyBar";
 import { PLAYER, Player } from "../Player";
-import CLIENT from "../../../Networking/Client";
+import GAME_CLIENT from "../../../Networking/Client";
 import { WatchMouse } from "../Interactions/Mouse";
+import { MSG_TYPES } from "../../../../Shared/Constants";
 
 let instance: World;
 
@@ -57,8 +58,6 @@ export class World {
 
   constructor() {}
   init(width: number, height: number) {
-    this.playerID = CLIENT.socket.id;
-
     this.PLAYERS = [];
     this.OBJECTS = [];
     this.UI_OBJECTS = [];
@@ -72,10 +71,6 @@ export class World {
       backgroundColor: 0xdc980,
       backgroundAlpha: 0.5,
     });
-
-    const appNode = document.getElementById("pixi-app");
-
-    appNode.appendChild(this.app.view);
 
     this.VIEWPORT = new Viewport({
       screenWidth: window.innerWidth,
@@ -113,7 +108,10 @@ export class World {
     this.BACKGROUND = new Graphics();
     this.VIEWPORT.addChild(this.BACKGROUND);
   }
-
+  append() {
+    const appNode = document.getElementById("pixi-app");
+    appNode.appendChild(this.app.view);
+  }
   Start() {
     MainLoop();
   }
@@ -126,7 +124,8 @@ export class World {
     this.player.health = data.health;
   }
   createPlayer() {
-    CLIENT.socket.emit("createPlayer");
+    this.playerID = GAME_CLIENT.socket.id;
+    GAME_CLIENT.emitToLobby(MSG_TYPES.CREATE_PLAYER);
 
     AddControl(PLAYER);
     WatchMouse(PLAYER);

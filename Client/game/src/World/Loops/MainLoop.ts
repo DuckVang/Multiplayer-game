@@ -2,7 +2,7 @@ import { WatchMouse } from "../../Interactions/Mouse";
 import { Follow } from "../Camera/Camera";
 import { RenderLoop } from "./RenderLoop";
 
-import CLIENT from "../../../../Networking/Client";
+import GAME_CLIENT from "../../../../Networking/Client";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import { PLAYER } from "../../Player";
 
@@ -12,15 +12,15 @@ export function MainLoop() {
   // MapLoop()
   // WatchMouse()
 
-  console.group("main loop");
+ 
   setInterval(() => {
-    if (CLIENT.gameUpdate) {
-      console.log(CLIENT.gameUpdate);
-      const update = CLIENT.gameUpdate;
+    if (GAME_CLIENT.gameUpdate) {
+     
+      const update = GAME_CLIENT.gameUpdate;
       if (Object.keys(update.players).length !== 0) {
-        Object.assign(PLAYER, update.players[CLIENT.socket.id]);
+        Object.assign(PLAYER, update.players[GAME_CLIENT.socket.id]);
 
-        const mainPlayer = update.players[CLIENT.socket.id];
+        const mainPlayer = update.players[GAME_CLIENT.socket.id];
 
         Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y });
       }

@@ -1,13 +1,14 @@
-import CLIENT from "../../../../Networking/Client";
+import GAME_CLIENT from "../../../../Networking/Client";
 import { Player } from "../../Player";
 import { DrawBall, DrawBox } from "../../Render/Shapes";
 import instance from "../GlobalWorld";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
-import { Constants } from "../../../../../Shared/Constants";
+
 import { IShape, Shape } from "../../../../../Engine/src/components/Shapes/Shape";
 import { Circle } from "../../../../../Engine/src/components/Shapes/Circle";
+import { SHAPES_TYPES } from "../../../../../Shared/Constants";
 export function RenderLoop() {
-    if (!CLIENT.gameUpdate) return
+    if (!GAME_CLIENT.gameUpdate) return
     instance.BACKGROUND.clear()
 
     // CLIENT.gameUpdate.players((player: any) => {
@@ -24,8 +25,8 @@ export function RenderLoop() {
     //     DrawBall(instance.BACKGROUND, CLIENT.gameUpdate.players[key])
     // }
 
-    RenderPlayers(CLIENT.gameUpdate.players)
-    RenderObjects(CLIENT.gameUpdate.objects)
+    RenderPlayers(GAME_CLIENT.gameUpdate.players)
+    RenderObjects(GAME_CLIENT.gameUpdate.objects)
 
 
 
@@ -40,17 +41,17 @@ function RenderPlayers(players: { [key: string]: Circle }) {
     }
 }
 function RenderObjects(objects: IShape[]) {
-    console.log(objects)
+   
     objects.forEach(obj => {
 
         switch (obj.type) {
 
 
-            case Constants.SHAPES.CIRCLE:
+            case SHAPES_TYPES.CIRCLE:
                 DrawBall(instance.BACKGROUND, obj)
                 break
 
-            case Constants.SHAPES.RECTANGLE:
+            case SHAPES_TYPES.RECTANGLE:
                 DrawBox(instance.BACKGROUND, obj)
                 break
 

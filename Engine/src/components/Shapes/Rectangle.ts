@@ -2,7 +2,8 @@ import Vector from "../../Math/Vector"
 import Matrix from "../../Math/Matrix"
 
 import { IShape, Shape } from "./Shape"
-import { Constants } from "../../../../Shared/Constants"
+import { SHAPES_TYPES } from "../../../../Shared/Constants"
+
 
 export interface IRectangle {
     dir: Vector
@@ -27,7 +28,7 @@ export class Rectangle extends Shape {
     rotMat: Matrix
 
     constructor(x1: number, y1: number, x2: number, y2: number, w: number) {
-        super(Constants.SHAPES.RECTANGLE)
+        super(SHAPES_TYPES.RECTANGLE)
         this.pos = new Vector(0, 0)
         this.vertex = []
         this.color = ""

@@ -5,7 +5,7 @@ import { Spell } from "../../../Game-Logic/Spells/SpellClass";
 
 import { ISpellZone } from "./ISpellZone";
 import Body from "../../../../../../Engine/src/components/Physical-Body/Body";
-import gameServer from "../../../../../Networking";
+import GAME_SERVER from "../../../../../Networking";
 import { IGameBody } from "../../IGameBody";
 import Lobby from "../../../../../Networking/lobby";
 
@@ -53,7 +53,7 @@ export class BoxZone extends Box implements ISpellZone {
   }
   remove() {
     super.remove();
-    gameServer.objects.splice(gameServer.objects.indexOf(this), 1);
+    GAME_SERVER.objects.splice(GAME_SERVER.objects.indexOf(this), 1);
   }
 
   collided(...collidedObj: Body[]): void {
