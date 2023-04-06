@@ -22,7 +22,7 @@ export class World {
 
     this.width = width;
     this.height = height;
-    this.engine = new Engine(10000, this.width, this.height);
+    this.engine = new Engine(500, this.width, this.height);
 
     this.SPELL_PROJ = [];
 
