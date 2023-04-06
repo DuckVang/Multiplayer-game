@@ -54,9 +54,10 @@ export class BallProjectile extends Ball implements IProjectile {
     this.parentArray.push(this);
   }
   remove() {
+    this.lobby.objects.splice(this.lobby.objects.indexOf(this), 1);
     super.remove();
-    GAME_SERVER.objects.splice(GAME_SERVER.objects.indexOf(this), 1);
   }
+ 
   collided(...collidedObj: Body[]): void {
     this.spell.effect(...collidedObj);
   }

@@ -52,8 +52,8 @@ export class BoxZone extends Box implements ISpellZone {
     array.push(this);
   }
   remove() {
+    this.lobby.objects.splice(this.lobby.objects.indexOf(this), 1);
     super.remove();
-    GAME_SERVER.objects.splice(GAME_SERVER.objects.indexOf(this), 1);
   }
 
   collided(...collidedObj: Body[]): void {

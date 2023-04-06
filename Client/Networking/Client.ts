@@ -8,7 +8,7 @@ import store from "../state/store";
 // import instance from "../Game-Client/src/World/GlobalWorld";
 
 let instance: Client;
-class Client {
+export class Client {
   gameUpdate: any;
 
   socket: Socket;
@@ -30,6 +30,7 @@ class Client {
       (data: { players: { [key: string]: Player }; objects: any[] }) => {
         this.gameUpdate = data;
       }
+      
     );
     this.socket.on(MSG_TYPES.MESSAGE, (data) => {
       console.log(data);

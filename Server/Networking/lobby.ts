@@ -7,7 +7,7 @@ import { IGameBody } from "../Game-Server/src/Game-Objects/IGameBody";
 import { Player } from "../Game-Server/src/Game-Objects/Player";
 import { World } from "../Game-Server/src/World/GlobalWorld";
 import { returnObjectsOnlyWith } from "../utils";
-import { MSG_TYPES } from "../../Shared/Constants";
+import { EFFECT_TYPES, EVENT, MSG_TYPES } from "../../Shared/Constants";
 
 class Lobby {
   name: string;
@@ -49,16 +49,20 @@ class Lobby {
 
       this.GAME.Loop(dt);
 
-      const playersComp = returnObjectsOnlyWith(this.players, "comp");
+      const playersComp = returnObjectsOnlyWith(
+        this.players,
+        "comp",
+        "effects"
+      );
       const objectsComp = this.objects.map((obj) => obj.comp);
       const update: {
-        players: { [key: string]: Circle };
+        players: { [key: string]: { comp: Circle; effects: EFFECT_TYPES[] } };
         objects: IShape[];
       } = {
         players: playersComp,
         objects: objectsComp,
       };
-
+      console.log(update);
       this.EmitToRoom(MSG_TYPES.GAME_UPDATE, update);
 
       // console.count("server loop")
@@ -70,8 +74,8 @@ class Lobby {
     this.ServerLoop();
   }
 
-  private EmitToRoom(action: string, data: any = null) {
-    GAME_SERVER.io.to(this.name).emit(action, data);
+  EmitToRoom(event: EVENT, data: any = null) {
+    GAME_SERVER.io.to(this.name).emit(event, data);
   }
 }
 export default Lobby;

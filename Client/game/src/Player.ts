@@ -1,5 +1,7 @@
 import { Shape } from "../../../Engine/src/components/Shapes/Shape";
 import Vector from "../../../Engine/src/Math/Vector";
+import { EFFECT_TYPES } from "../../../Shared/Constants";
+import GAME_CLIENT from "../../Networking/Client";
 
 export class Player  {
 
@@ -41,6 +43,8 @@ export class Player  {
     }
     CastSpell(direction: Vector) {
     }
+ 
+
 }
 
 const PLAYER = new Player()

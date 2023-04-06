@@ -1,5 +1,6 @@
 import BODIES from "../../../../../Engine/src/components/Models/Bodies";
 import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball";
+import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../../Engine/src/Math/Vector";
 import GAME_SERVER from "../../../../Networking";
 import Lobby from "../../../../Networking/lobby";
@@ -31,5 +32,12 @@ export class ManaBullet extends Spell {
 
     this.projectiles.push(projectile);
     this.setRemove(this.duration, projectile);
+  }
+  effect(...collidedObj: Body[]): void {
+    collidedObj.forEach((obj) => {
+      if (obj instanceof Player) {
+        obj.Damaged(1)
+      }
+    });
   }
 }

@@ -5,7 +5,10 @@ export enum MSG_TYPES {
   GAME_OVER = "game_over",
   MESSAGE = "message",
   AVL_LOBBIES = "available_lobbies",
-  CREATE_PLAYER = "creat_player"
+  CREATE_PLAYER = "creat_player",
+}
+export enum EFFECT_TYPES {
+  DAMAGED = "damaged",
 }
 export enum INTERACTIONS_TYPES {
   MOVEMENT = "movement",
@@ -22,4 +25,9 @@ export enum SHAPES_TYPES {
   TRIANGLE = "triangle",
   LINE = "line",
 }
-export type EVENT = MSG_TYPES|INTERACTIONS_TYPES|SPELL_TYPES|SHAPES_TYPES
+export type EVENT =
+  | MSG_TYPES
+  | INTERACTIONS_TYPES
+  | SPELL_TYPES
+  | SHAPES_TYPES
+  | EFFECT_TYPES;

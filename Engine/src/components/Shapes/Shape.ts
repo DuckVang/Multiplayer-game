@@ -41,7 +41,7 @@ export abstract class Shape implements IShape {
     constructor(type: string) {
         this.pos = new Vector(0, 0)
         this.vertex = []
-        this.color = ""
+        this.color = "grey"
         this.type = type
     }
 

@@ -24,8 +24,8 @@ const server = createServer(app);
 export class GameServer {
   ips: string[];
   rooms: { [key: string]: Lobby };
-  players: { [key: string]: Player };
-  objects: IGameBody[];
+
+
   Lobbies: { [key: string]: Lobby };
 
   messages: any[];
@@ -37,8 +37,8 @@ export class GameServer {
 
     this.ips = [];
     this.rooms = {};
-    this.players = {};
-    this.objects = [];
+    
+    
     this.messages = [];
     this.Lobbies = {
       [DefaultRoom.name]: DefaultRoom,
@@ -68,75 +68,7 @@ export class GameServer {
       );
     });
 
-    // this.io.on("connection", (socket: Socket) => {
-    //   console.log("made socket connection " + socket.id);
-
-    //   // DefaultRoom.AddSocket(socket);
-    //   socket.on(Constants.MSG_TYPES.JOIN_GAME, (data) => {
-    //     Lobbies[data.lobby].AddSocket(socket);
-    //   });
-
-    //   // socket.on(Constants.MSG_TYPES.MESSAGE, (data) => {
-    //   //   console.log(data);
-    //   //   this.io.emit(Constants.MSG_TYPES.MESSAGE, {
-    //   //     message: data + " from " + socket.id,
-    //   //   });
-    //   // });
-    //   // socket.on("disconnect", (reason) => {
-    //   //   console.log(reason + " from " + socket.id);
-    //   // });
-
-    //   // socket.on(Constants.INTERACTIONS.MOVEMENT, (data) => {
-    //   //   const room = this.rooms[data.room];
-    //   //   const { left, right, up, down } = data.directions;
-
-    //   //   room.players[socket.id].left = left;
-    //   //   room.players[socket.id].right = right;
-    //   //   room.players[socket.id].up = up;
-    //   //   room.players[socket.id].down = down;
-
-    //   //   // console.log(players[socket.id])
-    //   //   // console.log()
-
-    //   //   // console.log(players[socket.id].left, players[socket.id].right, players[socket.id].up, players[socket.id].down)
-    //   // });
-
-    //   // socket.on(Constants.INTERACTIONS.MOUSE_CLICK, (data) => {
-    //   //   const room = this.rooms[data.room];
-    //   //   const { direction, selected } = data.mouse;
-    //   //   room.players[socket.id].CastSpell(
-    //   //     new Vector(direction.x, direction.y),
-    //   //     selected
-    //   //   );
-    //   // });
-    // });
-
-    // this.serverLoop();
-  }
-  serverLoop() {
-    // const LOW_LIMIT = 0.0167; // Keep At/Below 60fps
-    // const HIGH_LIMIT = 0.1;
-    // let lastUpdateTime: number;
-    // setInterval(() => {
-    //   const now = Date.now();
-    //   let dt = (now - lastUpdateTime) / 1000;
-    //   if (dt < LOW_LIMIT) dt = LOW_LIMIT;
-    //   else if (dt > HIGH_LIMIT) dt = HIGH_LIMIT;
-    //   lastUpdateTime = now;
-    //   WORLD.Loop(dt);
-    //   const playersComp = returnObjectsOnlyWith(this.players, "comp");
-    //   const objectsComp = this.objects.map((obj) => obj.comp);
-    //   const update: {
-    //     players: { [key: string]: Circle };
-    //     objects: IShape[];
-    //   } = {
-    //     players: playersComp,
-    //     objects: objectsComp,
-    //   };
-    //   this.io.emit(Constants.MSG_TYPES.GAME_UPDATE, update);
-    //   // console.count("server loop")
-    //   // console.log("FPS: " + 1 / dt)
-    // }, 0);
+ 
   }
 }
 

@@ -9,7 +9,7 @@ import {
   Shape,
 } from "../../../../../Engine/src/components/Shapes/Shape";
 import { Circle } from "../../../../../Engine/src/components/Shapes/Circle";
-import { SHAPES_TYPES } from "../../../../../Shared/Constants";
+import { EFFECT_TYPES, SHAPES_TYPES } from "../../../../../Shared/Constants";
 export function RenderLoop(instance: World) {
   if (!GAME_CLIENT.gameUpdate) return;
   instance.BACKGROUND.clear();
@@ -31,9 +31,16 @@ export function RenderLoop(instance: World) {
   RenderObjects(GAME_CLIENT.gameUpdate.objects, instance);
 }
 
-function RenderPlayers(players: { [key: string]: Circle }, instance: World) {
+function RenderPlayers(
+  players: { [key: string]: { comp: IShape; effects: EFFECT_TYPES[] } },
+  instance: World
+) {
   for (const key in players) {
-    DrawBall(instance.BACKGROUND, players[key]);
+    if (players[key].effects.includes(EFFECT_TYPES.DAMAGED)) {
+      console.log(players[key]);
+      DrawBall(instance.BACKGROUND, players[key].comp, "white");
+    } else
+      DrawBall(instance.BACKGROUND, players[key].comp, players[key].comp.color);
   }
 }
 
