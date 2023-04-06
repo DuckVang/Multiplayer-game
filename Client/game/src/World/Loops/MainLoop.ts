@@ -23,7 +23,7 @@ export function MainLoop(instance:World) {
 
         const mainPlayer = update.players[GAME_CLIENT.socket.id];
 
-        Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y }, this);
+        Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y }, instance);
       }
 
       RenderLoop(instance);

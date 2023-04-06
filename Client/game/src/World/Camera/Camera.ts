@@ -7,7 +7,11 @@ export function SetCameraTo(player: Player, instance: World) {
   instance.spectate = player;
 }
 export function Follow(pos: { x: number; y: number }, instance: World) {
-  instance.app.stage.pivot.x = pos.x;
-  instance.app.stage.pivot.y = pos.y;
-  console.log(instance.app.stage.pivot)
+  const stage = instance.app.stage;
+  stage.pivot.x = pos.x;
+  stage.pivot.y = pos.y;
+
+  const renderer = instance.app.renderer;
+  stage.position.x = renderer.width / 2;
+  stage.position.y = renderer.height / 2;
 }

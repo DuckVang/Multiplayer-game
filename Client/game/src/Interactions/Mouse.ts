@@ -9,24 +9,22 @@ import { INTERACTIONS_TYPES } from "../../../../Shared/Constants";
 let justPressed = false;
 
 export function WatchMouse(player: Player, instance: World) {
-  document.addEventListener("click", HandleClick, { once: true });
-  console.count("mouse");
+  //   document.addEventListener("click", HandleClick, { once: true });
+  //   console.count("mouse");
 
-  //   instance.app.stage.interactive = true;
-  //   instance.app.stage.buttonMode = true;
+  instance.app.stage.interactive = true;
+  instance.app.stage.buttonMode = true;
 
-  //   instance.app.stage.on("click", function (e) {
-  //     console.log(e.data.global);
-  //     alert(e);
+  instance.app.stage.on("click", function (e) {
 
-  //     let mouse = e.data.global;
-  //     let mousePos = new Vector(
-  //       mouse.x - instance.app.renderer.width / 2,
-  //       mouse.y - instance.app.renderer.height / 2
-  //     );
-  //     let direction = mousePos.unit();
-  //     if (player.alive === true) emitClick(direction);
-  //   });
+    let mouse = e.data.global;
+    let mousePos = new Vector(
+      mouse.x - instance.app.renderer.width / 2,
+      mouse.y - instance.app.renderer.height / 2
+    );
+    let direction = mousePos.unit();
+    if (player.alive === true) emitClick(direction);
+  });
 
   function HandleClick() {
     document.removeEventListener("click", HandleClick);
