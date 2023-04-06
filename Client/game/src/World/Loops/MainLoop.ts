@@ -5,8 +5,9 @@ import { RenderLoop } from "./RenderLoop";
 import GAME_CLIENT from "../../../../Networking/Client";
 import Body from "../../../../../Engine/src/components/Physical-Body/Body";
 import { PLAYER } from "../../Player";
+import World from "../GlobalWorld";
 
-export function MainLoop() {
+export function MainLoop(instance:World) {
   // FollowPlayer()
   // UILoop()
   // MapLoop()
@@ -22,10 +23,10 @@ export function MainLoop() {
 
         const mainPlayer = update.players[GAME_CLIENT.socket.id];
 
-        Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y });
+        Follow({ x: mainPlayer.pos.x, y: mainPlayer.pos.y }, this);
       }
 
-      RenderLoop();
+      RenderLoop(instance);
     }
   }, 0);
 }

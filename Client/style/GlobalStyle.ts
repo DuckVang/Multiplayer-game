@@ -8,7 +8,7 @@ ${reset}
 #pixi-app {
     position: absolute;
     z-index: 1;
-    pointer-events: none;
+
   }
 
 * {

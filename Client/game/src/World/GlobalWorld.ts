@@ -1,7 +1,14 @@
 import { Viewport } from "pixi-viewport";
 
 import Vector from "../../../../Engine/src/Math/Vector";
-import { Application, Container, Graphics } from "pixi.js";
+import {
+  Application,
+  Container,
+  Graphics,
+  InteractionManager,
+  Rectangle,
+  Renderer,
+} from "pixi.js";
 import { UI } from "../Game-UI/UIClass";
 
 import { AddControl } from "../Interactions/Movement";
@@ -26,9 +33,9 @@ export class World {
   PLAYERS: Player[];
 
   app: Application;
+  renderer: Renderer;
 
   CAMERA: Camera;
-  VIEWPORT: Viewport;
 
   GAME_CONT: Container;
   UI_CONT: Container;
@@ -56,8 +63,21 @@ export class World {
 
   playerID: string;
 
-  constructor() {}
-  init(width: number, height: number) {
+  interactionManager: InteractionManager;
+  constructor(width: number, height: number) {
+    this.app = new Application({
+      resizeTo: window,
+      backgroundColor: 0xdc980,
+      backgroundAlpha: 0.5,
+    });
+    // this.app.stage.interactive = true;
+    // this.app.stage.hitArea = new Rectangle(0, 0, width, height);
+
+    const appNode = document.getElementById("pixi-app");
+    appNode.appendChild(this.app.view);
+
+    this.interactionManager = new InteractionManager(this.app.renderer);
+
     this.PLAYERS = [];
     this.OBJECTS = [];
     this.UI_OBJECTS = [];
@@ -66,28 +86,9 @@ export class World {
     this.width = width;
     this.height = height;
 
-    this.app = new Application({
-      resizeTo: window,
-      backgroundColor: 0xdc980,
-      backgroundAlpha: 0.5,
-    });
+    this.app.stage.sortableChildren = true;
 
-    this.VIEWPORT = new Viewport({
-      screenWidth: window.innerWidth,
-      screenHeight: window.innerHeight,
-      worldWidth: this.width,
-      worldHeight: this.height,
-      ticker: this.app.ticker,
-
-      interaction: this.app.renderer.plugins.interaction,
-    });
-
-    this.VIEWPORT.drag().pinch().wheel().decelerate();
-
-    this.VIEWPORT.sortableChildren = true;
-
-    this.app.stage.addChild(this.VIEWPORT);
-    this.CAMERA = new Camera(this.VIEWPORT);
+    this.CAMERA = new Camera(this.app.stage);
 
     this.UI_CONT = new Container();
     this.app.stage.addChild(this.UI_CONT);
@@ -96,24 +97,21 @@ export class World {
     this.GAME_CONT = new Container();
     this.GAME_CONT.zIndex = 0;
 
-    this.VIEWPORT.addChild(this.GAME_CONT);
+    this.app.stage.addChild(this.GAME_CONT);
 
     this.MAP_CONT = new Container();
-    this.VIEWPORT.addChild(this.MAP_CONT);
+    this.app.stage.addChild(this.MAP_CONT);
     this.MAP_CONT.zIndex = -1;
 
     this.zone = new Zone(this.width / 2, this.height / 2, 5000);
     this.AddMapObj(this.zone);
 
     this.BACKGROUND = new Graphics();
-    this.VIEWPORT.addChild(this.BACKGROUND);
+    this.app.stage.addChild(this.BACKGROUND);
   }
-  append() {
-    const appNode = document.getElementById("pixi-app");
-    appNode.appendChild(this.app.view);
-  }
-  Start() {
-    MainLoop();
+
+  StartLoop() {
+    MainLoop(this);
   }
 
   updateObjects(data: any) {
@@ -128,7 +126,7 @@ export class World {
     GAME_CLIENT.emitToLobby(MSG_TYPES.CREATE_PLAYER);
 
     AddControl(PLAYER);
-    WatchMouse(PLAYER);
+    WatchMouse(PLAYER, this);
 
     console.log("player created");
   }
@@ -139,7 +137,7 @@ export class World {
   }
   AddMapObj(obj: MapObject) {
     this.MAP_OBJECTS.push(obj);
-    this.VIEWPORT.addChild(obj);
+    this.app.stage.addChild(obj);
   }
 
   initUI() {
@@ -153,7 +151,7 @@ export class World {
   }
 }
 
-instance = new World();
-instance.init(10000, 10000);
+// instance = new World();
+// instance.init(10000, 10000);
 
-export default instance;
+export default World;

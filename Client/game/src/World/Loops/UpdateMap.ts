@@ -1,13 +1,13 @@
 
-import instance from "../GlobalWorld";
 
-export function MapLoop() {
+
+// export function MapLoop() {
 
     
-    instance.MAP_OBJECTS.forEach((object) => {
+//     instance.MAP_OBJECTS.forEach((object) => {
 
-        object.update()
+//         object.update()
     
-    })
+//     })
 
-}
+// }

@@ -16,19 +16,19 @@ export class Dash extends Spell {
     this.distance = 50;
     this.speed = 100;
   }
-  cast(dir: Vector, socketID: string, lobby: Lobby) {
-    const player = lobby.players[socketID];
+  // cast(dir: Vector, socketID: string, lobby: Lobby) {
+  //   const player = lobby.players[socketID];
     
-    player.motionTrail = true;
-    console.log("dash");
-    let newDir = dir.mult(this.distance);
-    player.controls = false;
+  //   player.motionTrail = true;
+  //   console.log("dash");
+  //   let newDir = dir.mult(this.distance);
+  //   player.controls = false;
 
-    player.vel = player.vel.add(newDir);
+  //   player.vel = player.vel.add(newDir);
 
-    setTimeout(() => {
-      player.controls = true;
-      player.motionTrail = false;
-    }, this.duration);
-  }
+  //   setTimeout(() => {
+  //     player.controls = true;
+  //     player.motionTrail = false;
+  //   }, this.duration);
+  // }
 }

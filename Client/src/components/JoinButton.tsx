@@ -6,28 +6,24 @@ import { switchVisibilityOf } from "../../state/slices/visibility";
 import { PagesType as PAGES_TYPES } from "../../state/types";
 import store from "../../state/store";
 import React from "react";
+import { StartGame } from "../../game/src";
 
 const StyledButton = styled.button`
   background-color: aliceblue;
 `;
 
 function JoinButton() {
-  console.count()
   function HandleClick() {
-     store.dispatch(switchVisibilityOf(PAGES_TYPES.MAINPAGE));
-   const selected = store.getState().lobby.selectedLobby;
-     if (!selected) return;
+    
+    store.dispatch(switchVisibilityOf(PAGES_TYPES.MAINPAGE));
+    const selected = store.getState().lobby.selectedLobby;
+    if (!selected) return;
 
-     GAME_CLIENT.Start();
+    GAME_CLIENT.Start();
     console.log("socket-after: ", GAME_CLIENT.socket.id);
     GAME_CLIENT.joinLobby(selected);
-//
-//append child by normal mean is maybe different in react 
 
-//
-     WORLD.append();
-    // WORLD.createPlayer();
-    // WORLD.Start();
+    StartGame();
   }
   return <StyledButton onClick={() => HandleClick()}>Join Game</StyledButton>;
 }

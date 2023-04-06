@@ -54,6 +54,7 @@ export default function App() {
         </div>
         <div className="right"></div>
       </StyledMain>
+      <div id="pixi-app"></div>
       
     </>
   );

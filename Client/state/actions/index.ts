@@ -1,4 +1,4 @@
-import { PagesType } from "../types";
+import { ControlType, PagesType } from "../types";
 
 
 
@@ -10,6 +10,10 @@ export interface SwitchVisibilityAction {
 export interface SelectLobby{
   type:"select";
   payload: string
+}
+export interface SwitchControl {
+  type: "switch";
+  payload: ControlType
 }
 
 

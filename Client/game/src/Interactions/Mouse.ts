@@ -3,31 +3,30 @@ import Body from "../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../Engine/src/Math/Vector";
 import GAME_CLIENT from "../../../Networking/Client";
 import { Player } from "../Player";
-import instance from "../World/GlobalWorld";
+import instance, { World } from "../World/GlobalWorld";
 import { INTERACTIONS_TYPES } from "../../../../Shared/Constants";
-import WORLD from "../../../../Game/src/World/GlobalWorld";
 
 let justPressed = false;
 
-export function WatchMouse(player: Player) {
-  //   document.addEventListener("click", HandleClick, { once: true });
-  //   console.count("mouse");
+export function WatchMouse(player: Player, instance: World) {
+  document.addEventListener("click", HandleClick, { once: true });
+  console.count("mouse");
 
-  WORLD.app.stage.interactive = true;
-  WORLD.app.stage.buttonMode = true;
+  //   instance.app.stage.interactive = true;
+  //   instance.app.stage.buttonMode = true;
 
-  WORLD.app.stage.on("mouseover", function (e) {
-    console.log(e.data.global);
-    alert(e);
+  //   instance.app.stage.on("click", function (e) {
+  //     console.log(e.data.global);
+  //     alert(e);
 
-    let mouse = e.data.global;
-    let mousePos = new Vector(
-      mouse.x - instance.app.renderer.width / 2,
-      mouse.y - instance.app.renderer.height / 2
-    );
-    let direction = mousePos.unit();
-    if (player.alive === true) emitClick(direction);
-  });
+  //     let mouse = e.data.global;
+  //     let mousePos = new Vector(
+  //       mouse.x - instance.app.renderer.width / 2,
+  //       mouse.y - instance.app.renderer.height / 2
+  //     );
+  //     let direction = mousePos.unit();
+  //     if (player.alive === true) emitClick(direction);
+  //   });
 
   function HandleClick() {
     document.removeEventListener("click", HandleClick);

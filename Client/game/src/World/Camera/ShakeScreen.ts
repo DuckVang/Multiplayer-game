@@ -1,10 +1,9 @@
-import instance from "../GlobalWorld";
+import instance, { World } from "../GlobalWorld";
 import { Shake } from "pixi-game-camera";
 
-export function ShakeScreen(){
-    const intenseShake = new Shake(instance.VIEWPORT,10,400);
+export function ShakeScreen(instance:World){
+    const intenseShake = new Shake(instance.app.stage,10,400);
  
     instance.CAMERA.effect(intenseShake)
     
-
 }
