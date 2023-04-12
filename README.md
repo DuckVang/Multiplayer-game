@@ -7,7 +7,7 @@ Built with **[TS](https://www.typescriptlang.org/), Socket.io, [Express](https:/
 
 ## DevLog
 
-###1. part 
+### 1. part 
 
 -  Developing physical engine for my game
     - Life cycle of physics in game 
@@ -25,14 +25,14 @@ Built with **[TS](https://www.typescriptlang.org/), Socket.io, [Express](https:/
    -  Rendering cycle, Graphic object, Canvas, Shape drawing 
 
 
-###2. part
+### 2. part
 -  UI design of the main page
    -  Link to[ Figma design ](https://www.figma.com/file/WqwW48y2lvFBJRDv8OSdco/Untitled?node-id=0%3A1&t=yk4oTQOygrU6usUJ-1)
 -  Game design
    -  Abilities, objectives, PvP
    -  Battle royal genre
 
-###3. part
+### 3. part
 -  Basic abilities
    -  Zone and Projectile types of spells
    -  Basic bullet, exploding bullets, laser, ...
@@ -40,7 +40,7 @@ Built with **[TS](https://www.typescriptlang.org/), Socket.io, [Express](https:/
 - Game UI
   - Minimap, health/energy bar, minimap 
 
-###4. part 
+### 4. part 
 -  Redesigning game/engine for multiplayer communication
 -  Backend 
   
