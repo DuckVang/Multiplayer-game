@@ -4,26 +4,21 @@ import Vector, { IVector } from "../../../Engine/src/Math/Vector";
 import { EFFECT_TYPES } from "../../../Shared/Constants";
 import GAME_CLIENT from "../../Networking/Client";
 import { Circle } from "../../../Engine/src/components/Shapes/Circle";
-
-export class Player extends Sprite {
+import { IShape } from "../../../Engine/src/components/Shapes/Shape";
+export class GameObject extends Sprite {
   socketID: string;
 
   background: Container;
 
   pos: IVector;
-  comp: Circle;
+  comp: IShape;
 
-  health: number;
-  energy: any;
-  maxEnergy: any;
-  maxHealth: number;
 
   alive: boolean;
   constructor(
-    socketID: string,
     background: Container,
     pos: IVector = { x: 0, y: 0 },
-    comp: Circle = null
+    comp: IShape = null
   ) {
     // const texture = Texture.from("../../static/black_mage.png");
 
@@ -42,16 +37,12 @@ export class Player extends Sprite {
     this.pos = pos;
     this.comp = comp;
 
-    this.maxHealth = 100;
-    this.health = this.maxHealth;
-    this.maxEnergy = 100;
-    this.energy = this.maxEnergy;
 
     this.alive = true;
 
-    this.socketID = socketID;
+   
   }
-  Update(comp: Circle) {
+  Update(comp: IShape) {
     this.comp = comp;
 
     this.pos = comp.pos;
@@ -61,27 +52,3 @@ export class Player extends Sprite {
   }
 }
 
-export class MainPlayer extends Player {
-  selected: number;
-  up: boolean;
-  down: boolean;
-  left: boolean;
-  right: boolean;
-
-  constructor(
-    socketID: string,
-    background: Container,
-    pos: IVector = { x: 0, y: 0 },
-    comp: Circle = null
-  ) {
-    super(socketID, background, pos, comp);
-
-    this.selected = 0;
-
-    this.up = false;
-    this.down = false;
-    this.left = false;
-    this.right = false;
-  }
-  CastSpell(direction: Vector) {}
-}

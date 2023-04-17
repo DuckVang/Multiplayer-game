@@ -3,7 +3,7 @@ import { Ball } from "../../../../../Engine/src/components/Physical-Body/Ball";
 import Vector from "../../../../../Engine/src/Math/Vector";
 import IGameBody from "../../interfaces/IGameBody";
 import IGameObject from "../../interfaces/IGameObject";
-import { Timer } from "../../Game-UI/Timer";
+
 import { DrawBall } from "../Shapes";
 
 export class MotionTrail {

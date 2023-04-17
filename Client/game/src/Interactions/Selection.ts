@@ -1,7 +1,7 @@
-import { Player } from "../Player";
+import { MainPlayer } from "../Player";
 
 
-export function AddSelection(player: Player) {
+export function AddSelection(player: MainPlayer) {
 
     {
 

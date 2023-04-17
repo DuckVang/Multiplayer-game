@@ -1,6 +1,6 @@
-import { Container } from "pixi.js";
+import { Container, Graphics } from "pixi.js";
 
-export class MapObject extends Container {
+export class MapObject extends Graphics {
 
     update() { }
 }

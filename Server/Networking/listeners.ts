@@ -11,9 +11,15 @@ export function addListeners(server: GameServer) {
 
     socket.on(MSG_TYPES.JOIN_GAME, (data) => {
       server.Lobbies[data.lobby].AddSocket(socket);
+      socket.emit(MSG_TYPES.PLAYER_LIST, {playersIDs: server.Lobbies[data.lobby].playersIDs})
+      console.count("join_game")
     });
     socket.on(MSG_TYPES.CREATE_PLAYER, (data) => {
       server.Lobbies[data.lobby].CreatePlayer(socket);
+      socket.broadcast
+        .to(data.lobby)
+        .emit(MSG_TYPES.NEW_PLAYER_JOINED, { socketID: socket.id });
+        
     });
 
     socket.on("disconnect", (reason) => {

@@ -11,6 +11,10 @@ import { IProjectile } from "./IProjectile";
 
 export class BallProjectile extends Ball implements IProjectile {
   socketID: string;
+  objectID: string;
+
+  parentDict: { [key: string]: Object; };
+
   spell: any;
 
   graphics: Graphics;
@@ -18,7 +22,7 @@ export class BallProjectile extends Ball implements IProjectile {
   projSpeed: number;
   gap: number;
 
-  parentArray: IGameBody[];
+
   lobby: Lobby;
 
   constructor(
@@ -49,15 +53,18 @@ export class BallProjectile extends Ball implements IProjectile {
     this.setPosition(p.x, p.y);
     // this.motionTrail.Start()
   }
-  AddTo(array: IGameBody[]): void {
-    this.parentArray = array;
-    this.parentArray.push(this);
+  AddTo(dict: { [key: string]: IGameBody }): void {
+    this.objectID = (this.lobby.objectsCount++).toString()
+    this.parentDict = dict;
+
+    this.parentDict[this.objectID] = this;
   }
   remove() {
-    this.lobby.objects.splice(this.lobby.objects.indexOf(this), 1);
+    delete this.lobby.objects[this.objectID];
     super.remove();
+
   }
- 
+
   collided(...collidedObj: Body[]): void {
     this.spell.effect(...collidedObj);
   }

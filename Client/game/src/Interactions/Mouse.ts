@@ -2,13 +2,13 @@ import { PlatformPath } from "node:path/win32";
 import Body from "../../../../Engine/src/components/Physical-Body/Body";
 import Vector from "../../../../Engine/src/Math/Vector";
 import GAME_CLIENT from "../../../Networking/Client";
-import { Player } from "../Player";
+import { MainPlayer } from "../Player";
 import instance, { World } from "../World/GlobalWorld";
 import { INTERACTIONS_TYPES } from "../../../../Shared/Constants";
 
 let justPressed = false;
 
-export function WatchMouse(player: Player, instance: World) {
+export function WatchMouse(player: MainPlayer, instance: World) {
   //   document.addEventListener("click", HandleClick, { once: true });
   //   console.count("mouse");
 

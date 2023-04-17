@@ -18,6 +18,9 @@ export class Player extends Ball implements IGameBody {
   spellStorage: SpellStorage;
 
   socketID: string;
+  objectID: string;
+
+  parentDict: { [key: string]: Object; };
 
   alive: boolean;
   lobby: Lobby;
@@ -45,6 +48,7 @@ export class Player extends Ball implements IGameBody {
 
     this.lobby = lobby;
     this.socketID = socketID;
+    
 
     this.effects = [];
 
@@ -64,6 +68,7 @@ export class Player extends Ball implements IGameBody {
   }
 
   AddTo(dict: { [key: string]: IGameBody }, socketID: string): void {
+    this.parentDict = dict
     dict[socketID] = this;
   }
   CastSpell(dir: Vector, selected: any) {

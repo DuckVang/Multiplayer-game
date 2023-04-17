@@ -8,23 +8,32 @@ import { Player } from "../Game-Server/src/Game-Objects/Player";
 import { World } from "../Game-Server/src/World/GlobalWorld";
 import { returnObjectsOnlyWith } from "../utils";
 import { EFFECT_TYPES, EVENT, MSG_TYPES } from "../../Shared/Constants";
+import { Update } from "../../Shared/CommunicationForm";
 
 class Lobby {
+  objectsCount: number;
+
   name: string;
   GAME: World;
 
   players: { [key: string]: Player };
-  objects: IGameBody[];
+
+  playersIDs: string[];
+
+  objects: { [key: string]: IGameBody };
   SPELL_PROJ: any;
   constructor(name: string) {
+    this.objectsCount = 0;
     this.name = name;
-    this.objects = [];
+    this.objects = {};
     this.players = {};
+    this.playersIDs = [];
     this.SPELL_PROJ = [];
     this.GAME = new World(10000, 10000);
   }
   AddSocket(socket: Socket) {
     socket.join(this.name);
+    this.playersIDs.push(socket.id);
     console.log(socket.id + " joined to " + this.name);
 
     // this.SendMessage()
@@ -49,20 +58,14 @@ class Lobby {
 
       this.GAME.Loop(dt);
 
-      const playersComp = returnObjectsOnlyWith(
-        this.players,
-        "comp",
-        "effects"
-      );
-      const objectsComp = this.objects.map((obj) => obj.comp);
-      const update: {
-        players: { [key: string]: { comp: Circle; effects: EFFECT_TYPES[] } };
-        objects: IShape[];
-      } = {
+      const playersComp = returnObjectsOnlyWith(this.players, "comp");
+      const objectsComp = returnObjectsOnlyWith(this.objects, "comp");
+
+      const update: Update = {
         players: playersComp,
         objects: objectsComp,
       };
-      console.log(update);
+
       this.EmitToRoom(MSG_TYPES.GAME_UPDATE, update);
 
       // console.count("server loop")

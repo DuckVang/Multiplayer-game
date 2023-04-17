@@ -41,7 +41,6 @@ const serverConfig = merge(defaultConfig, {
 
 const clientConfig = merge(defaultConfig, {
   target: "web", // <=== can be omitted as default is 'web'
-
   entry: "./Client/index.tsx",
   module: {
     // exclude node_modules

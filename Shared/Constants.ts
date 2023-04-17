@@ -5,7 +5,9 @@ export enum MSG_TYPES {
   GAME_OVER = "game_over",
   MESSAGE = "message",
   AVL_LOBBIES = "available_lobbies",
-  CREATE_PLAYER = "creat_player",
+  CREATE_PLAYER = "create_player",
+  NEW_PLAYER_JOINED = "new_player",
+  PLAYER_LIST = "player_list"
 }
 export enum EFFECT_TYPES {
   DAMAGED = "damaged",

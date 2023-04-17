@@ -16,7 +16,12 @@ export class BoxZone extends Box implements ISpellZone {
 
   gap: number;
   socketID: string;
+  objectID: string;
+
+  parentDict: { [key: string]: Object; };
+
   lobby: Lobby;
+
   constructor(
     socketID: string,
     lobby: Lobby,
@@ -48,12 +53,16 @@ export class BoxZone extends Box implements ISpellZone {
     this.color = color;
 
   }
-  AddTo(array: IGameBody[],): void {
-    array.push(this);
+  AddTo(dict: { [key: string]: IGameBody }): void {
+    this.objectID = (this.lobby.objectsCount++).toString()
+    this.parentDict = dict;
+
+    this.parentDict[this.objectID] = this;
   }
   remove() {
-    this.lobby.objects.splice(this.lobby.objects.indexOf(this), 1);
+    delete this.lobby.objects[this.objectID];
     super.remove();
+
   }
 
   collided(...collidedObj: Body[]): void {

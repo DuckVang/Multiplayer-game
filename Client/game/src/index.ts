@@ -1,7 +1,9 @@
 import World from "./World/GlobalWorld";
 
-export function StartGame() {
+export function StartWorld() {
   const world = new World(10000, 10000);
-  world.createPlayer()
+  world.CreateMainPlayer();
   world.StartLoop();
+
+return world
 }

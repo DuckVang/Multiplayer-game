@@ -1,43 +1,29 @@
 import { io, Socket } from "socket.io-client";
 import WORLD from "../../Game/src/World/GlobalWorld";
 import { EVENT, MSG_TYPES } from "../../Shared/Constants";
-import { Player } from "../game/src/Player";
+import { MainPlayer } from "../game/src/Player";
 import { useSelector } from "react-redux";
 import store from "../state/store";
+import { Update } from "../../Shared/CommunicationForm";
+import World from "../game/src/World/GlobalWorld";
 
 // import instance from "../Game-Client/src/World/GlobalWorld";
 
 let instance: Client;
 export class Client {
-  gameUpdate: any;
+  gameUpdate: Update;
 
   socket: Socket;
- constructor() {
-  this.socket = null
- }
-  Start() {
-    console.log("client is alive pog");
+  constructor() {}
+
+  ConnectToLobby(lobby: string, callback: Function) {
     if (!instance) instance = this;
     this.socket = io("http://localhost:4000");
+    this.socket.on("connect", () => {
+      this.socket.emit(MSG_TYPES.JOIN_GAME, { lobby: lobby });
 
-    this.socket.on("serverToClient", (data) => {
-      alert(data);
-      this.socket.emit("clientToServer", "Hello from " + this.socket.id);
+      callback();
     });
-
-    this.socket.on(
-      MSG_TYPES.GAME_UPDATE,
-      (data: { players: { [key: string]: Player }; objects: any[] }) => {
-        this.gameUpdate = data;
-      }
-      
-    );
-    this.socket.on(MSG_TYPES.MESSAGE, (data) => {
-      console.log(data);
-    });
-  }
-  joinLobby(lobby: string) {
-    this.socket.emit(MSG_TYPES.JOIN_GAME, { lobby: lobby });
   }
 
   emitToLobby(event: EVENT, object?: any) {
