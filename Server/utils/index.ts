@@ -1,8 +1,8 @@
 import { forEach } from "../../webpack.config";
 
-export function returnObjectsOnlyWith<TObj>(
+export function returnObjectsOnlyWith<TObj, TKey extends keyof TObj>(
   dict: { [key: string]: TObj },
-  ...property: (keyof TObj)[]
+  ...property: (TKey)[]
 ) {
   if (!dict) return;
   let playersComp = Object.keys(dict).reduce((result: any, key: string) => {
